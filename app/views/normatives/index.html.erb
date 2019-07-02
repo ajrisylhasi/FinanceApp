@@ -1,0 +1,29 @@
+<h1>Index of Normatives</h1>
+<center>
+  <table border="1">
+    <tr>
+      <td>
+        <%= "Numri Normatives" %>
+      </td>
+      <td>
+        <%= "Data" %>
+      </td>
+      <td>
+        <%= "Produkti" %>
+      </td>
+    </tr>
+    <% @normatives.each do |a| %>
+        <tr>
+          <td><%= a.nr_normatives %></td>
+          <td><%= a.data %></td>
+          <td><%= a.product.pershkrimi %></td>
+          <td><%= link_to 'Show', a %></td>
+          <td><%= link_to 'Edit', edit_normative_path(a) %></td>
+          <td><%= link_to 'Destroy', a, method: :delete %></td>
+        </tr>
+    <% end %>
+  </table>
+</center>
+<div>
+  <center><%= link_to "New Normative", new_normative_path, class:"btn btn-primary", style:"margin:15px" %></center>
+</div>

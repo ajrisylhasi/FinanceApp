@@ -1,0 +1,37 @@
+<h1>Index of Imports</h1>
+<div><%= render "layouts/flash" %></div>
+<div>
+  <center>
+    <table border="1">
+      <tr>
+        <td>
+          <%= "Numri i Importit" %>
+        </td>
+        <td>
+          <%= "data" %>
+        </td>
+        <td>
+          <%= "Numri i Fatures" %>
+        </td>
+        <td>
+          <%= "Klienti" %>
+        </td>
+      </tr>
+      <% @imports.each do |a| %>
+          <tr>
+            <td><%= a.nr_dud %></td>
+            <td><%= a.data %></td>
+            <td><%= a.nr_fatures %></td>
+            <td><%= a.client.kompania %></td>
+            <td><%= link_to 'Show', a %></td>
+            <td><%= link_to 'Edit', edit_import_path(a) %></td>
+            <td><%= link_to 'Destroy', a, method: :delete %></td>
+          </tr>
+      <% end %>
+    </table>
+  </center>
+</div>
+<div>
+    <center><%= link_to "New Import", new_import_path, class:"btn btn-primary", style:"margin:15px" %></center>
+</div>
+

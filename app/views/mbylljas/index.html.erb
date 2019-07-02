@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mbylljas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nr mbylljes</th>
+      <th>Data</th>
+      <th>Import</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mbylljas.each do |mbyllja| %>
+      <tr>
+        <td><%= mbyllja.nr_mbylljes %></td>
+        <td><%= mbyllja.data %></td>
+        <td><%= mbyllja.imports.count %></td>
+        <td><%= link_to 'Show', mbyllja %></td>
+        <td><%= link_to 'Edit', edit_mbyllja_path(mbyllja) %></td>
+        <td><%= link_to 'Destroy', mbyllja, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mbyllja', new_mbyllja_path %>

@@ -1,0 +1,23 @@
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3" style="width:35%">
+    <%= nested_form_for(@garancion) do |f|%>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div style="container">
+        <%= f.label :pershkrimi %>
+        <%= f.text_field :pershkrimi, class: 'form-control' %>
+        <%= f.label :data %>
+        <%= f.date_field :data, class: 'form-control' %>
+        <%= f.label :identifikimi %>
+        <%= f.text_field :identifikimi, class: 'form-control' %>
+        <%= f.label :vlera %>
+        <%= f.number_field :vlera, step: :any, class: 'form-control' %>
+        <%= f.label :data_skadimit %>
+        <%= f.date_field :data_skadimit, class: 'form-control' %>
+      </div>
+      <div class="buttons">
+        <%= f.submit "Edit Garancion", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Back", @garancion, class:"btn btn-primary" %>
+</div>

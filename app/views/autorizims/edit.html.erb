@@ -1,0 +1,29 @@
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3">
+    <%= nested_form_for(@autorizim) do |f|%>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div style="container">
+        <%= f.label :data_leshimit %>
+        <%= f.date_field :data_leshimit, class: 'form-control' %>
+        
+        <%= f.label :data_skadimit %>
+        <%= f.date_field :data_skadimit, class: 'form-control' %>
+                
+        <%= f.label :shteti %>
+        <%= f.text_field :shteti, class: 'form-control' %>
+        
+        <%= f.label :qyteti %>
+        <%= f.text_field :qyteti, class: 'form-control' %>
+        
+        <%= f.label :adresa %>
+        <%= f.text_field :adresa, class: 'form-control' %>
+        
+        <%= f.file_field :files, multiple: true %>
+      </div>
+      <div class="buttons">
+        <%= f.submit "Edit Autorizim", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Back", @autorizim, class:"btn btn-primary" %>
+</div>

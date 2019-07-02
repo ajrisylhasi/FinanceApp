@@ -1,0 +1,9 @@
+<div>
+  <% if @autorizim.files.attached? %>
+    <% @autorizim.files.each do |file| %>
+      <p><%= link_to file.filename,  rails_blob_path(file, disposition: :attachment), class:"file" %> |
+      <%= link_to 'Remove', delete_image_attachment_autorizim_path(file.id), method: :delete %></p>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to 'Back', @autorizim, class:"btn btn-primary" %>

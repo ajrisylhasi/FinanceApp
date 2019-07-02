@@ -1,0 +1,57 @@
+
+<html>
+  <head>
+    <%= wicked_pdf_stylesheet_link_tag "application" -%>
+    <title>Import Report - <%= Date.today.to_s %></title>
+  </head>
+  <body>
+    <div class="pdfheader">
+      <div style="display: inline-block; height: 75px"><%= wicked_pdf_image_tag kompania.image_url(:thumb).to_s %></div>
+      <div style="display: inline-block; height: 100px; width: 500px; vertical-align: top">
+        <center><p style="font-size: 25px; position:absolute; vertical-align:top; left: 0; width: 100%;"><strong><%= kompania.kompania %></strong></p></center>
+        <center><p style="font-size: 15px; position:absolute; vertical-align:top; left: 0; width: 100%; top: 3.8%">Nr. Kontaktues: <%= current_user.tel_number %></p></center>
+        <center><p style="font-size: 15px; position:absolute; vertical-align:top; left: 0; width: 100%; top: 5%">Email: <%= current_user.email %></p></center>
+      </div>
+      <div style="display: inline-block; height: 100px; width: 280px; vertical-align: top">
+        <div style="margin:15px">
+          <center>
+            <p style="font-size:10px; padding: 0px; margin: 0px">Te dhenat e <strong><%= kompania.kompania %></strong></p>
+            <p style="font-size:10px; padding: 0px; margin: 0px">Adresa: <strong><%= kompania.adresa %></strong></p> 
+            <p style="font-size:10px; padding: 0px; margin: 0px">Nr. fiskal: <strong><%= kompania.numri_fiskal %></strong></p> 
+            <p style="font-size:10px; padding: 0px; margin: 0px">Nr. biznesit: <strong><%= kompania.numri_biznesit %></strong></p> 
+            <p style="font-size:10px; padding: 0px; margin: 0px">Nr. VAT: <strong><%= kompania.numri_tvsh %></strong></p> 
+          </center>
+        </div>
+      </div>
+    </div>
+    <center>
+      <table border="4" text-align="center">
+        <h1> Importi Artikujve</h1>
+        <tr>
+          <td><center>Klienti</center></td>
+          <td><center>Data e Importit</center></td>
+          <td><center>Numri I Importit</center></td>
+          <td><center>Numri i Fatures</center></td>
+          <td><center>Emertimi</center></td>
+          <td><center>Artikulli</center></td>
+          <td><center>Sasia</center></td>
+          <td><center>Pesha</center></td>
+          <td><center>Qmimi</center></td>
+        </tr>
+        <% @list.each do |ep| %>
+          <tr>  
+            <td style="width:100px"><center><%= ep.import.client.kompania %></center></td>
+            <td style="width:100px"><center><%= ep.import.data %></center></td>
+            <td style="width:100px"><center><%= ep.import.nr_dud %></center></td>
+            <td style="width:100px"><center><%= ep.import.nr_fatures %></center></td>
+            <td style="width:100px"><center>Coming Soon</center></td>
+            <td style="width:100px"><center><%= ep.article.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= ep.sasia.round(2) %></center></td>
+            <td style="width:100px"><center><%= ep.pesha.round(2) %></center></td>
+            <td style="width:100px"><center><%= ep.qmimi_tot.round(2) %> €</center></td>
+          </tr>
+        <% end %>
+      </table>
+    </center>
+  </body>
+</html>

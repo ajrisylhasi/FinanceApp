@@ -1,0 +1,41 @@
+<center><div class="jumbotron">
+  <center>
+    <div>
+      <%= form_for "", url: import_search_url, role: "search", method: :get  do %>
+        <%= date_field_tag "search[date_from]", @date_from %>
+        <%= date_field_tag "search[date_to]", @date_to %>
+        <%= select_tag "search[client_id]", options_from_collection_for_select(@clients, 'id', 'kompania'), {include_blank: "Select Client", multiple: false} %>
+        <%= select_tag "search[article_id]", options_from_collection_for_select(@articles, 'id', 'name'), {include_blank: "Select Article", multiple: false} %>
+        <%= submit_tag "Search",  class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </center>
+  <center><table border="4" text-align="center">
+    <h1> Importi Artikujve</h1>
+    <tr>
+      <td><center>Klienti</center></td>
+      <td><center>Data e Importit</center></td>
+      <td><center>Numri I Importit</center></td>
+      <td><center>Numri i Fatures</center></td>
+      <td><center>Emertimi</center></td>
+      <td><center>Artikulli</center></td>
+      <td><center>Sasia</center></td>
+      <td><center>Pesha</center></td>
+      <td><center>Qmimi</center></td>
+    </tr>
+    <% @list.each do |ep| %>
+      <tr>  
+        <td style="width:100px"><center><%= ep.import.client.kompania %></center></td>
+        <td style="width:100px"><center><%= ep.import.data %></center></td>
+        <td style="width:100px"><center><%= ep.import.nr_dud %></center></td>
+        <td style="width:100px"><center><%= ep.import.nr_fatures %></center></td>
+        <td style="width:100px"><center>Coming Soon</center></td>
+        <td style="width:100px"><center><%= ep.article.pershkrimi %></center></td>
+        <td style="width:100px"><center><%= ep.sasia.round(2) %></center></td>
+        <td style="width:100px"><center><%= ep.pesha.round(2) %></center></td>
+        <td style="width:100px"><center><%= ep.qmimi_tot.round(2) %> €</center></td>
+      </tr>
+    <% end %>
+  </table><%= link_to "PDF", import_search_path( format: :pdf, :search => { :date_from => @date_from, :date_to => @date_to, :client_id => @client, :article_id => @article }), target: "_blank", class: "btn btn-primary", style: "margin: 15px" %> 
+          <%= link_to "CSV", '/import_search.csv', class: "btn btn-primary", style: "margin: 15px" %></center>
+</div></center>

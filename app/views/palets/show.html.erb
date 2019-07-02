@@ -1,0 +1,145 @@
+<%= render 'layouts/flash' %>
+<h1><%= @palet.nr_paletes %></h1>
+<h1 style="color:black">Manage Products</h1>
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3">
+    <%= nested_form_for(@palet) do |f|%>
+      <%= f.fields_for :palet_products do |na| %>
+        <%= render 'shared/error_messages', object: na.object %>
+        
+        <% unless na.object.persisted? %>
+        <center><table>
+          <tr>
+            <div>
+              <td><%= "Paleta #{@palet.nr_paletes} do te kete " %></td>
+                <td width="180px">
+                  <div style="text-align:center">
+                    <%= na.select :product_id, Product.select { |p| !(p.palets.include? @palet) }.pluck(:pershkrimi, :id), { prompt: "Select Product", multiple: false} %>
+                  </div>
+                </td>
+                <td width="225px">
+                  <%= na.label :sasia %>
+                  <%= na.number_field :sasia %>
+                </td>
+            </div>
+          </tr>
+        </table></center>
+        <% end %>
+      <% end %>
+      <div class="buttons">
+        <% if Product.count != 0 %>
+          <%= f.submit "Update Palet", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      
+    <% end %>
+  </div>
+  <div class="col-md-6 col-md-offset-3">
+    <%= nested_form_for(@palet) do |f|%>
+      <%= f.fields_for :palet_packets do |na| %>
+        <%= render 'shared/error_messages', object: na.object %>
+        
+        <% unless na.object.persisted? %>
+        <center><table>
+          <tr>
+            <div>
+              <td><%= "Paleta #{@palet.nr_paletes} do te kete " %></td>
+                <td width="180px">
+                  <div style="text-align:center">
+                    <%= na.select :packet_id, Packet.select { |p| !(p.palets.include? @palet) }.collect {|p| [ p.name, p.id ] }, { prompt: "Select Packet", multiple: false} %>
+                  </div>
+                </td>
+                <td width="225px">
+                  <%= na.label :sasia %> 
+                  <%= na.number_field :sasia %>
+                </td>
+            </div>
+          </tr>
+        </table></center>
+        <% end %>
+      <% end %>
+      <div class="buttons">
+        <% if Packet.count != 0 %>
+          <%= f.submit "Update Palet", class: "btn btn-primary" %>
+        <% end %>7
+      </div>
+      
+    <% end %>
+  </div>
+  <center>
+    <%= link_to "Back", palets_path, class:"btn btn-primary" %>
+  </center>
+</div>
+<h1>Numri i Produkteve:<%= @palet.products.count %></h1>
+<center><table width="50%" border="solid #333 1px">
+  <tr>
+    <td>
+      <%= "Pershkrimi" %>
+    </td>
+    <td>
+      <%= "Tarif Kodi" %>
+    </td>
+    <td>
+      <%= "Sasia" %>
+    </td>
+  </tr>
+  <% @palet.palet_products.each do |na| %>
+    <% if na.valid? %>
+      <tr>
+        <td>
+          <%= na.product.pershkrimi %>
+        </td>
+        <td>
+          <%= na.product.tarif_kodi %>
+        </td>
+        <td>
+          <%= na.sasia %>
+        </td>
+        <td style="text-align:center;">
+          <%= link_to na, method: :delete do %>
+            <span>&#x2715;</span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    
+  <% end %>
+</table></center>
+<h1>Numri i Paketave:<%= @palet.packets.count %></h1>
+<center><table width="50%" border="solid #333 1px">
+  <tr>
+    <td>
+      <%= "Numri i paketes" %>
+    </td>
+    <td>
+      <%= "Dimensioni" %>
+    </td>
+    <td>
+      <%= "Sasia" %>
+    </td>
+  </tr>
+  <% @palet.palet_packets.each do |na| %>
+    <% if na.valid? %>
+      <tr>
+        <td>
+          <%= na.packet.nr_paketes %>
+        </td>
+        <td>
+          <%= na.packet.dimensioni %>
+        </td>
+        <td>
+          <%= na.sasia %>
+        </td>
+        <td style="text-align:center;">
+          <%= link_to na, method: :delete do %>
+            <span>&#x2715;</span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    
+  <% end %>
+</table></center>
+<%= link_to 'Home', palets_path, class:"btn btn-primary" %>
+<%= link_to 'Files', palets_files_path(@palet), class:"btn btn-primary" %>
+

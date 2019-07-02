@@ -1,0 +1,49 @@
+<center><div class="jumbotron">
+  <center>
+    <div>
+      <%= form_for "", url: mbetja_url, role: "search", method: :get  do %>
+        <%= date_field_tag "search[date]", @date %>
+        <%= submit_tag "Search",  class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </center>
+  <center><table border="4" text-align="center">
+    <h1>Mbetja</h1>
+    <tr>
+      <td><center>Eksporti</center></td>
+      <td><center>Importi</center></td>
+      <td><center>Emertimi</center></td>
+      <td><center>Tarif Kodi</center></td>
+      <td><center>Kodi Artikullit</center></td>
+      <td><center>Pershkrimi</center></td>
+      <td><center>Njesia</center></td>
+      <td><center>Sasia</center></td>
+      <td><center>Pesha</center></td>
+      <td><center>Qmimi Total</center></td>
+      <td><center>Taksa Doganora</center></td>
+      <td><center>Akciza</center></td>
+      <td><center>TVSH</center></td>
+      <td><center>Gjithsej Taksat</center></td>
+    </tr>
+    <% @hash_mbetja.sort_by {|x, y| x[1]}.each do |x, y| %>
+      <tr>  
+        <td style="width:100px"><center><%= x[3].nr_exportit %></center></td>
+        <td style="width:100px"><center><%= x[2].nr_dud %></center></td>
+        <td style="width:100px"><center><%= x[1] %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: x[0]).first.tarif_kodi %></center></td>
+        <td style="width:100px"><center><%= x[0] %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: x[0]).first.pershkrimi %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: x[0]).first.njesia %></center></td>
+        <td style="width:100px"><center><%= y[0].round(2) %></center></td>
+        <td style="width:100px"><center><%= y[1].round(2) %> Kg</center></td>
+        <td style="width:100px"><center><%= y[3].round(2) %> €</center></td>
+        <td style="width:100px"><center><%= y[4].round(2) %> €</center></td>
+        <td style="width:100px"><center><%= y[5].round(2) %> €</center></td>
+        <td style="width:100px"><center><%= y[6].round(2) %> €</center></td>
+        <td style="width:100px"><center><%= y[7].round(2) %> €</center></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "PDF", mbetja_path( format: :pdf, :search => { :date => @date }), target: "_blank", class: "btn btn-primary", style: "margin: 15px" %>
+  </center>
+</div></center> 

@@ -1,0 +1,27 @@
+<%= form_with(model: palet, local: true) do |form| %>
+  <% if palet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(palet.errors.count, "error") %> prohibited this palet from being saved:</h2>
+
+      <ul>
+      <% palet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nr_paletes %>
+    <%= form.text_field :nr_paletes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dimensioni %>
+    <%= form.text_field :dimensioni %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

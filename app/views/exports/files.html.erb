@@ -1,0 +1,9 @@
+<div>
+  <% if @export.files.attached? %>
+    <% @export.files.each do |file| %>
+      <p><%= link_to file.filename,  rails_blob_path(file, disposition: :attachment), class:"file" %> |
+      <%= link_to 'Remove', delete_image_attachment_export_url(file.id), method: :delete %></p>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to 'Back', @export, class:"btn btn-primary" %>

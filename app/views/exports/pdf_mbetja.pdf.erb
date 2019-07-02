@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <%= wicked_pdf_stylesheet_link_tag "application" %>
+  </head>
+  <center>
+    <div class="pdfheader">
+      <div style="display: inline-block; height: 75px"><%= wicked_pdf_image_tag kompania.image_url(:thumb).to_s %></div>
+      <div style="display: inline-block; height: 100px; width: 500px; vertical-align: top">
+        <center><p style="font-size: 25px; position:absolute; vertical-align:top; left: 0; width: 100%;"><strong><%= kompania.kompania %></strong></p></center>
+        <center><p style="font-size: 15px; position:absolute; vertical-align:top; left: 0; width: 100%; top: 3.8%">Nr. Kontaktues: <%= current_user.tel_number %></p></center>
+        <center><p style="font-size: 15px; position:absolute; vertical-align:top; left: 0; width: 100%; top: 5%">Email: <%= current_user.email %></p></center>
+      </div>
+      <div style="display: inline-block; height: 100px; width: 280px; vertical-align: top">
+        <div style="margin:15px">
+          <center>
+            <p style="font-size:10px; padding: 0px; margin: 0px">Te dhenat e <strong><%= kompania.kompania %></strong></p>
+            <p style="font-size:10px; padding: 0px; margin: 0px">Adresa: <strong><%= kompania.adresa %></strong></p> 
+            <p style="font-size:10px; padding: 0px; margin: 0px">Nr. fiskal: <strong><%= kompania.numri_fiskal %></strong></p> 
+            <p style="font-size:10px; padding: 0px; margin: 0px">Nr. biznesit: <strong><%= kompania.numri_biznesit %></strong></p> 
+            <p style="font-size:10px; padding: 0px; margin: 0px">Nr. VAT: <strong><%= kompania.numri_tvsh %></strong></p> 
+          </center>
+        </div>
+      </div>
+    </div>
+
+    <table width="40" border="10">
+    <h1> Mbetja nga Shkarkim </h1>
+    <tr>
+      <td><center>Eksporti</center></td>
+      <td><center>Importi</center></td>
+      <td><center>Emertimi</center></td>
+      <td><center>Tarif Kodi</center></td>
+      <td><center>Kodi Artikullit</center></td>
+      <td><center>Pershkrimi</center></td>
+      <td><center>Njesia</center></td>
+      <td><center>Sasia</center></td>
+      <td><center>Pesha</center></td>
+      <td><center>Qmimi Total</center></td>
+      <td><center>Taksa Doganora</center></td>
+      <td><center>Akciza</center></td>
+      <td><center>TVSH</center></td>
+      <td><center>Gjithsej Taksat</center></td>
+    </tr>
+    <% @hash_mbetja_export.sort_by {|x, y| x[1]}.each do |x, y| %>
+      <tr>  
+        <td style="width:100px"><center><%= x[3].nr_exportit %></center></td>
+        <td style="width:100px"><center><%= x[2].nr_dud %></center></td>
+        <td style="width:100px"><center><%= x[1] %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: x[0]).first.tarif_kodi %></center></td>
+        <td style="width:100px"><center><%= x[0] %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: x[0]).first.pershkrimi %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: x[0]).first.njesia %></center></td>
+        <td style="width:100px"><center><%= y[0] %></center></td>
+        <td style="width:100px"><center><%= y[1] %> Kg</center></td>
+        <td style="width:100px"><center><%= x[4].mbetja_qmimi_tot %></center></td>
+        <td style="width:100px"><center><%= x[4].mbetja_taksa_dogana %></center></td>
+        <td style="width:100px"><center><%= x[4].mbetja_taksa_akciza %></center></td>
+        <td style="width:100px"><center><%= x[4].mbetja_taksa_tvsh %></center></td>
+        <td style="width:100px"><center><%= x[4].mbetja_gjithsej_taksa %></center></td>
+      </tr>
+    <% end %>
+  </table>
+  </center>
+</html>

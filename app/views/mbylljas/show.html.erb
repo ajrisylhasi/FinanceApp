@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nr mbylljes:</strong>
+  <%= @mbyllja.nr_mbylljes %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @mbyllja.data %>
+</p>
+
+<p>
+  <strong>Imports:</strong>
+  <%= @mbyllja.imports.count %>
+</p>
+
+<% @mbyllja.imports.each do |i| %>
+  <%= i.nr_dud %>
+<% end %>
+
+<%= link_to 'Edit', edit_mbyllja_path(@mbyllja) %> |
+<%= link_to 'Back', mbylljas_path %>

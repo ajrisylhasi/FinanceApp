@@ -1,0 +1,15 @@
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3" style="width:35%">
+    <%= nested_form_for(@njesi) do |f|%>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div style="container">
+        <%= f.label :lloji, "Njesia" %>
+        <%= f.text_field :lloji, class: 'form-control' %>
+      </div>
+      <div class="buttons">
+        <%= f.submit "Add Njesi", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Back", articles_path, class:"btn btn-primary" %>
+</div>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Palets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nr paletes</th>
+      <th>Dimensioni</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @palets.each do |palet| %>
+      <tr>
+        <td><%= palet.nr_paletes %></td>
+        <td><%= palet.dimensioni %></td>
+        <td><%= link_to 'Show', palet %></td>
+        <td><%= link_to 'Edit', edit_palet_path(palet) %></td>
+        <td><%= link_to 'Destroy', palet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Palet', new_palet_path %>

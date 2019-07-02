@@ -1,0 +1,126 @@
+
+<%= render 'layouts/flash' %>
+<h1><%= @export.nr_exportit %></h1>
+<h1 style="color:black">Manage Products</h1>
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3">
+    <% if $gabimet.count != 0 %>
+      <center><ul class="alert alert-danger"><a class="close" data-dismiss="alert">&#215;</a>
+        <% $gabimet.each do |a| %>
+          <li style="margin:15px"><%= a %></li>
+        <% end %>
+      </ul></center>
+    <% end %>
+    <%= nested_form_for(@export)do |f|%>
+      <%= f.fields_for :export_products do |na| %>
+        <%= render 'shared/error_messages', object: na.object %>
+        
+        <% unless na.object.persisted? %>
+        <center><table>
+          <tr>
+            <div style="display: inline">
+                <td width="180px">
+                  <div style="text-align:center">
+                    <%= na.select :product_id, Product.pluck( :pershkrimi, :id), { prompt: "Select Product", multiple: false}, :id => "product_select" %>
+                  </div>
+                </td>
+                <td width="225px">
+                  <%= na.label :sasia %>
+                  <%= na.number_field :sasia, step: :any %>
+                </td>
+                <td>
+                  <%= na.grouped_collection_select("normative_id", Product.order(:pershkrimi), :working_normatives, :pershkrimi, :id, :show_text,
+                                                      { include_blank: "Select Normative", multiple: false}, :id => "normative_select") %>
+                                                                            
+                </td>
+            </div>
+          </tr>
+        </table></center>
+        <% end %>
+      <% end %>
+      <div class="buttons">
+        <% if Product.count != 0 %>
+          <%= f.submit "Update Product", class: "btn btn-primary", id: "lolz", name: "add_product_export" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <center>
+    <%= link_to "Fatura", @export.fatura, class:"btn btn-primary" %>
+    <%= link_to "Specifikacioni", specifikacioni_path(@export), class:"btn btn-primary" %>
+    <%= link_to "Mbetja", export_mbetja_path(@export), class:"btn btn-primary" %>
+  </center>
+</div>
+Pesha Bruto: <%= @pesha_b %><br>
+Pesha Neto: <%= @pesha_n %>
+<%= @e %>
+<h1>Numri i Produkteve:<%= @export.products.count %></h1>
+<center><table width="50%" border="solid #333 1px">
+  <tr>
+    <td>
+      <%= "Pershkrimi" %>
+    </td>
+    <td>
+      <%= "Tarif Kodi" %>
+    </td>
+    <td>
+      <%= "Sasia" %>
+    </td>
+    <td>
+      <%= "Normative" %>
+    </td>
+  </tr>
+  <% @export.export_products.each do |na| %>
+  
+    <% n = na.export %>
+    <% a = na.product %>
+    <% if na.valid? %>
+      <tr>
+        <td>
+          <%= na.product.pershkrimi %>
+        </td>
+        <td>
+          <%= na.product.tarif_kodi %>
+        </td>
+        <td>
+          <%= na.sasia %>
+        </td>
+        <td>
+          <%= na.normative.nr_normatives %>
+        </td>
+        <td style="text-align:center;">
+          <%= link_to na, {method: :delete, id: "lolzi"} do %>
+            <span onclick="show_slow_warning()">&#x2715;</span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table></center>
+<%= link_to 'Home', exports_path, class:"btn btn-primary" %>
+<%= link_to 'Files', export_files_path(@export), class:"btn btn-primary" %>
+<%= link_to 'Edit', edit_export_path(@export), class:"btn btn-primary" %>
+<% $gabimet = [] %>
+<div class="modal fade" id="slow_warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="height: 450px;">
+          <div class="modal-header">
+            <center><h4 class="modal-title" id="exampleModalLabel" style="margin-top: 15px; font-family: Barlow"><strong>Duke u bere kalkulimet e Ekportit</strong></h4></center>
+          </div> 
+          <center><h4 class="modal-title" id="exampleModalLabel" style="margin-top: 15px; font-family: Barlow"><strong>Ju lutem prisni</strong></h4></center>
+          <center><h4 class="modal-title" id="exampleModalLabel" style="margin-top: 15px; font-family: Barlow"><strong>Mund te zgjas disa sekonda</strong></h4></center>
+          <div id="animation-box"></div>
+        </div>
+      </div>
+    </div>
+<script>
+  function show_slow_warning() {
+    $("#slow_warning").show();
+    $("#slow_warning").modal({backdrop: 'static', keyboard: false});
+  }
+  $(document).ready(function() {
+    $('#lolz').click(function(){
+      show_slow_warning();
+    });
+  });
+</script>

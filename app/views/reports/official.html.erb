@@ -1,0 +1,75 @@
+
+  <center>
+    <div>
+      <%= form_for "", url: official_url, role: "search", method: :get  do %>
+        <%= date_field_tag "search[date]", @date, value: Date.today %>
+        <%= select_tag "search[import_id]", options_from_collection_for_select(@imports, 'id', 'prezantim'), {include_blank: "Select All on that Day", multiple: false} %>
+        <%= submit_tag "Search",  class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </center>
+  <center><div style="display: inline-block;">
+    <h1 style="text-align: center;">Raport per Institucionet Doganore</h1>
+  </div>
+  <div class="fatura-tabela" style="width:1300px">
+    <table>
+      <tr class="hedi">
+        <td><center>Data</center></td>
+        <td><center>Importi</center></td>
+        <td><center>Emertimi</center></td>
+        <td><center>Tarif Kodi</center></td>
+        <td><center>Kodi Artikullit</center></td>
+        <td><center>Pershkrimi</center></td>
+        <td><center>Sasia</center></td>
+        <td><center>Njesia</center></td>
+        <td><center>Pesha</center></td>
+        <td><center>Qmimi Total</center></td>
+        <td><center>Taksa Doganore</center></td>
+        <td><center>Akciza</center></td>
+        <td><center>Taksa TVSH</center></td>
+        <td><center>Gjithsej Taksat</center></td>
+      </tr>
+      <% i = 1 %>
+      <% @gjendja.each do |y, x| %>
+        <% i+=1 %>
+        <% if i.even? %>
+          <tr style="background: #dee2e6">  
+        <% else %>
+          <tr style="background: white"> 
+        <% end %>
+          <td style=""><center><%= y[2].data.strftime("%d/%m/%Y") %></center></td>
+          <td style=""><center><%= y[2].nr_dud %></center></td>
+          <td style=""><center><%= y[1] %></center></td>
+          <td style=""><center><%= x[3].article.tarif_kodi %></center></td>
+          <td style=""><center><%= y[0] %></center></td>
+          <td style="width: 250px"><center><%= Article.where(kodi: y[0]).first.pershkrimi_gjate %></center></td>
+          <td style=""><center><%= '%.2f' % x[0].round(2) %></center></td>
+          <td style=""><center><%= x[3].njesia %></center></td>
+          <td style=""><center><%= '%.2f' % x[1].round(2) %> Kg</center></td>
+          <td style=""><center><%= '%.2f' % x[2].round(2) %> €</center></td>
+          <td style=""><center><%= '%.2f' % x[4].round(2) %> €</center></td>
+          <td style=""><center><%= '%.2f' % x[5].round(2) %> €</center></td>
+          <td style=""><center><%= '%.2f' % x[6].round(2) %> €</center></td>
+          <td style=""><center><%= '%.2f' % x[7].round(2) %> €</center></td>
+        </tr>
+      <% end %>
+      <tr style="border-bottom: 0px">
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong>Total:</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px; white-space: nowrap"><center><strong><%= number_with_delimiter(('%.2f' % @totali_pesha.round(2)), :delimiter => ',') %> Kg</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @totali_qmimi_tot.round(2) %> €</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @totali_taksa_dogana.round(2) %> €</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @totali_taksa_akciza.round(2) %> €</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @totali_taksa_tvsh.round(2) %> €</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @totali_gjithsej_taksat.round(2) %> €</strong></center></td>
+      </tr>
+    </table>
+  </div>
+  <%= link_to "PDF", official_path( format: :pdf, :search => { :date => @date, :import_id => @import }), target: "_blank", class: "btn btn-primary", style: "margin: 15px" %> 
+</center> 

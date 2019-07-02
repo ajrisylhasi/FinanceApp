@@ -1,0 +1,41 @@
+<h1>Index of Garancions</h1>
+<div>
+  <center>
+    <table border="1">
+      <tr>
+        <td>
+          <%= "Identifikimi" %>
+        </td>
+        <td>
+          <%= "Vlera" %>
+        </td>
+        <td>
+          <%= "Data" %>
+        </td>
+        <td>
+          <%= "Data Skadimit" %>
+        </td>
+        <td>
+          <%= "Pershkrimi" %>
+        </td>
+      </tr>
+      <% @garancions.each do |a| %>
+          <tr>
+            <td><%= a.identifikimi %></td>
+            <td><%= a.vlera %> €</td>
+            <td><%= a.data %></td>
+            <td><%= a.data_skadimit %></td>
+            <td><%= a.pershkrimi %></td>
+            <td><%= link_to 'Show', a %></td>
+            <td><%= link_to 'Edit', edit_garancion_path(a) %></td>
+            <td><%= link_to 'Destroy', a, method: :delete %></td>
+          </tr>
+      <% end %>
+      <h2>Garancioni i mbetur <%= $garancioni_mbetur.round(3) %></h2>
+    </table>
+  </center>
+</div>
+<div>
+    <center><%= link_to "New Garancion", new_garancion_path, class:"btn btn-primary", style:"margin:15px" %></center>
+</div>
+

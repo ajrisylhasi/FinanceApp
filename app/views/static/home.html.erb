@@ -1,0 +1,52 @@
+                <div class="dropdown-menu animated" id="notification-dropdown">
+		              <div class="dropdown-header">
+		                <span class="triangle"></span>
+		                <span class="heading">Notifications</span>
+		                <span class="count" id="dd-notifications-count">{{newNotifications.length}}</span>
+		              </div>
+		              <div class="dropdown-body">
+		                <div class="notification new" ng-repeat="notification in newNotifications.slice().reverse() track by notification.timestamp">
+		                  <div class="notification-image-wrapper">
+		                  	<div class="notification-image">
+			                  	<img src="{{notification.user.imageUrl}}" alt="" width="32">
+			                  </div>
+		                  </div>
+		                  <div class="notification-text">
+		                     <span class="highlight"></span>
+		                  </div>
+		                </div>
+		                <div class="notification" ng-repeat="notification in readNotifications.slice().reverse() track by $index">
+		                  <div class="notification-image-wrapper">
+		                  	<div class="notification-image">
+			                  	<img src="{{notification.user.imageUrl}}" alt="" width="32">
+			                  </div>
+		                  </div>
+		                  <div class="notification-text">
+		                     <span class="highlight"></span> 
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+<div style="margin:50px"></div>
+<% $lajmerimet.each do |l| %>
+  <center><ul class="alert alert-warning" style="width:50%; list-style: none"><a class="close" data-dismiss="alert">&#215;</a>
+    <h3><%= l %></h3>
+    <% if l.include? "garancionit" %>
+      <%= link_to "Shto Garancion", garancions_path, class: "btn btn-danger" %>
+    <% elsif l.include? "Garancioni:" %>
+      <%= link_to "Ndrysho Garancionet", garancions_path, class: "btn btn-danger" %>
+    <% else %>
+      <%= link_to "Ndrysho Autorizimin", Autorizim.first, class: "btn btn-danger" %>
+    <% end %>
+  </ul></center>
+<% end %>
+<% if @empty_imports.count > 0 %>
+  <center><ul class="alert alert-warning" style="width:50%; list-style: none"><a class="close" data-dismiss="alert">&#215;</a>
+    <h3>Importet e listuara me poshte jane te zbrazet. Eshte e rekomandueshme qe te mbyllni ata.</h3>
+    <% @empty_imports.each do |a| %>
+      <li style="margin:15px"><h4><span class="glyphicon glyphicon-arrow-right" style="font-size: 14px"></span> <%= link_to a.nr_dud, a, style: "text-decoration: none; color: #333" %></h4></li>
+    <% end %>
+    <%= link_to "Mbyll Importet", new_mbyllja_path, class: "btn btn-danger" %>
+  </ul></center>
+<% end %>

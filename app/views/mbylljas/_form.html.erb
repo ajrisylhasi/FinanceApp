@@ -1,0 +1,47 @@
+<%= form_with(model: mbyllja, local: true) do |form| %>
+<div class="col-md-6 col-md-offset-3">
+  <% if mbyllja.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mbyllja.errors.count, "error") %> prohibited this mbyllja from being saved:</h2>
+
+      <ul>
+      <% mbyllja.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nr_mbylljes %>
+    <%= form.text_field :nr_mbylljes, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.date_field :data, class: "form-control", value: Date.today %>
+  </div>
+  
+  <div>
+    <h2>Empty Imports</h2>
+    <button type="button" id="check_all" class="btw">✔</button>
+    <% @empty_imports.each do |i| %>
+      <h4><%= check_box_tag "mbyllja[import_ids][]", i.id, form.object.imports.include?(i) %>
+      <%= i.nr_dud %></h4>
+    <% end %>
+  </div>  
+
+  <div>
+    <%= form.submit "Krijo nje proces te mbylljes", class: "btn btn-primary" %>
+  </div>
+  <%= link_to 'Back', mbylljas_path %>
+</div>
+
+<% end %>
+<script>
+  var cbxs = $('input[type="checkbox"]');
+  cbxs.prop("checked", "checked");
+  $('#check_all').on("click", function(){
+    cbxs.prop("checked", !cbxs.prop("checked"));
+  });
+</script>

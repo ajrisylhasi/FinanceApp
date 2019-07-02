@@ -1,0 +1,19 @@
+<center>
+  <table border="1">
+    <tr>
+      <td>
+        <%= "Njesia" %>
+      </td>
+    </tr>
+    <% @njesis.each do |a| %>
+        <tr>
+          <td><%= a.lloji %></td>
+          <td><%= link_to 'Edit', edit_njesi_path(a) %></td>
+          <td><%= link_to 'Destroy', a, method: :delete %></td>
+        </tr>
+    <% end %>
+  </table>
+</center>
+<div>
+    <center><%= link_to "New Njesi", new_njesi_path, class:"btn btn-primary", style:"margin:15px" %></center>
+</div>

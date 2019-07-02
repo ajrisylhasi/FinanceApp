@@ -1,0 +1,31 @@
+<center><h1>Index of Products</h1>
+<div>
+  <center>
+    <table border="1">
+      <tr>
+        <td>
+          <%= "Tarif_kodi" %>
+        </td>
+        <td>
+          <%= "Pershkrimi" %>
+        </td>
+        <td>
+          <%= "Qmimi" %>
+        </td>
+      </tr>
+      <% @products.each do |a| %>
+          <tr>
+            <td><%= a.tarif_kodi %></td>
+            <td><%= a.pershkrimi %></td>
+            <td><%= a.qmimi %></td>
+            <td><%= link_to 'Show', a %></td>
+            <td><%= link_to 'Edit', edit_product_path(a) %></td>
+            <td><%= link_to 'Destroy', a, method: :delete %></td>
+          </tr>
+      <% end %>
+    </table>
+  </center>
+</div>
+<div>
+    <%= link_to "New Product", new_product_path, class:"btn btn-primary" %>
+</div></center>

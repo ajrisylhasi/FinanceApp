@@ -1,0 +1,289 @@
+
+<%= nested_form_for @fatura, id: "form-id" do |f| %>
+  <center>
+    <div class="fatura-jumbo">
+      <div class="fatura-niveli-pare">
+        <% if kompania.image.file != nil %><div id="foto-fatura"><%= image_tag kompania.image_url(:thumber).to_s %></div><% end %>
+        <div class="fatura-tit"><h2 style="font-family: Barlow;"><strong>Invoice</strong></h2></div>
+        <div class="fatura-tedhenat">
+          <p><strong>VAT No :</strong> <%= kompania.numri_tvsh %></p> 
+          <p><strong>Fiscal No :</strong> <%= kompania.numri_fiskal %></p> 
+          <p><strong>Business No  :</strong> <%= kompania.numri_biznesit %></p> 
+          <p><strong>ID No :</strong> <%= kompania.numri_identifikues %></p> 
+        </div>
+      </div>
+      <div class="fatura-niveli-dyte">
+        <div class="fatura-tedhenat-dy">
+          <div class="fatura-tedhenat-group">
+            <p>Address: <%= kompania.adresa %></p> 
+            <p><%= kompania.zip %> <%= kompania.qyteti %>, <%= kompania.shteti %></p> 
+          </div>
+          <div class="fatura-tedhenat-group">
+            <p>Contact No : <%= current_user.tel_number %></p> 
+            <p>Email: <%= current_user.email %></p> 
+          </div>
+        </div>
+      </div>
+      
+      <div class="fatura-niveli-trete">
+        <div class="fatura-tedhenat-side">
+          <p style="text-align: left"><strong>Invoice No:</strong> <%= @fatura.nr_faturess %></p> 
+          <p style="text-align: left"><strong>Date of Invoice:</strong> <%= f.date_field :data, {class: "fatura-data", onchange: 'this.form.submit();'}%></p> 
+        </div>
+        <div class="fatura-tedhenat-side-two">
+          <p><strong>Export:</strong> <%= @fatura.export.nr_exportit %></p> 
+          <p><strong>Term of Payment:</strong> <%= @fatura.export.client.term %></p> 
+        </div>
+      </div>
+      <table>
+        <tr>
+          <td>
+            <div class="fatura-niveli-katert">
+              <h4><strong>Client</strong></h4>
+              <div class="fatura-tedhenat-billing">
+                <table>
+                  <tr>
+                    <td>
+                      <p><%= @fatura.export.client.kompania %></p> 
+                      <p><%= @fatura.export.client.adresa %> <%= @fatura.export.client.qyteti %>, <%= @fatura.export.client.shteti %></p> 
+                      <p>Tel: <%= @fatura.export.client.numri_tel %></p> 
+                    </td>
+                    <td>
+                      <p>VAT No : <%= @fatura.export.client.numri_tvsh %></p> 
+                      <p>Fiscal No : <%= @fatura.export.client.numri_fiskal %></p> 
+                      <p>Email: <%= @fatura.export.client.email %></p> 
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </td>
+          <td class="that"></td>
+          <td class="dyshii">
+            <div class="fatura-niveli-katert-two">
+              <h4><strong>Consignee</strong></h4>
+              <div class="fatura-tedhenat-billing-two">
+                <table>
+                  <tr>
+                    <td>
+                      <p><%= @fatura.export.client.konsignacioni %></p> 
+                      <p><%= @fatura.export.client.adresa_k %> <%= @fatura.export.client.qyteti_k %>, <%= @fatura.export.client.shteti_k %></p> 
+                      <p>Tel: <%= @fatura.export.client.numri_tel_k %></p> 
+                    </td>
+                </table>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="fatura-tabela">
+      <table>
+        <tr class="hedi">
+          <td colspan="2"><center>#</center></td>
+          <td><center>Taric Code</center></td>
+          <td><center>Article Nr</center></td>
+          <td><center>Description</center></td>
+          <td><center>Weight Neto (KG)</center></td>
+          <td><center>Weight Gross (KG)</center></td>
+          <td><center>Quantity</center></td>
+          <td><center>Price</center></td>
+          <td><center>VAT</center></td>
+          <td><center>Total</center></td>
+        </tr>
+        <% i = 0 %>
+        <% @list.each do |ep| %>
+          <% if i.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td style="width:100px" colspan="2"><center><%= i+=1 %></center></td>
+            <td style="width:100px"><center><%= ep.product.tarif_kodi %></center></td>
+            <td style="width:100px"><center><%= ep.product.articlenr %></center></td>
+            <td style="width:100px"><center><%= ep.product.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % (ep.normative.pesha_n * ep.sasia).round(2) %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % (ep.normative.pesha_b * ep.sasia).round(2) %></center></td>
+            <td style="width:100px"><center><%= ep.sasia %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ep.qmimi %> €</center></td>
+            <td style="width:100px"><center><%= '%.2f' % ep.vat %> €</center></td>
+            <td style="width:100px"><center><%= '%.2f' % (ep.qmimi * ep.sasia) %> €</center></td>
+          </tr>
+        <% end %>
+        <% @fatura.fees.each do |f| %>
+          <% if !(f.persisted?) %>
+            <% next %>
+          <% end %>
+          <% if i.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td style="width:43px; padding-left:5px"><%= link_to f, method: :delete do %> <span>&#x2715;</span> <% end %></td>
+            <td style="width:57px" style="text-align: left"><%= i+=1 %></td>
+            <td style="width:100px"></td>
+            <td style="width:100px"></td>
+            <td style="width:100px"><center><%= f.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % (f.pesha_neto).round(2) %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % (f.pesha).round(2) %></center></td>
+            <td style="width:100px"><center><%= f.sasia.round %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % f.qmimi %> €</center></td>
+            <td style="width:100px"><center><%= '%.2f' % (f.qmimi * @export.client.vat / 100).round(2) %> €</center></td>
+            <td style="width:100px"><center><%= '%.2f' % (f.qmimi * f.sasia) %> €</center></td>
+          </tr>
+        <% end %>
+        <tr style="border-bottom: 0px">
+          <td style="width:100px" colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 35px; color: green; margin-top: -50px; margin-bottom: -40px;">&#43;</button></center></td>
+          <td style="width:100px"></td>
+          <td style="width:100px"></td>
+          <td style="width:100px"><center><strong>Total:</strong></center></td>
+          <td style="width:100px"><center><strong><%= '%.2f' % @pesha_n.round(2) %> Kg</strong></center></td>
+          <td style="width:100px"><center><strong><%= '%.2f' % @pesha_b.round(2) %> Kg</strong></center></td>
+          <td style="width:100px"></td>
+          <td style="width:100px"></td>
+          <td style="width:100px; white-space: nowrap"><center><strong>Total without VAT: </strong></center></td>
+          <td style="width:100px"><center><strong><%= '%.2f' % @total_pa_vat %> €</strong></center></td>
+        </tr>
+      </table>
+    </div>
+    <table style="margin-top: -5px; padding:0px">
+      <tr style="padding-top: -5px">
+        <td style='width: 537px'>
+          <div class="fatura-note">
+            <div class="input-group" style="float: left">
+                <p><strong>Note:</strong></p>
+                <%= f.text_area :note, value: @fatura.note, style: "resize:none; height: 100px; width: 683px; border-radius: 5px", rows: "3", class: "form-control custom-control", id: "fatura-text" %> 
+            </div>
+          </div>
+        </td>
+        <td style='width: 75px;top:0; vertical-align: top'>
+          <div class="fatura-total">
+            <h5 style="font-family: Barlow; text-align: right; padding:0px"><strong>VAT:</strong></h3>
+            <h5 style="font-family: Barlow; text-align: right"><strong>Total:</strong></h3>
+          </div>
+        </td>
+        <td style='width: 90px;top:0; vertical-align: top; padding-top: -5px'>
+          <div class="fatura-total">
+            <h5 style="font-family: Barlow; text-align: right; padding:0px"><strong><center><%= '%.2f' % @total_vat %> €</center></strong></h3>
+            <h5 style="font-family: Barlow; text-align: right;"><strong><center><%= '%.2f' % @total %> €</center></strong></h3>
+          </div>
+        </td>
+      </tr>
+    </table>
+    
+    
+    <!-- Modal -->
+    
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel"><strong>Shto tarifë te re</strong></h4>
+          </div>
+          <%= f.fields_for :fees do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <% unless f.object.persisted? %>
+              <div class="modal-body">
+                <%= f.label :pershkrimi %>
+                <%= f.text_field :pershkrimi, class: "form-control" %>
+                
+                <%= f.label :sasia %>
+                <%= f.number_field :sasia, class: "form-control" %>
+                
+                <%= f.label :pesha_neto, "Pesha Neto" %>
+                <%= f.number_field :pesha_neto, step: :any, class: "form-control" %>
+                
+                <%= f.label :pesha, "Pesha Bruto" %>
+                <%= f.number_field :pesha, step: :any, class: "form-control" %>
+                
+                <%= f.label :qmimi %>
+                <%= f.number_field :qmimi, step: :any, class: "form-control" %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+                <%= f.submit "Shto", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="fatura-bank">
+      
+      <div class="fatura-bak-tedhenat">
+        <table>
+          <tr>
+            <td style="width:325px">
+              <p><strong>Contact Person</strong></p> 
+            </td>
+            <td style="width:525px">
+              <p><strong>Bank Account(IBAN):</strong> <%= kompania.bank_account %></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p><%= current_user.first_name %> <%= current_user.last_name %></p> 
+            </td>
+            <td>
+              <p><strong>Bank: </strong><%= kompania.bank %></p> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Tel: <%= current_user.tel_number %></p> 
+            </td>
+            <td>
+              <p><strong>Account Holder:</strong> <%= kompania.account_holder %></p> 
+            </td>
+          </tr>
+          <tr>
+            <td> 
+              <p>Email: <%= current_user.email %></p> 
+            </td>
+            <td>
+              <p><strong>Corresponding Bank:</strong> <%= kompania.corresponding_bank %></p> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <p><strong>Swift Code:</strong> <%= kompania.swift_code %></p> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h5>THANK YOU FOR YOUR BUSINESS!</h5> 
+            </td>
+            <td>
+              
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <table>
+      <tr>
+        <td style="width:720px">
+          
+        </td>
+        <td style="text-align:right">
+          <%= link_to "PDF", asset_path("faturas/#{@fatura.id}.pdf", skip_pipeline: true), class: "btn btn-primary", id: "pdf-fatura", target: "_blank" %>
+          <%= link_to "CSV", asset_path("faturas/#{@fatura.id}.pdf", skip_pipeline: true), class: "btn btn-primary", id: "csv-fatura", target: "_blank" %>
+        </td>
+      </tr>
+    </table>
+  </center>
+<% end %>
+<script>
+  $("#fatura-text").css( {'background': '#dee2e6'});
+  $("#fatura-text").on('blur', function() {
+    $(this).css( {'background': '#dee2e6'});
+    $(this).closest('form').submit();
+  });
+  $("#fatura-text").on('focus', function() {
+    $(this).css( {'background': 'white'});
+  });
+</script>
+

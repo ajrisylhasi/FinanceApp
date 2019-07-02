@@ -1,0 +1,59 @@
+<center><div class="jumbotron">
+  <center><table border="4" text-align="center">
+    <h1> Gjendja e Pergjithshme e Eksporteve</h1>
+    
+      <tr>
+        <td><center>Eksporti</center></td>
+        <td><center>Importi</center></td>
+        <td><center>Emertimi</center></td>
+        <td><center>Tarif Kodi</center></td>
+        <td><center>Kodi Artikullit</center></td>
+        <td><center>Pershkrimi</center></td>
+        <td><center>Njesia</center></td>
+        <td><center>Sasia</center></td>
+        <td><center>Pesha</center></td>
+        <td><center>Qmimi Total</center></td>
+        <td><center>Taksa Doganore</center></td>
+        <td><center>Akciza</center></td>
+        <td><center>TVSH</center></td>
+        <td><center>Gjithsej Taksat</center></td>
+      </tr>
+    
+    <% Sub.all.each do |s| %>
+      <tr>  
+        <td style="width:100px"><center><%= s.export.nr_exportit %></center></td>
+        <td style="width:100px"><center><%= s.import.nr_dud %></center></td>
+        <td style="width:100px"><center><%= s.import_gjendja.emertimi %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: s.export_gjendja.kodi).first.tarif_kodi %></center></td>
+        <td style="width:100px"><center><%= s.import_gjendja.kodi %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: s.export_gjendja.kodi).first.pershkrimi %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: s.export_gjendja.kodi).first.njesia %></center></td>
+        <td style="width:100px"><center><%= s.sasia %></center></td>
+        <td style="width:100px"><center><%= s.pesha %> Kg</center></td>
+        <td style="width:100px"><center><%= s.qmimi_tot %></center></td>
+        <td style="width:100px"><center><%= s.taksa_dogana %></center></td>
+        <td style="width:100px"><center><%= s.taksa_akciza %></center></td>
+        <td style="width:100px"><center><%= s.taksa_tvsh %></center></td>
+        <td style="width:100px"><center><%= s.gjithsej_taksa %></center></td>
+      </tr>
+    <% end %>
+    <% Subexpl.all.each do |s| %>
+      <tr>  
+        <td style="width:100px"><center><%= s.exportlande.nr_exportit %></center></td>
+        <td style="width:100px"><center><%= s.import.nr_dud %></center></td>
+        <td style="width:100px"><center><%= s.import_gjendja.emertimi %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: s.import_gjendja.kodi).first.tarif_kodi %></center></td>
+        <td style="width:100px"><center><%= s.import_gjendja.kodi %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: s.import_gjendja.kodi).first.pershkrimi %></center></td>
+        <td style="width:100px"><center><%= Article.where(kodi: s.import_gjendja.kodi).first.njesia %></center></td>
+        <td style="width:100px"><center><%= s.sasia %></center></td>
+        <td style="width:100px"><center><%= s.pesha %> Kg</center></td>
+        <td style="width:100px"><center><%= s.qmimi_tot %></center></td>
+        <td style="width:100px"><center><%= s.taksa_dogana %></center></td>
+        <td style="width:100px"><center><%= s.taksa_akciza %></center></td>
+        <td style="width:100px"><center><%= s.taksa_tvsh %></center></td>
+        <td style="width:100px"><center><%= s.gjithsej_taksa %></center></td>
+      </tr>
+    <% end %>
+  </table></center>
+</div></center>

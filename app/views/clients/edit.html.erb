@@ -1,0 +1,63 @@
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3">
+    <%= nested_form_for(@client) do |f|%>
+      
+      <%= render 'shared/error_messages', object: f.object %>
+      <div style="container">
+        <%= f.label :kompania %>
+        <%= f.text_field :kompania, class: 'form-control' %>
+        
+        <%= f.label :shteti %>
+        <%= f.text_field :shteti, class: 'form-control' %>
+        
+        <%= f.label :qyteti %>
+        <%= f.text_field :qyteti, class: 'form-control' %>
+        
+        <%= f.label :adresa %>
+        <%= f.text_field :adresa, class: 'form-control' %>
+        
+        <%= f.label :numri_tel %>
+        <%= f.text_field :numri_tel, class: 'form-control' %>
+        
+        <%= f.label :numri_fiskal %>
+        <%= f.text_field :numri_fiskal, class: 'form-control' %>
+        
+        <%= f.label :numri_biz %>
+        <%= f.text_field :numri_biz, class: 'form-control' %>
+        
+        <%= f.label :numri_tvsh %>
+        <%= f.text_field :numri_tvsh, class: 'form-control' %>
+        
+        <%= f.label :konsignacioni %>
+        <%= f.text_field :konsignacioni, class: 'form-control' %>
+        
+        <%= f.label :shteti_k, "Shteti i Konsignacionit" %>
+        <%= f.text_field :shteti_k, class: 'form-control' %>
+        
+        <%= f.label :qyteti_k, "Qyteti i Konsignacionit" %>
+        <%= f.text_field :qyteti_k, class: 'form-control' %>
+        
+        <%= f.label :adresa_k, "Adresa i Konsignacionit" %>
+        <%= f.text_field :adresa_k, class: 'form-control' %>
+        
+        <%= f.label :numri_tel_k, "Numri Kontaktues i Konsignacionit" %>
+        <%= f.text_field :numri_tel_k, class: 'form-control' %>
+        
+        <%= f.label :term, "Koha e pageses se Fatures" %>
+        <%= f.number_field :term, class: 'form-control' %>
+        
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+        
+        <%= f.label :vat %>
+        <%= f.number_field :vat, class: 'form-control', step: :any %>
+        
+        <%= f.select("pack_category", options_for_select( [ ["Vetem Paketa", "packet"], ["Paketa dhe Paleta", "packet + palet"], ["Vetem Paleta", "palet"]]), { prompt: "Zgjedh Llojin e Packing List", multiple: false }) %>
+      </div>
+      <div class="buttons">
+        <%= f.submit "Update Client", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Back", clients_path, class:"btn btn-primary" %>
+</div>

@@ -1,0 +1,282 @@
+<head>
+  <title>PDF <%= @fatura.nr_faturess %></title>
+  <%= wicked_pdf_stylesheet_link_tag "application" %>
+    <%= wicked_pdf_javascript_include_tag "application" %>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet"> 
+</head>
+<body>
+  <center>
+    <div class="fatura-jumbo" style="width:1075px">
+      <div class="fatura-niveli-pare">
+        <% if kompania.image.file != nil %><div id="foto-fatura"><%= wicked_pdf_image_tag kompania.image_url(:thumber).to_s %></div><% end %>
+        <div class="fatura-tit"><h2 style="font-family: Barlow"><strong>Invoice</strong></h2></div>
+        <div class="fatura-tedhenat">
+          <p><strong>VAT No:</strong> <%= kompania.numri_tvsh %></p> 
+          <p><strong>Fiscal No:</strong> <%= kompania.numri_fiskal %></p> 
+          <p><strong>Business No:</strong> <%= kompania.numri_biznesit %></p> 
+          <p><strong>ID No:</strong> <%= kompania.numri_identifikues %></p> 
+        </div>
+      </div>
+      <div class="fatura-niveli-dyte">
+        <div class="fatura-tedhenat-dy">
+          <div class="fatura-tedhenat-group">
+            <p>Address: <%= kompania.adresa %></p> 
+            <p><%= kompania.zip %> <%= kompania.qyteti %>, <%= kompania.shteti %></p> 
+          </div>
+          <div class="fatura-tedhenat-group">
+            <p>Contact Number: <%= current_user.tel_number %></p> 
+            <p>Email: <%= current_user.email %></p> 
+          </div>
+        </div>
+      </div>
+      
+      <div class="fatura-niveli-trete">
+        <div class="fatura-tedhenat-side">
+          <p style=""><strong>Invoice No:</strong> <%= @fatura.nr_faturess %></p> 
+          <p style="text-align: left"><strong>Date of Invoice:</strong> <%= @fatura.data %></p> 
+        </div>
+        <div class="fatura-tedhenat-side-two">
+          <p><strong>Export:</strong> <%= @fatura.export.nr_exportit %></p> 
+          <p><strong>Term of Payment:</strong> <%= @fatura.export.client.term %></p> 
+        </div>
+      </div>
+      <table>
+        <tr>
+          <td>
+            <div class="fatura-niveli-katert" style="width:700px">
+              <h4><strong>Client</strong></h4>
+              <div class="fatura-tedhenat-billing">
+                <table>
+                  <tr>
+                    <td>
+                      <p><%= @fatura.export.client.kompania %></p> 
+                      <p><%= @fatura.export.client.adresa %> <%= @fatura.export.client.qyteti %>, <%= @fatura.export.client.shteti %></p> 
+                      <p>Tel: <%= @fatura.export.client.numri_tel %></p> 
+                    </td>
+                    <td>
+                      <p>VAT No: <%= @fatura.export.client.numri_tvsh %></p> 
+                      <p>Fiscal No: <%= @fatura.export.client.numri_fiskal %></p> 
+                      <p>Email: <%= @fatura.export.client.email %></p> 
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </td>
+          <td class="that"></td>
+          <td class="dyshii">
+            <div class="fatura-niveli-katert-two">
+              <h4><strong>Consignee</strong></h4>
+              <div class="fatura-tedhenat-billing-two">
+                <table>
+                  <tr>
+                    <td style="text-align: right">
+                      <p><%= @fatura.export.client.konsignacioni %></p> 
+                      <p><%= @fatura.export.client.adresa_k %> <%= @fatura.export.client.qyteti_k %>, <%= @fatura.export.client.shteti_k %></p> 
+                      <p>Tel: <%= @fatura.export.client.numri_tel_k %></p> 
+                    </td>
+                </table>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="fatura-tabela"  style="width:1075px">
+      <table>
+        <tr class="hedi">
+          <td><center>#</center></td>
+          <td><center>Taric Code</center></td>
+          <td><center>Article No</center></td>
+          <td><center>Description</center></td>
+          <td><center>Weight Neto (KG)</center></td>
+          <td><center>Weight Gross (KG)</center></td>
+          <td><center>Quantity</center></td>
+          <td><center>Price</center></td>
+          <td><center>VAT</center></td>
+          <td><center>Total</center></td>
+        </tr>
+        <% i = 0 %>
+        <% @list.each do |ep| %>
+          <% if i.even? %>
+            <tr style="background: #dee2e6" class="pdf-tedhena">  
+          <% else %>
+            <tr style="background: white" class="pdf-tedhena"> 
+          <% end %>
+            <td style="width:50px"><center><%= i+=1 %></center></td>
+            <td style="width:100px"><center><%= ep.product.tarif_kodi %></center></td>
+            <td style="width:100px"><center><%= ep.product.articlenr %></center></td>
+            <td style="width:100px; white-space: nowrap"><center><%= ep.product.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % (ep.normative.pesha_n * ep.sasia).round(2) %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % (ep.normative.pesha_b * ep.sasia).round(2) %></center></td>
+            <td style="width:100px"><center><%= ep.sasia %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ep.qmimi %> €</center></td>
+            <td style="width:100px"><center><%= '%.2f' % ep.vat %> €</center></td>
+            <td style="width:100px"><center><%= '%.2f' % (ep.qmimi * ep.sasia) %> €</center></td>
+          </tr>
+        <% end %>
+        <% @fatura.fees.each do |f| %>
+          <% if !(f.persisted?) %>
+            <% next %>
+          <% end %>
+          <% if i.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td style="width:100px"><center><%= i+=1 %></center></td>
+            <td style="width:100px"></td>
+            <td style="width:100px"></td>
+            <td style="width:100px"><center><%= f.pershkrimi %></center></td>
+            <td style="width:100px"><center>Pesha:</center></td>
+            <td style="width:100px"><center><%= '%.2f' % (f.pesha * f.sasia).round(2) %></center></td>
+            <td style="width:100px"><center><%= f.sasia.round %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % f.qmimi %> €</center></td>
+            <td style="width:100px"><center><%= '%.2f' % (f.qmimi * @export.client.vat / 100).round(2) %> €</center></td>
+            <td style="width:100px"><center><%= '%.2f' % (f.qmimi * f.sasia) %> €</center></td>
+          </tr>
+        <% end %>
+        <tr style="border-bottom: 0px">
+          <td style="width:50px"></td>
+          <td style="width:100px"></td>
+          <td style="width:100px"></td>
+          <td style="width:100px"><center><strong>Total:</strong></center></td>
+          <td style="width:150px"><center><strong><%= '%.2f' % @pesha_n.round(2) %> Kg</strong></center></td>
+          <td style="width:150px"><center><strong><%= '%.2f' % @pesha_b.round(2) %> Kg</strong></center></td>
+          <td style="width:100px"></td>
+          <td style="width:100px"></td>
+          <td style="width:100px; white-space: nowrap"><center><strong>Total without VAT: </strong></center></td>
+          <td style="width:100px"><center><strong><%= '%.2f' % @total_pa_vat %> €</strong></center></td>
+        </tr>
+      </table>
+    </div>
+    <table style="margin-top: -5px; padding:0px">
+      <tr style="padding-top: -5px">
+        <td style='width: 537px'>
+          <div class="fatura-note">
+            <div class="input-group" style="float: left">
+                <p><strong>Note:</strong></p>
+                <p style="resize:none; margin-bottom: 20px; width: 925px; border-radius: 5px"><%= @fatura.note %> </p>
+            </div>
+          </div>
+        </td>
+        <td style='width: 75px; vertical-align: top; text-align: left'>
+          <div class="fatura-total">
+            <h5 style="font-family: Barlow; text-align: center;"><strong>VAT:</strong></h3>
+            <h5 style="font-family: Barlow; text-align: center;"><strong>Total:</strong></h3>
+          </div>
+        </td>
+        <td style='width: 90px vertical-align: top; padding-top: -5px; white-space: nowrap; text-align: left;'>
+          <div class="fatura-total">
+            <h5 style="font-family: Barlow;"><strong><center><%= '%.2f' % @total_vat %> €</center></strong></h3>
+            <h5 style="font-family: Barlow;"><strong><center><%= '%.2f' % @total %> €</center></strong></h3>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div class="fatura-bank">
+      
+      <div class="fatura-bak-tedhenat">
+        <table>
+          <tr>
+            <td style="width:350px">
+              <p><strong>Contact Person</strong></p> 
+            </td>
+            <td style="width:725px">
+              <p><strong>Bank Account(IBAN):</strong> <%= kompania.bank_account %></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p><%= current_user.name %></p> 
+            </td>
+            <td>
+              <p><strong>Bank: </strong><%= kompania.bank %></p> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Tel: <%= current_user.tel_number %></p> 
+            </td>
+            <td>
+              <p><strong>Account Holder:</strong> <%= kompania.account_holder %></p> 
+            </td>
+          </tr>
+          <tr>
+            <td> 
+              <p>Email: <%= current_user.email %></p> 
+            </td>
+            <td>
+              <p><strong>Corresponding Bank:</strong> <%= kompania.corresponding_bank %></p> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <p><strong>Swift Code:</strong> <%= kompania.swift_code %></p> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h5>THANK YOU FOR YOUR BUSINESS!</h5> 
+            </td>
+            <td>
+              
+            </td>
+          </tr>
+        </table>
+      </div>
+      
+      <div>
+        <table>
+          <tr>
+            <td>
+              <div style="margin-top: 200px; text-align: left; width: 535px">
+                <div style=" width: 200px; display: inline-block">
+                  <hr style="border: 1px solid black; margin:0px"  ></hr>
+                  <p style="font-size: 16px; margin-top:5px">Accept</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div style="margin-top: 200px; text-align: right; width:535px">
+                <div style=" width: 200px; display: inline-block">
+                  <hr style="border: 1px solid black; margin:0px"></hr>
+                  <p style="font-size: 16px; margin-top:5px">Responsible Person</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </center>
+</body>
+<style>
+  .hedi td{
+    padding: 10px 0px 10px 0px;
+  }
+  .pdf-tedhena td{
+    padding: 10px 0px 10px 0px;
+  }
+  .fatura-total h5 {
+    font-size: 16px;
+  }
+  .fatura-bank {
+    margin-top: 100px;
+    page-break-inside:avoid;
+  }
+  .fatura-niveli-trete {
+    margin-top: 50px;
+}
+.fatura-niveli-katert {
+    margin-top: 30px;
+}
+.fatura-niveli-katert-two {
+    margin-top: 30px;
+}
+</style>

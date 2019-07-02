@@ -1,0 +1,20 @@
+<h1><%= @client.id %></h1>
+
+<br>
+<h1><strong>Kompania:</strong> <%= @client.kompania %></h1>
+<p><strong>Shteti:</strong> <%= @client.shteti %></p>
+<p><strong>Qyteti:</strong> <%= @client.qyteti %></p>
+<p><strong>Adresa:</strong> <%= @client.adresa %></p>
+<p><strong>Numri Kontaktues:</strong> <%= @client.numri_tel %></p>
+<hr width="25%" align="left">
+<h2><strong>Konsignacioni:</strong> <%= @client.konsignacioni %></h2>
+<p><strong>Shteti:</strong> <%= @client.shteti_k %></p>
+<p><strong>Qyteti:</strong> <%= @client.qyteti_k %></p>
+<p><strong>Adresa:</strong> <%= @client.adresa_k %></p>
+<p><strong>Numri:</strong> <%= @client.numri_tel_k %></p>
+
+<% @client.imports.each do |a| %>
+  <p>Imports: <%= a.nr_dud %></p>
+<% end %>
+
+<%= link_to "Back", clients_path %>

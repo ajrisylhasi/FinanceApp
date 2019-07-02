@@ -1,0 +1,19 @@
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3" style="width:35%">
+    <%= nested_form_for(@destinim) do |f|%>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div style="container">
+        <%= f.label :kodi, "Kodi" %>
+        <%= f.text_field :kodi, class: 'form-control' %>
+      </div>
+      <div style="container">
+        <%= f.label :pershkrimi%>
+        <%= f.text_field :pershkrimi, class: 'form-control' %>
+      </div>
+      <div class="buttons">
+        <%= f.submit "Add Zyra Destinimit", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Back", destinims_path, class:"btn btn-primary" %>
+</div>

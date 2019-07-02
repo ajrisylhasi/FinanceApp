@@ -1,0 +1,41 @@
+<center><div class="jumbotron">
+  <center>
+    <div>
+      <%= form_for "", url: product_search_url, role: "search", method: :get  do %>
+        <%= date_field_tag "search[date_from]", @date_from %>
+        <%= date_field_tag "search[date_to]", @date_to %>
+        <%= select_tag "search[client_id]", options_from_collection_for_select(@clients, 'id', 'kompania'), {include_blank: "Select Client", multiple: false} %>
+        <%= select_tag "search[product_id]", options_from_collection_for_select(@products, 'id', 'pershkrimi'), {include_blank: "Select Product", multiple: false} %>
+        <%= submit_tag "Search",  class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </center>
+  <center><table border="4" text-align="center">
+    <h1> Exporti i Produkteve</h1>
+    <tr>
+      <td><center>Klienti</center></td>
+      <td><center>Data e Eksportit</center></td>
+      <td><center>Numri I Eksportit</center></td>
+      <td><center>Numri i Fatures</center></td>
+      <td><center>Data e Fatures</center></td>
+      <td><center>Produkti</center></td>
+      <td><center>Sasia</center></td>
+      <td><center>Qmimi</center></td>
+      <td><center>Totali</center></td>
+    </tr>
+    <% @list.each do |ep| %>
+      <tr>  
+        <td style="width:100px"><center><%= ep.export.client.kompania %></center></td>
+        <td style="width:100px"><center><%= ep.export.data %></center></td>
+        <td style="width:100px"><center><%= ep.export.nr_exportit %></center></td>
+        <td style="width:100px"><center><%= ep.export.fatura.nr_fatures %></center></td>
+        <td style="width:100px"><center><%= ep.export.fatura.data %></center></td>
+        <td style="width:100px"><center><%= ep.product.pershkrimi %></center></td>
+        <td style="width:100px"><center><%= ep.sasia %></center></td>
+        <td style="width:100px"><center><%= ep.qmimi %></center></td>
+        <td style="width:100px"><center><%= ep.qmimi * ep.sasia %> €</center></td>
+      </tr>
+    <% end %>
+  </table><%= link_to "PDF", product_search_path( format: :pdf, :search => { :date_from => @date_from, :date_to => @date_to, :client_id => @client, :product_id => @product }), target: "_blank", class: "btn btn-primary", style: "margin: 15px" %> 
+          <%= link_to "CSV", '/product_search.csv', class: "btn btn-primary", style: "margin: 15px" %></center>
+</div></center>

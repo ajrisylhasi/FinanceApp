@@ -1,0 +1,36 @@
+<h1>Index of Faturas</h1>
+<div>
+  <center>
+    <table border="1">
+      <tr>
+        <td>
+          Klienti
+        </td>
+        <td>
+          Data
+        </td>
+        <td>
+          Eksporti
+        </td>
+        <td>
+          Data Eksportit
+        </td>
+      </tr>
+      <% @faturas.each do |a| %>
+          <tr>
+            <td><%= a.export.client.kompania %></td>
+            <td><%= a.data %></td>
+            <td><%= a.export.nr_exportit %></td>
+            <td><%= a.export.data %></td>
+            <td><%= link_to 'Show', a %></td>
+            <td><%= link_to 'Edit', edit_fatura_path(a) %></td>
+            <td><%= link_to 'Destroy', a, method: :delete %></td>
+          </tr>
+      <% end %>
+    </table>
+  </center>
+</div>
+<div>
+    <center><%= link_to "New Article", new_article_path, class:"btn btn-primary", style:"margin:15px" %></center>
+</div>
+

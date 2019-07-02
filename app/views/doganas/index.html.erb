@@ -1,0 +1,26 @@
+<center>
+  <table border="1">
+    <tr>
+      <td>
+        Kodi
+      </td>
+      <td>
+        Dogana
+      </td>
+      <td>
+        Change
+      </td>
+    </tr>
+    <% @doganas.each do |a| %>
+        <tr>
+          <td><%= a.kodi %></td>
+          <td><%= a.pershkrimi %></td>
+          <td><%= link_to 'Edit', edit_dogana_path(a) %></td>
+          <td><%= link_to 'Destroy', a, method: :delete %></td>
+        </tr>
+    <% end %>
+  </table>
+</center>
+<div>
+    <center><%= link_to "New Dogana", new_dogana_path, class:"btn btn-primary", style:"margin:15px" %></center>
+</div>

@@ -1,0 +1,28 @@
+<h1>Index of Exports</h1>
+<div>
+  <center>
+    <table border="1">
+      <tr>
+        <td>
+          Numri i Eksportit
+        </td>
+        <td>
+          Data
+        </td>
+      </tr>
+      <% @exports.each do |a| %>
+          <tr>
+            <td style="text-align:center"><%= a.nr_exportit %></td>
+            <td style="text-align:center"><%= a.data %></td>
+            <td><%= link_to 'Show', a %></td>
+            <td><%= link_to 'Edit', edit_export_path(a) %></td>
+            <td><%= link_to 'Destroy', a, method: :delete %></td>
+          </tr>
+      <% end %>
+    </table>
+  </center>
+</div>
+<div>
+    <center><%= link_to "New Export", new_export_path, class:"btn btn-primary", style:"margin:15px" %></center>
+</div>
+

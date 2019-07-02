@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Data Autorizimit:</strong>
+  <%= @user.data_auto %>
+</p>
+<p>
+  <strong>Data Garancionit:</strong>
+  <%= @user.data_gar %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Telephone Number:</strong>
+  <%= @user.tel_number %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

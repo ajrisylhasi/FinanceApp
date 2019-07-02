@@ -1,0 +1,17 @@
+
+<%= form_for "", url: change_date_post_url, role: "useri", method: :post  do |f|%>
+
+  <div class="field">
+    <%= f.label "useri[data_auto]", "Numri i Diteve per Lajmerim te Autorizimit" %>
+    <%= f.number_field "useri[data_auto]", value: "#{@data_auto}" %>
+  </div>
+
+  <div class="field">
+    <%= f.label "useri[data_gar]", "Numri i Diteve per Lajmerim te Garancionit" %>
+    <%= f.number_field "useri[data_gar]", value: "#{@data_gar}" %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

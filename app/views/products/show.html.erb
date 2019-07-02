@@ -1,0 +1,23 @@
+<h1><%= @product.pershkrimi %></h1>
+<%= render 'layouts/flash' %>
+<br>
+<p>Tarif kodi: <%= @product.tarif_kodi %></p>
+<p>Qmimi: <%= @product.qmimi %></p>
+<% @product.normatives.each do |norm| %>
+  <div style="padding:15px">
+    <h1><%= link_to "Normativa", norm, style: "text-decoration:none" %>: <%= norm.nr_normatives %></h1>
+    <table border="2">
+      <% norm.normative_articles.each do |na| %>
+      <tr>
+        <td style="padding:5px">
+          <%= na.article.pershkrimi %>
+        </td>
+        <td style="padding:5px">
+          <%= na.sasia %> <%= na.article.njesia %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+<%= link_to "Edit", edit_product_path, class:"btn btn-primary" %>

@@ -1,0 +1,37 @@
+<h1>Index of Clients</h1>
+
+<div>
+  <center>
+    <table border="1">
+      <tr>
+        <td>
+          <%= "Kompania" %>
+        </td>
+        <td>
+          <%= "Qyteti" %>
+        </td>
+        <td>
+          <%= "Konsignacioni" %>
+        </td>
+        <td>
+          <%= "Qyteti i Konsignacionit" %>
+        </td>
+      </tr>
+      <% @clients.each do |a| %>
+          <tr>
+            <td><%= a.kompania %></td>
+            <td><%= a.qyteti %></td>
+            <td><%= a.konsignacioni %></td>
+            <td><%= a.qyteti_k %></td>
+            <td><%= link_to 'Show', a %></td>
+            <td><%= link_to 'Edit', edit_client_path(a) %></td>
+            <td><%= link_to 'Destroy', a, method: :delete %></td>
+          </tr>
+      <% end %>
+    </table>
+  </center>
+</div>
+<div>
+    <center><%= link_to "New Client", new_client_path, class:"btn btn-primary", style:"margin:15px" %></center>
+</div>
+

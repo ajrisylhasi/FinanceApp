@@ -1,0 +1,52 @@
+<h1>Index of Articles</h1>
+<div>
+  <center>
+    <table border="1">
+      <tr>
+        <td>
+          <%= "Tarif_kodi" %>
+        </td>
+        <td>
+          <%= "Kodi" %>
+        </td>
+        <td>
+          <%= "Pershkrimi" %>
+        </td>
+        <td>
+          <%= "Njesia" %>
+        </td>
+        <td>
+          <%= "Dogana" %>
+        </td>
+        <td>
+          <%= "Tvsh" %>
+        </td>
+        <td>
+          <%= "Lloji_akcizes" %>
+        </td>
+        <td>
+          <%= "Akciza" %>
+        </td>
+      </tr>
+      <% @articles.each do |a| %>
+          <tr>
+            <td><%= a.tarif_kodi %></td>
+            <td><%= a.kodi %></td>
+            <td><%= a.pershkrimi %></td>
+            <td><%= a.njesia %></td>
+            <td><%= a.dogana %></td>
+            <td><%= a.tvsh %></td>
+            <td><%= a.lloji_akcizes %></td>
+            <td><%= a.akciza %></td>
+            <td><%= link_to 'Show', a %></td>
+            <td><%= link_to 'Edit', edit_article_path(a) %></td>
+            <td><%= link_to 'Destroy', a, method: :delete %></td>
+          </tr>
+      <% end %>
+    </table>
+  </center>
+</div>
+<div>
+    <center><%= link_to "New Article", new_article_path, class:"btn btn-primary", style:"margin:15px" %></center>
+</div>
+

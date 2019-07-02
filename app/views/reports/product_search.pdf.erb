@@ -1,0 +1,57 @@
+
+<html>
+  <head>
+    <%= wicked_pdf_stylesheet_link_tag "application" -%>
+    <title>Product Report - <%= Date.today.to_s %></title>
+  </head>
+    <div class="pdfheader">
+      <div style="display: inline-block; height: 75px"><%= wicked_pdf_image_tag kompania.image_url(:thumb).to_s %></div>
+      <div style="display: inline-block; height: 100px; width: 500px; vertical-align: top">
+        <center><p style="font-size: 25px; position:absolute; vertical-align:top; left: 0; width: 100%;"><strong><%= kompania.kompania %></strong></p></center>
+        <center><p style="font-size: 15px; position:absolute; vertical-align:top; left: 0; width: 100%; top: 3.8%">Nr. Kontaktues: <%= current_user.tel_number %></p></center>
+        <center><p style="font-size: 15px; position:absolute; vertical-align:top; left: 0; width: 100%; top: 5%">Email: <%= current_user.email %></p></center>
+      </div>
+      <div style="display: inline-block; height: 100px; width: 280px; vertical-align: top">
+        <div style="margin:15px">
+          <center>
+            <p style="font-size:10px; padding: 0px; margin: 0px">Te dhenat e <strong><%= kompania.kompania %></strong></p>
+            <p style="font-size:10px; padding: 0px; margin: 0px">Adresa: <strong><%= kompania.adresa %></strong></p> 
+            <p style="font-size:10px; padding: 0px; margin: 0px">Nr. fiskal: <strong><%= kompania.numri_fiskal %></strong></p> 
+            <p style="font-size:10px; padding: 0px; margin: 0px">Nr. biznesit: <strong><%= kompania.numri_biznesit %></strong></p> 
+            <p style="font-size:10px; padding: 0px; margin: 0px">Nr. VAT: <strong><%= kompania.numri_tvsh %></strong></p> 
+          </center>
+        </div>
+      </div>
+    </div>
+  <body>
+    <center>
+      <table border="4" text-align="center">
+        <h1> Exporti i Produkteve</h1>
+        <tr>
+          <td><center>Klienti</center></td>
+          <td><center>Data e Eksportit</center></td>
+          <td><center>Numri I Eksportit</center></td>
+          <td><center>Numri i Fatures</center></td>
+          <td><center>Data e Fatures</center></td>
+          <td><center>Produkti</center></td>
+          <td><center>Sasia</center></td>
+          <td><center>Qmimi</center></td>
+          <td><center>Totali</center></td>
+        </tr>
+        <% @list.each do |ep| %>
+          <tr>  
+            <td style="width:100px"><center><%= ep.export.client.kompania %></center></td>
+            <td style="width:100px"><center><%= ep.export.data %></center></td>
+            <td style="width:100px"><center><%= ep.export.nr_exportit %></center></td>
+            <td style="width:100px"><center><%= ep.export.fatura.nr_fatures %></center></td>
+            <td style="width:100px"><center>Coming Soon</center></td>
+            <td style="width:100px"><center><%= ep.product.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= ep.sasia %></center></td>
+            <td style="width:100px"><center><%= ep.qmimi %></center></td>
+            <td style="width:100px"><center><%= ep.qmimi * ep.sasia %> €</center></td>
+          </tr>
+        <% end %>
+      </table>
+    </center>
+  </body>
+</html>
