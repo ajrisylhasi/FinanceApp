@@ -1,0 +1,22 @@
+I"p(function() {
+  jQuery(function() {
+    var peshas;
+    $('#pesha_select').parent().hide();
+    peshas = $('#pesha_select').html();
+    console.log(peshas);
+    return $("#article_select").change(function() {
+      var article, options;
+      article = $("#article_select :selected").text();
+      options = $(peshas).filter("optgroup[label='" + article + "']").html();
+      if (options) {
+        $('#pesha_select').html(options);
+        return $('#pesha_select').parent().show();
+      } else {
+        $('#pesha_select').empty();
+        return $('#pesha_select').parent().hide();
+      }
+    });
+  });
+
+}).call(this);
+:ET

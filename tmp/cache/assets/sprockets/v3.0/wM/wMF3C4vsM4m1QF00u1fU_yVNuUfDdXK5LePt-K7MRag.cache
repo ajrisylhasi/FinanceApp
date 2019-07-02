@@ -1,0 +1,21 @@
+I"{(function() {
+  jQuery(function() {
+    var normatives;
+    $('#normative_select').parent().hide();
+    normatives = $('#normative_select').html();
+    return $("#product_select").change(function() {
+      var options, product;
+      product = $("#product_select :selected").text();
+      options = $(normatives).filter("optgroup[label='" + product + "']").html();
+      if (options) {
+        $('#normative_select').html(options);
+        return $('#normative_select').parent().show();
+      } else {
+        $('#normative_select').empty();
+        return $('#normative_select').parent().hide();
+      }
+    });
+  });
+
+}).call(this);
+:ET
