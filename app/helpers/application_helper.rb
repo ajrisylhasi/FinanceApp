@@ -88,8 +88,12 @@ module ApplicationHelper
   def empty_imports
     $notifications = 0
     @empty_imports = []
+    @empty_imports_names = []
     @empty_imports = Import.all.select do |i|
       i.empty? && (i.import_articles.count > 0) && !(i.mbylled)
+    end
+    @empty_imports.each do |i|
+      @empty_imports_names.push i.nr_dud 
     end
     $notifications += 1 if @empty_imports.count > 0
   end
