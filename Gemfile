@@ -64,6 +64,7 @@ gem 'bootsnap', '1.3.2', require: false
 
 group :production do
   gem 'pg', '0.20.0'
+  gem 'rails_12factor'
 end
 
 group :development do
