@@ -16,7 +16,6 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require jquery.turbolinks
-//= require loading_screen
 //= require activestorage
 //= require exports
 //= require normatives

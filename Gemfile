@@ -46,8 +46,6 @@ gem 'wicked_pdf'
 
 gem 'loading_screen', '~> 0.2.3'
 
-gem 'popper_js', '~> 1.9', '>= 1.9.9'
-
 gem 'carrierwave'
 
 gem 'rmagick', '~> 3.1'
