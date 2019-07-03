@@ -67,10 +67,9 @@
               <td style="width: 15px">
               </td>
               <td style="width: 145px">
-                <div class="mininav"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/import_search">&#8226; Faturat</a></div>
+                <div class="mininav"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/faturas">&#8226; Faturat</a></div>
               </td>
               <td style="width: 60px">
-                <div  class="mininavplus"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/articles/new">+</a></div>
               </td>
             </tr>
             <tr>
@@ -175,17 +174,23 @@
           		            </button>
                           <div class="dropdown-content" id="dropdown-content-id">
                               <div class="notifHead">
-                                <center>
-                                  <p style="font-size: 15px; padding-top:2px; display:inline">Notifications</p>
-
-                                </center>
-                                  <span style=" display: inline;float:right; margin-top: -16.5px; margin-right: 20px">&#215;</span>
+                                  
+                                <table>
+                                  <tr>
+                                    <td style="width: 250px">
+                                      <p style="font-size: 22px; padding-top: 200px; display:inline; margin-left: 20px">Notifications</p>
+                                    </td>
+                                    <td>
+                                      <span style="font-size: 20px; display: inline; float:right; margin-top: px; margin-right: 20px">&#215;</span>
+                                    </td>
+                                  </tr>
+                                </table>
                               </div>
-                              <%= link_to "Test", garancions_path, class: "dropdown-btn1" %>
-                              <%= link_to "Test", garancions_path, class: "dropdown-btn1" %>
-                              <%= link_to "Test", garancions_path, class: "dropdown-btn1" %>
-                              <%= link_to "Test", garancions_path, class: "dropdown-btn1" %>
-                              <%= link_to "Test", garancions_path, class: "dropdown-btn1" %>
+                              <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
+                              <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
+                              <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
+                              <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
+                              <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
                               <% $lajmerimet.each do |l| %>
                                 <% if l.include? "garancionit" %>
                                   <%= link_to l, garancions_path, class: "dropdown-btn1" %>
