@@ -143,6 +143,89 @@
     
   </tr>
 </table></center>
+<center>
+  <div class="fatura-tabela" style="width:1400px">
+    <table>
+      <tr class="hedi">
+        <td colspan="2"><center>#</center></td>
+        <td><center>Tarif Kodi</center></td>
+        <td><center>Kodi</center></td>
+        <td><center>Prshkrimi</center></td>
+        <td><center>Emertimi</center></td>
+        <td><center>Sasia</center></td>
+        <td><center>Qmimi</center></td>
+        <td style="white-space: nowrap;"><center>Qmimi per Njesi</center></td>
+        <td><center>Qmimi per Kg</center></td>
+        <td><center>Transporti Total</center></td>
+        <td><center>Transporti</center></td>
+        <td><center>Qmimi Total</center></td>
+        <td><center>Pesha (Kg)</center></td>
+        <td style="white-space: nowrap;"><center>Pesha per Njesi</center></td>
+        <td><center>Lloji i Akcizes</center></td>
+        <td><center>Lartesia Akcizes</center></td>
+        <td><center>Taksa Akcizes</center></td>
+        <td><center>Lartesia e TVSH</center></td>
+        <td><center>Taksa e TVSH</center></td>
+        <td><center>Lartesia e Doganes</center></td>
+        <td><center>Taksa Doganore</center></td>
+        <td><center>Gjithsej Taksat</center></td>
+        <td style="width:100px"><center><span>&#x2715;</span></center></td>
+      </tr>
+      <% iter = 0 %>
+      <% @import.import_articles.each do |ia| %>
+        <% i = ia.import %>
+        <% a = ia.article %>
+        <% if ia.persisted? %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
+            <td style="width:100px"><center><%= a.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= a.tarif_kodi %></center></td>
+            <td style="width:100px"><center><%= ia.emertimi %></center></td>
+            <td style="width:100px"><center><%= ia.kodi %></center></td>
+            <td style="width:100px"><center><%= "#{'%.2f' % ia.sasia.round(2)} #{ia.njesia}" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.qmimi.round(2) %> €</center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.qmimi_njesi.round(2) %> <%= "€/" + "#{ia.njesia}" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.qmimi_kg.round(2) %> <%= "€/" + "Kg" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % i.transporti.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.transport.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.qmimi_tot.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.pesha.round(2) %> <%= "Kg" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.pesha_njesi.round(2) %> <%= "Kg/" + "#{ia.njesia}" %></center></td>
+            <td style="width:100px"><center><%= ia.lloji_akcizes %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.akciza.round(2) %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.taksa_akciza.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.tvsh.round(2) %> <%= "%" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.taksa_tvsh.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % a.dogana.round(2) %> <%= "%" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.taksa_dogana.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % ia.gjithsej_taksa.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px"><center>
+              <%= link_to ia, method: :delete do %>
+                <span>&#x2715;</span>
+              <% end %>
+            </center></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tr style="border-bottom: 0px">
+        <td style="width:100px" colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 35px; color: green; margin-top: -50px; margin-bottom: -40px;">&#43;</button></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @import.shuma_qmimi.round(2) %> €</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= @import.transporti%> €</strong></center></td>
+      </tr>
+    </table>
+  </div>
+</center>
 <p>Shuma Neto (me paketim):<%= @pesha_b.round(2) %></p>
 <p>Pesha Neto (Pa paketim):<%= @pesha_n.round(2) %></p>
 <%= link_to 'Produkti', @normative.product, class:"btn btn-primary" %>

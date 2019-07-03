@@ -61,7 +61,7 @@
   </center>
 </div>
 <center>
-  <div class="fatura-tabela" style="width:1400px">
+  <div class="fatura-tabela" style="width:1500px">
     <table>
       <tr class="hedi">
         <td colspan="2"><center>#</center></td>
@@ -103,23 +103,23 @@
             <td style="width:100px"><center><%= a.tarif_kodi %></center></td>
             <td style="width:100px"><center><%= ia.emertimi %></center></td>
             <td style="width:100px"><center><%= ia.kodi %></center></td>
-            <td style="width:100px"><center><%= "#{'%.2f' % ia.sasia.round(2)} #{ia.njesia}" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.qmimi.round(2) %> €</center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.qmimi_njesi.round(2) %> <%= "€/" + "#{ia.njesia}" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.qmimi_kg.round(2) %> <%= "€/" + "Kg" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % i.transporti.round(2) %> <%= "€" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.transport.round(2) %> <%= "€" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.qmimi_tot.round(2) %> <%= "€" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.pesha.round(2) %> <%= "Kg" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.pesha_njesi.round(2) %> <%= "Kg/" + "#{ia.njesia}" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= "#{'%.2f' % ia.sasia.round(2)} #{ia.njesia}" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi.round(2) %> €</center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi_njesi.round(2) %> <%= "€/" + "#{ia.njesia}" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi_kg.round(2) %> <%= "€/" + "Kg" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % i.transporti.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.transport.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi_tot.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.pesha.round(2) %> <%= "Kg" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.pesha_njesi.round(2) %> <%= "Kg/" + "#{ia.njesia}" %></center></td>
             <td style="width:100px"><center><%= ia.lloji_akcizes %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.akciza.round(2) %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.taksa_akciza.round(2) %> <%= "€" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.tvsh.round(2) %> <%= "%" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.taksa_tvsh.round(2) %> <%= "€" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % a.dogana.round(2) %> <%= "%" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.taksa_dogana.round(2) %> <%= "€" %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ia.gjithsej_taksa.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.akciza.round(2) %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.taksa_akciza.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.tvsh.round(2) %> <%= "%" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.taksa_tvsh.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % a.dogana.round(2) %> <%= "%" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.taksa_dogana.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.gjithsej_taksa.round(2) %> <%= "€" %></center></td>
             <td style="width:100px"><center>
               <%= link_to ia, method: :delete do %>
                 <span>&#x2715;</span>
