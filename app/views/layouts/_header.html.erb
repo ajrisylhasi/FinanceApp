@@ -165,12 +165,16 @@
         		          <div class="dropdown-container">
           		          <div class="dropdown">
                           <button class="dropbtn" id="notifBell">
-                            <div class="notifications dropdown dd-trigger" onclick="openNotif()" id="not-click">
-            		              <% if $notifications != 0 %>
+                            <% if $notifications != 0 %>
+                              <div class="notifications dropdown dd-trigger" onclick="openNotif()" id="not-click">
                                 <span class="count animated" id="notifications-count"><%= $notifications %></span>
-                              <% end %>
-            		              <span class="fa fa-bell-o"></span>
-            		            </div>
+              		              <span class="fa fa-bell-o"></span>
+              		            </div>
+                            <% else %>
+                              <div class="notifications dropdown dd-trigger" id="not-click">
+                                <span class="fa fa-bell-o"></span>
+                              </div>
+                            <% end %>
           		            </button>
                           <div class="dropdown-content" id="dropdown-content-id">
                               <div class="notifHead">
@@ -186,11 +190,6 @@
                                   </tr>
                                 </table>
                               </div>
-                              <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
-                              <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
-                              <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
-                              <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
-                              <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
                               <% $lajmerimet.each do |l| %>
                                 <% if l.include? "garancionit" %>
                                   <%= link_to l, garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>

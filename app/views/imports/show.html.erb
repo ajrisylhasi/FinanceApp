@@ -12,8 +12,7 @@
 <%= link_to 'Files', import_files_path(@import), class:"btn btn-primary" %>
 <%= link_to 'Edit', edit_import_path(@import), class:"btn btn-primary" %>
 <div class="row" style="width:100%">
-  <div class="col-md-6 col-md-offset-3" style="width:53vw">
-    
+  <div class="col-md-6 col-md-offset-3">
     <%= render 'layouts/flash' %>
     <% unless @import.mbylled %>
       <%= nested_form_for(@import)do |f|%>

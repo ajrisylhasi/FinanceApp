@@ -20,7 +20,7 @@
                 </td>
                 <td>
                   <%= na.grouped_collection_select(:pesha_qmimi, Article.order(:pershkrimi), :import_articles, :pershkrimi_njesia, :grupi, :show_text,
-                                                                        { include_blank: "Select Pesha", multiple: false}, :id => "pesha_select") %>
+                    { include_blank: "Select Pesha", multiple: false}, :id => "pesha_select") %>
                                                                             
                 </td>
                 <td width="225px">
@@ -46,4 +46,45 @@
     <% end %>
   </div>
   
+</div>
+<div class="col-md-6 col-md-offset-3">
+  <%= render 'layouts/flash' %>
+  <%= nested_form_for(@normative)do |f|%>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel"><strong>Shto artikull t</strong></h4>
+          </div>
+          <%= f.fields_for :import_articles do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <% unless f.object.persisted? %>
+              <div class="modal-body">
+          
+                <%= f.select("article_id", Article.all.select { |a| a.autorizims.first == Autorizim.first }.collect {|p| ["#{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Select Article", multiple: false}) %>
+                
+                <%= f.label :emertimi %>
+                <%= f.text_field :emertimi, class: "form-control" %>
+                
+                <%= f.label :sasia, "Sasia" %>
+                <%= f.number_field :sasia, step: :any, class: "form-control" %>
+                
+                <%= f.label :qmimi, "Qmimi" %>
+                <%= f.number_field :qmimi, step: :any, class: "form-control" %> €
+                  
+                <%= f.label :pesha, "Pesha" %>
+                <%= f.number_field :pesha, step: :any, class: "form-control" %><%= " Kg" %>
+              
+          
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+                <%= f.submit "Shto", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>

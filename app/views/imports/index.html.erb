@@ -1,37 +1,73 @@
-<h1>Index of Imports</h1>
+<center><h1 style="font-family: Barlow; margin-top: -5px">Lista e Importeve</h1></center>
 <div><%= render "layouts/flash" %></div>
-<div>
-  <center>
-    <table border="1">
-      <tr>
-        <td>
-          <%= "Numri i Importit" %>
-        </td>
-        <td>
-          <%= "data" %>
-        </td>
-        <td>
-          <%= "Numri i Fatures" %>
-        </td>
-        <td>
-          <%= "Klienti" %>
-        </td>
-      </tr>
-      <% @imports.each do |a| %>
-          <tr>
-            <td><%= a.nr_dud %></td>
-            <td><%= a.data %></td>
-            <td><%= a.nr_fatures %></td>
-            <td><%= a.client.kompania %></td>
-            <td><%= link_to 'Show', a %></td>
-            <td><%= link_to 'Edit', edit_import_path(a) %></td>
-            <td><%= link_to 'Destroy', a, method: :delete %></td>
+<center>
+  <div class="fatura-tabela">
+      <button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 30px; color: green; margin-top: -45px; float: left; margin-left: 143px">&#43;</button>
+      <table>
+        <tr class="hedi">
+          <td style="min-width:75px"><center>#</center></td>
+          <td style="min-width:75px"><center>Numri i Importit</center></td>
+          <td style="min-width:75px"><center>Data</center></td>
+          <td style="min-width:75px"><center>Numri i Fatures</center></td>
+          <td style="min-width:75px"><center>Klienti</center></td>
+          <td colspan="4"><center></center></td>
+        </tr>
+        <% iter = 0 %>
+        <% @imports.each do |a| %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td><center><%= iter+=1 %></td></center>
+            <td><center><%= a.nr_dud %></td></center>
+            <td><center><%= a.data %></td></center>
+            <td><center><%= a.nr_fatures %></td></center>
+            <td><center><%= a.client.kompania %></td></center>
+            <td style="width: 25px"></td>
+            <td style="width: 50px; border: 0px"><center><%= link_to a do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to edit_import_path(a) do %> <%= image_tag "edit.svg", style: "width: 25px; height: 25px" %><% end %></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to a, method: :delete do %>
+              <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %>
+            </td></center>
           </tr>
-      <% end %>
-    </table>
-  </center>
-</div>
-<div>
-    <center><%= link_to "New Import", new_import_path, class:"btn btn-primary", style:"margin:15px" %></center>
+        <% end %>
+      </table>
+    </div>
+  <div>
+</center>
+    
 </div>
 
+<%= nested_form_for(@import)do |f|%>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel"><strong>Shto import te re</strong></h4>
+        </div>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div style="container">
+          <%= f.label :nr_dud %>
+          <%= f.text_field :nr_dud, class: 'form-control' %>
+          <%= f.label :data %>
+          <%= f.date_field :data, class: 'form-control' %>
+          <%= f.label :transporti %>
+          <%= f.number_field :transporti, class: 'form-control', step: :any %>
+          <%= f.label :nr_fatures %>
+          <%= f.text_field :nr_fatures, class: 'form-control' %>
+          <%= f.file_field :files, multiple: true%>
+          <%= f.select("client_id", Client.all.collect {|n| [ n.kompania,  n.id ] }, { prompt: "Select Client", multiple: false }) %>
+          <%= f.select("dogana", Dogana.all.collect {|n| [ n.komplet_pamja,  n.komplet] }, { prompt: "Select Zyra Doganore", multiple: false }) %>
+          <%= f.select("destinimi", Destinim.all.collect {|n| [ n.komplet_pamja,  n.komplet ] }, { prompt: "Select Zyra Destinimit", multiple: false }) %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+          <%= f.submit "Shto", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<style>
+</style>

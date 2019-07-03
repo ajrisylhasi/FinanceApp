@@ -4,6 +4,7 @@ class ImportsController < ApplicationController
   
   def index
     @imports = Import.all
+    @import ||= Import.new
     
   end
   
@@ -12,7 +13,7 @@ class ImportsController < ApplicationController
   end
   
   def new
-    @import ||= Import.new
+    
   end
   
   def gjendja
