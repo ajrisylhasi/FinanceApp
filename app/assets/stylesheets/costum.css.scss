@@ -154,7 +154,7 @@ textarea { resize: none; }
 
 .dropdown-content-on a:hover {background-color: #e9e9e9; border-radius: 10px;}
 .dropdown-content{
-    visibility: none; /* hides sub-menu */
+    sidplay: none; /* hides sub-menu */
     opacity: 0;
     position: absolute;
     border-radius: 10px;
@@ -170,7 +170,7 @@ textarea { resize: none; }
     transition: all 0.5s ease-in-out 0s, visibility 0s linear 0.5s, z-index 0s linear 0.01s;
 }
 .dropdown-content-on {
-    visibility: visible; /* hides sub-menu */
+    display: block; /* hides sub-menu */
     opacity: 1;
     position: absolute;
     border-radius: 10px;
