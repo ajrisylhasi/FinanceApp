@@ -352,6 +352,7 @@
      closeNavRight(); 
     }
   }
+  
   // <=============>
 
   function closeNotif() {
@@ -362,7 +363,6 @@
       document.getElementById("dropdown-content-id").classList.remove('dropdown-content');
       document.getElementById("dropdown-content-id").classList.add('dropdown-content-on');
   }
-
   window.addEventListener('mouseup', function(event){
     var box = document.getElementById("dropdown-content-id");
     if(event.target != box && event.target.parentNode != box) {
