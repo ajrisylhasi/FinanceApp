@@ -193,15 +193,15 @@
                               <%= link_to "Test", garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
                               <% $lajmerimet.each do |l| %>
                                 <% if l.include? "garancionit" %>
-                                  <%= link_to l, garancions_path, class: "dropdown-btn1" %>
+                                  <%= link_to l, garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
                                 <% elsif l.include? "Garancioni:" %>
-                                  <%= link_to l, garancions_path, class: "dropdown-btn1" %>
+                                  <%= link_to l, garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
                                 <% else %>
-                                  <%= link_to l, edit_autorizim_path(Autorizim.first), class: "dropdown-btn1" %>
+                                  <%= link_to l, edit_autorizim_path(Autorizim.first), class: "dropdown-btn1", style: "font-family: Barlow" %>
                                 <% end %>
                               <% end %>
                               <% if @empty_imports.count > 0 %>
-                                <%= link_to "Mbyll Importet Boshe: #{@empty_imports_names.join(", ")}", new_mbyllja_path, class: "dropdown-btn1" %>
+                                <%= link_to "Mbyll Importet Boshe: #{@empty_imports_names.join(", ")}", new_mbyllja_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
                               <% end %>
                           </div>
                         </div>
