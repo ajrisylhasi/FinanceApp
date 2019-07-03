@@ -11,11 +11,7 @@ class ImportsController < ApplicationController
   def files
     @import = Import.find(params[:id])
   end
-  
-  def new
-    
-  end
-  
+
   def gjendja
     @import = Import.find(params[:id])
     @gjendja = {}
