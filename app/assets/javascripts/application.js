@@ -23,3 +23,5 @@
 //= require Chart.bundle
 //= require chartkick
 //= require_tree .
+require("chartkick")
+require("chart.js")

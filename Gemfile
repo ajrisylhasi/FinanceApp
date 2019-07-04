@@ -32,7 +32,7 @@ gem 'jquery-rails'
 gem 'nested_form', '~> 0.3.2'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '3.0.4'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
