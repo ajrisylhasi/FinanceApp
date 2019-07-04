@@ -1,7 +1,54 @@
 
 <%= render 'layouts/flash' %>
-<h1><%= @export.nr_exportit %></h1>
-<h1 style="color:black">Manage Products</h1>
+<center><h1 style="font-family: Barlow; margin-top: 30px">Eksporti: <%= @export.nr_exportit %></h1></center>
+<br>
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Data</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Klienti</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Fatura</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @export.data %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @export.client.kompania %> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @export.fatura.nr_faturess %> 
+        </div>
+      </td>
+    </tr>
+  </table>
+</center>
+<style>
+  .tabela-import{
+    margin-bottom: 40px;
+  }
+  .tabela-import td {
+    width: 300px;
+    text-align: center;
+  }
+</style>
 <div class="row" style="width:100%">
   <div class="col-md-6 col-md-offset-3">
     <% if $gabimet.count != 0 %>
@@ -34,7 +81,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
-                    <%= na.submit "Shto", class: "btn btn-primary" %>
+                    <%= f.submit "Shto", class: "btn btn-primary", id: "lolz", name: "add_product_export" %>
                   </div>
                 <% end %>
               <% end %>
@@ -50,7 +97,6 @@
 </div>
 Pesha Bruto: <%= @pesha_b %><br>
 Pesha Neto: <%= @pesha_n %>
-<%= @e %>
 <center>
   <div class="fatura-tabela">
     <table>
