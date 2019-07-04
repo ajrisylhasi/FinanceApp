@@ -1,48 +1,35 @@
-<div class="row" style="width:100%">
-  <div class="col-md-6 col-md-offset-3">
-    <%= render 'layouts/flash' %>
-    <%= nested_form_for(@normative)do |f|%>
-      <%= f.fields_for :normative_articles do |na| %>
-        <%= render 'shared/error_messages', object: na.object %>
-        <% unless na.object.persisted? %>
-          <center><table>
-            <tr>
-              <div style="display: inline">
-                <td width="180px">
-                  <div style="text-align:center">
-                    <%= na.select("article_id", Article.all.collect {|p| ["(#{p.kodi}) #{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Select Article", multiple: false }, id: "article_select") %>
-                  </div>
-                </td>
-                <td width="225px">
-                  <%= na.label :sasia %>
-                  <%= na.number_field :sasia, step: :any %>
-                  
-                </td>
-                <td width="225px">
-                  <%= na.label :pesha_bruto %>
-                  <%= na.number_field :pesha_bruto, step: :any %>
-                </td>
-                <td width="225px">
-                  <%= na.label :mbetja, "Mbetja Sasise" %>
-                  <%= na.number_field :mbetja, step: :any %>
-                  
-                </td>
-                <td>
-                  <%= na.label :mbetja_peshe, "Mbetja Peshes" %>
-                  <%= na.number_field :mbetja_peshe, step: :any %>
-                </td>
+<div class="col-md-6 col-md-offset-3">
+  <%= render 'layouts/flash' %>
+  <%= nested_form_for(@normative) do |f|%>
+    <div class="modal fade" id="exampleModalman" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel"><strong>Shto artikull te ri.</strong></h4>
+          </div>
+          <%= f.fields_for :normative_articles do |na| %>
+            <%= render 'shared/error_messages', object: na.object %>
+            <% unless na.object.persisted? %>
+              <div class="modal-body">
+
+                <%= na.select("article_id", Article.all.collect {|p| ["(#{p.kodi}) #{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Select Article", multiple: false }, id: "article_select", class: "form-control") %>
+                <%= na.label :sasia %>
+                <%= na.number_field :sasia, step: :any, class: "form-control"%>
+                <%= na.label :pesha_bruto %>
+                <%= na.number_field :pesha_bruto, step: :any, class: "form-control" %>
+                <%= na.label :mbetja, "Mbetja Sasise" %>
+                <%= na.number_field :mbetja, step: :any, class: "form-control" %>
+                <%= na.label :mbetja_peshe, "Mbetja Peshes" %>
+                <%= na.number_field :mbetja_peshe, step: :any, class: "form-control" %>
               </div>
-            </tr>
-          </table></center>
-        <% end %>
-      <% end %>
-      <div class="buttons">
-        <% if Article.count != 0 %>
-          <%= f.submit "Add Article", class: "btn btn-primary", name: "normative_article_add" %>
-        <% end %>
-        <%= link_to "Back", normatives_path, class:"btn btn-primary" %>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+                <%= na.submit "Shto", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
-    <% end %>
-  </div>
-  
+    </div>
+  <% end %>
 </div>

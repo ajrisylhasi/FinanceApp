@@ -12,39 +12,36 @@
       </ul></center>
     <% end %>
     <%= nested_form_for(@export)do |f|%>
-      <%= f.fields_for :export_products do |na| %>
-        <%= render 'shared/error_messages', object: na.object %>
-        
-        <% unless na.object.persisted? %>
-        <center><table>
-          <tr>
-            <div style="display: inline">
-                <td width="180px">
-                  <div style="text-align:center">
-                    <%= na.select :product_id, Product.pluck( :pershkrimi, :id), { prompt: "Select Product", multiple: false}, :id => "product_select" %>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel"><strong>Shto produkt te re</strong></h4>
+              </div>
+              <%= f.fields_for :export_products do |na| %>
+                <%= render 'shared/error_messages', object: na.object %>
+                <% unless na.object.persisted? %>
+                  <div class="modal-body">
+                
+                    <%= na.select :product_id, Product.pluck( :pershkrimi, :id), { prompt: "Select Product", multiple: false}, :id => "product_select", class: "form-control" %>
+                    <%= na.label :sasia %>
+                    <%= na.number_field :sasia, step: :any, class: "form-control" %>
+                    <div>
+                    <%= na.label :normative_id, "Selekto Normativen" %>
+                    <%= na.grouped_collection_select("normative_id", Product.order(:pershkrimi), :working_normatives, :pershkrimi, :id, :show_text,
+                                                                          { include_blank: "Select Normative", multiple: false}, :id => "normative_select", class: "form-control") %>
+                    </div>
                   </div>
-                </td>
-                <td width="225px">
-                  <%= na.label :sasia %>
-                  <%= na.number_field :sasia, step: :any %>
-                </td>
-                <td>
-                  <%= na.grouped_collection_select("normative_id", Product.order(:pershkrimi), :working_normatives, :pershkrimi, :id, :show_text,
-                                                      { include_blank: "Select Normative", multiple: false}, :id => "normative_select") %>
-                                                                            
-                </td>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+                    <%= na.submit "Shto", class: "btn btn-primary" %>
+                  </div>
+                <% end %>
+              <% end %>
             </div>
-          </tr>
-        </table></center>
-        <% end %>
+          </div>
+        </div>
       <% end %>
-      <div class="buttons">
-        <% if Product.count != 0 %>
-          <%= f.submit "Update Product", class: "btn btn-primary", id: "lolz", name: "add_product_export" %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
   <center>
     <%= link_to "Fatura", @export.fatura, class:"btn btn-primary" %>
     <%= link_to "Specifikacioni", specifikacioni_path(@export), class:"btn btn-primary" %>
@@ -54,49 +51,43 @@
 Pesha Bruto: <%= @pesha_b %><br>
 Pesha Neto: <%= @pesha_n %>
 <%= @e %>
-<h1>Numri i Produkteve:<%= @export.products.count %></h1>
-<center><table width="50%" border="solid #333 1px">
-  <tr>
-    <td>
-      <%= "Pershkrimi" %>
-    </td>
-    <td>
-      <%= "Tarif Kodi" %>
-    </td>
-    <td>
-      <%= "Sasia" %>
-    </td>
-    <td>
-      <%= "Normative" %>
-    </td>
-  </tr>
-  <% @export.export_products.each do |na| %>
-  
-    <% n = na.export %>
-    <% a = na.product %>
-    <% if na.valid? %>
-      <tr>
-        <td>
-          <%= na.product.pershkrimi %>
-        </td>
-        <td>
-          <%= na.product.tarif_kodi %>
-        </td>
-        <td>
-          <%= na.sasia %>
-        </td>
-        <td>
-          <%= na.normative.nr_normatives %>
-        </td>
-        <td style="text-align:center;">
-          <%= link_to na, {method: :delete, id: "lolzi"} do %>
-            <span onclick="show_slow_warning()">&#x2715;</span>
-          <% end %>
-        </td>
+<center>
+  <div class="fatura-tabela">
+    <table>
+      <tr class="hedi">
+        <td colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
+        <td style="width:100px"><center>Pershkrimi</center></td>
+        <td style="width:100px"><center>Tarif Kodi</center></td>
+        <td style="width:100px"><center>Sasia</center></td>
+        <td style="width:100px"><center>Qmimi</center></td>
+        <td style="width:100px"><center><span>&#x2715;</span></center></td>
       </tr>
-    <% end %>
-  <% end %>
-</table></center>
+      <% iter = 0 %>
+      <% @export.export_products.each do |ep| %>
+        <% e = ep.export %>
+        <% pr = ep.product %>
+        <% if ep.persisted? %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
+            <td style="width:100px"><center><%= pr.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= pr.tarif_kodi %></center></td>
+            <td style="width:75px"><center><%= ep.sasia %></center></td>
+            <td style="width:100px"><center><%= (pr.qmimi * ep.sasia ).round(2)%></center></td>
+            <td style="width:100px"><center>
+              <%= link_to ep, method: :delete do %>
+                <span onclick="show_slow_warning()">&#x2715;</span>
+              <% end %>
+            </center></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</center>
 <%= link_to 'Home', exports_path, class:"btn btn-primary" %>
 <%= link_to 'Files', export_files_path(@export), class:"btn btn-primary" %>
 <%= link_to 'Edit', edit_export_path(@export), class:"btn btn-primary" %>

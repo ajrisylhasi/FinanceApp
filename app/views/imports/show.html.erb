@@ -1,4 +1,4 @@
-<center><h1 style="font-family: Barlow; margin-top: -5px">Importi: <%= @import.nr_dud %></h1></center>
+<center><h1 style="font-family: Barlow; margin-top: 30px">Lista e Importeve</h1></center>
 <br>
 <center>
   <table class="tabela-import">
@@ -32,17 +32,17 @@
       </td>
       <td>
         <div>
+          <%= @import.client.kompania %> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @import.nr_fatures %> 
+        </div>
+      </td>
+      <td>
+        <div>
           <%= @import.transporti %> €
-        </div>
-      </td>
-      <td>
-        <div>
-          <%= @import.nr_fatures %> €
-        </div>
-      </td>
-      <td>
-        <div>
-          <%= @import.client.kompania %> €
         </div>
       </td>
     </tr>
@@ -158,10 +158,10 @@
   </center>
 </div>
 <center>
-  <div class="fatura-tabela" style="width:1500px">
+  <div class="fatura-tabela" style="width:1600px">
     <table>
       <tr class="hedi">
-        <td colspan="2"><center>#</center></td>
+        <td colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
         <td><center>Pershkrimi</center></td>
         <td><center>Tarif Kodi</center></td>
         <td><center>Emertimi</center></td>
@@ -197,7 +197,7 @@
             <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
             <td style="width:100px"><center><%= a.pershkrimi %></center></td>
             <td style="width:100px"><center><%= a.tarif_kodi %></center></td>
-            <td style="width:100px"><center><%= ia.emertimi %></center></td>
+            <td style="width:75px"><center><%= ia.emertimi %></center></td>
             <td style="width:100px"><center><%= ia.kodi %></center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= "#{'%.2f' % ia.sasia.round(2)} #{ia.njesia}" %></center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi.round(2) %> €</center></td>
@@ -212,7 +212,7 @@
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.taksa_akciza.round(2) %> <%= "€" %></center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.tvsh.round(2) %> <%= "%" %></center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.taksa_tvsh.round(2) %> <%= "€" %></center></td>
-            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % a.dogana.round(2) %> <%= "%" %></center></td>
+            <td style="width:125px; white-space: nowrap;"><center><%= '%.2f' % a.dogana.round(2) %> <%= "%" %></center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.taksa_dogana.round(2) %> <%= "€" %></center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.gjithsej_taksa.round(2) %> <%= "€" %></center></td>
             <td style="width:100px"><center>
