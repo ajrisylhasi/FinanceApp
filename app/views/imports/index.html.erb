@@ -9,6 +9,7 @@
           <td style="min-width:75px"><center>Numri i Importit</center></td>
           <td style="min-width:75px"><center>Data</center></td>
           <td style="min-width:75px"><center>Numri i Fatures</center></td>
+          <td style="min-width:75px"><center>Transporti</center></td>
           <td style="min-width:75px"><center>Klienti</center></td>
           <td colspan="4"><center></center></td>
         </tr>
@@ -23,10 +24,11 @@
             <td><center><%= a.nr_dud %></td></center>
             <td><center><%= a.data %></td></center>
             <td><center><%= a.nr_fatures %></td></center>
+            <td><center><%= a.transporti %></td></center>
             <td><center><%= a.client.kompania %></td></center>
             <td style="width: 25px"></td>
             <td style="width: 50px; border: 0px"><center><%= link_to a do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center>
-            <td style="width: 50px; border: 0px"><center><%= link_to edit_import_path(a) do %> <%= image_tag "edit.svg", style: "width: 25px; height: 25px" %><% end %></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to edit_import_path(a) do %> <span class="fas fa-pencil-alt" style="color: black; font-size: 20px"></span><% end %></td></center>
             <td style="width: 50px; border: 0px"><center><%= link_to a, method: :delete do %>
               <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %>
             </td></center>

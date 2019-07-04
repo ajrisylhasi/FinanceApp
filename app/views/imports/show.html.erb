@@ -1,13 +1,110 @@
-<h1><%= @import.nr_dud %></h1>
+<center><h1 style="font-family: Barlow; margin-top: -5px">Importi: <%= @import.nr_dud %></h1></center>
 <br>
-<p>Data: <%= @import.data %></p>
-<p>Transporti: <%= @import.transporti %> <%= "€" %></p>
-<p>Fatura: <%= @import.nr_fatures %></p>
-<p>Klieti: <%= @import.client.kompania %></p>
-<p>Kodi i Zyres Doganore: <%= @import.kodi_doganor %></p>
-<p>Zyra Doganore: <%= @import.zyra_doganore %></p>
-<p>Kodi i Zyres Destinimit: <%= @import.kodi_destinim %></p>
-<p>Zyra e Destinimit: <%= @import.zyra_destinim %></p>
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Data</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Klienti</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Fatura</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Transporti</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @import.data %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @import.transporti %> €
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @import.nr_fatures %> €
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @import.client.kompania %> €
+        </div>
+      </td>
+    </tr>
+    <tr style="height: 40px">
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>
+      <div>
+          <strong>Kodi i zyres Doganore</strong>
+      </div> 
+      </td>
+      <td>
+        <div>
+          <strong>Zyra Doganore</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Kodi i zyres Destinimit</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Zyra e Destinimit</strong>
+        </div>
+      </td>
+    <tr>
+      <td>
+      <div>
+          <strong><%= @import.kodi_doganor %></strong>
+      </div> 
+      </td>
+      <td>
+        <div>
+          <strong><%= @import.zyra_doganore %></strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong><%= @import.kodi_destinim %></strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong><%= @import.zyra_destinim %></strong>
+        </div>
+      </td>
+    </tr>
+    </tr>
+  </table>
+</center>
+
 <%= link_to 'Home', imports_path, class:"btn btn-primary" %>
 <%= link_to 'Files', import_files_path(@import), class:"btn btn-primary" %>
 <%= link_to 'Edit', edit_import_path(@import), class:"btn btn-primary" %>
@@ -73,7 +170,6 @@
         <td><center>Qmimi</center></td>
         <td style="white-space: nowrap;"><center>Qmimi per Njesi</center></td>
         <td><center>Qmimi per Kg</center></td>
-        <td><center>Transporti Total</center></td>
         <td><center>Transporti</center></td>
         <td><center>Qmimi Total</center></td>
         <td><center>Pesha (Kg)</center></td>
@@ -107,7 +203,6 @@
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi.round(2) %> €</center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi_njesi.round(2) %> <%= "€/" + "#{ia.njesia}" %></center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi_kg.round(2) %> <%= "€/" + "Kg" %></center></td>
-            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % i.transporti.round(2) %> <%= "€" %></center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.transport.round(2) %> <%= "€" %></center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi_tot.round(2) %> <%= "€" %></center></td>
             <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.pesha.round(2) %> <%= "Kg" %></center></td>
@@ -138,9 +233,14 @@
         <td style="width:100px"><center><strong><%= '%.2f' % @import.shuma_qmimi.round(2) %> €</strong></center></td>
         <td style="width:100px"></td>
         <td style="width:100px"></td>
-        <td style="width:100px"><center><strong><%= @import.transporti%> €</strong></center></td>
       </tr>
     </table>
   </div>
 </center>
 <div style="float:right;margin-right:5px"><%= @taksa %></div>
+<style>
+  .tabela-import td{
+    width: 350px;
+    text-align: center;
+  }
+</style>

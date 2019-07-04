@@ -57,7 +57,7 @@
         
         
         <td>
-          <%= na.article.tarif_kodi %>
+          w
         </td>
         <td>
           <%= na.article.kodi %>
@@ -150,31 +150,22 @@
         <td colspan="2"><center>#</center></td>
         <td><center>Tarif Kodi</center></td>
         <td><center>Kodi</center></td>
-        <td><center>Prshkrimi</center></td>
-        <td><center>Emertimi</center></td>
-        <td><center>Sasia</center></td>
-        <td><center>Qmimi</center></td>
-        <td style="white-space: nowrap;"><center>Qmimi per Njesi</center></td>
-        <td><center>Qmimi per Kg</center></td>
-        <td><center>Transporti Total</center></td>
-        <td><center>Transporti</center></td>
-        <td><center>Qmimi Total</center></td>
-        <td><center>Pesha (Kg)</center></td>
-        <td style="white-space: nowrap;"><center>Pesha per Njesi</center></td>
-        <td><center>Lloji i Akcizes</center></td>
-        <td><center>Lartesia Akcizes</center></td>
-        <td><center>Taksa Akcizes</center></td>
-        <td><center>Lartesia e TVSH</center></td>
-        <td><center>Taksa e TVSH</center></td>
-        <td><center>Lartesia e Doganes</center></td>
-        <td><center>Taksa Doganore</center></td>
-        <td><center>Gjithsej Taksat</center></td>
+        <td><center>Përshkrimi</center></td>
+        <td><center>Njesia</center></td>
+        <td><center>Sasia Bruto</center></td>
+        <td><center>Mbetja Sasisë</center></td>
+        <td style="white-space: nowrap;"><center>Mbetja në Sasi/center></td>
+        <td><center>Sasia Neto</center></td>
+        <td><center>Pesha Bruto</center></td>
+        <td><center>Mbetja Peshes</center></td>
+        <td><center>Mbetja në Peshë</center></td>
+        <td><center>Pesha Neto</center></td>
         <td style="width:100px"><center><span>&#x2715;</span></center></td>
       </tr>
       <% iter = 0 %>
-      <% @import.import_articles.each do |ia| %>
-        <% i = ia.import %>
-        <% a = ia.article %>
+      <% @normative.normative_articles.each do |na| %>
+        <% n = na.normative %>
+        <% a = na.article %>
         <% if ia.persisted? %>
           <% if iter.even? %>
             <tr style="background: #dee2e6">  

@@ -20,4 +20,6 @@
 //= require exports
 //= require normatives
 //= require bootstrap-datepicker
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .

@@ -66,6 +66,10 @@ class Import < ApplicationRecord
     t
   end
     
+  def emri_klientit 
+    self.client.kompania
+  end
+
   def empty?
     self.import_gjendjas.all? { |i| i.empty? }
   end

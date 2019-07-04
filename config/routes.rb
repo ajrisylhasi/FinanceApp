@@ -33,6 +33,10 @@ Rails.application.routes.draw do
   resources :palet_products, only: [:destroy]
   resources :palet_packets, only: [:destroy]
   
+  namespace :imports do
+    get :charts
+  end
+
   resources :palets do 
     member do 
       delete "/delete_image_attachment", action: :delete_image_attachment

@@ -17,6 +17,17 @@ class StaticController < ApplicationController
   end
   
   def home 
+    # clients = Import.pluck(:client_id).uniq
+    # @imports = clients.map do |i|
+    #   { name: Client.find(i).kompania, data: Client.group(:kompani)}
+    # end
+    @imports_taksa = []
+    clients = Import.pluck(:client_id).uniq 
+    clients.each do |c|
+      tot = 0.0
+      taksa_tot = Client.find(c).imports.each { |i| tot += i.taksa}
+      @imports_taksa.push [Client.find(c).kompania, tot]
+    end
   end
   
   def reportet
