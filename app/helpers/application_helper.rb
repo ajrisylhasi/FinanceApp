@@ -71,7 +71,7 @@ module ApplicationHelper
       $lajmerimet.push("Autorizimi juaj eshte #{diferenca.numerator} dite larg skadimit")
       $notifications += 1 
     elsif diferenca <= 0
-      $lajmerimet.push("Autorizimi juaj ka skaduar per #{((-1)*diferenca).numerator} dite")
+      $lajmerimet.push("Autorizimi juaj ka skaduar qe #{((-1)*diferenca).numerator} dite")
       $notifications += 1 
     end
   end
