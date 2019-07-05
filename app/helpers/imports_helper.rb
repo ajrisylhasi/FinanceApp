@@ -98,26 +98,22 @@ module ImportsHelper
     refresh_gjendja
   end
   
-  def vlera_garancionit
-    if !check_garancion?
-      flash[:danger] = "Nuk ka mjaftueshem Garancion"
-      redirect_to imports_path
-    end
-  end
-  
-  def vlera_garancionit_article(import)
-    if !check_garancion?
-      flash[:danger] = "Vlera e garancionit kalon!"
+
+  def vlera_autorizimit_garancion(import)
+    if Autorizim.first.data_skadimit <= Date.current && !check_garancion?
+      flash[:danger] = "Ka kaluar data e skadimit per Autorizimin me kete Artikull dhe vlera e garancioneve ka kaluar."
       import.import_articles.last.destroy
       bashkimi_importit(import)
-    end
-  end
-  
-  def vlera_autorizimit(import)
-    unless Autorizim.first.data_skadimit > Date.current
+    elsif Autorizim.first.data_skadimit <= Date.current
       flash[:danger] = "Ka kaluar data e skadimit per Autorizimin me kete Artikull"
       import.import_articles.last.destroy
       bashkimi_importit(import)
+    elsif !check_garancion?
+      flash[:danger] = "Vlera e garancionit kalon"
+      import.import_articles.last.destroy
+      bashkimi_importit(import)
+    else
+      refresh_import(@import)
     end
   end
   

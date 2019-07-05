@@ -58,10 +58,7 @@ class ImportsController < ApplicationController
     @import = Import.find(params[:id])
     if params[:add_article_import]
       @import.update_attributes(import_params)
-      vlera_garancionit_article(@import)
-      vlera_autorizimit(@import)
-      refresh_import(@import)
-      refresh_gjendja
+      vlera_autorizimit_garancion(@import)
       redirect_to @import
     elsif @import.update_attributes(import_params)
       refresh_import(@import)
