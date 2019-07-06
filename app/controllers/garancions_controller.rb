@@ -2,10 +2,10 @@ class GarancionsController < ApplicationController
   
   def index
     @garancions = Garancion.all
+    @garancion ||= Garancion.new
   end
   
   def new
-    @garancion ||= Garancion.new
   end
   
   def create

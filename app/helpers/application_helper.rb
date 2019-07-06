@@ -115,6 +115,14 @@ module ApplicationHelper
   def kompania
     Kompani.first
   end
+
+  def autorizimi
+    Autorizim.first
+  end
+
+  def enabled?
+    autorizimi.data_skadimit > Date.today
+  end
   
   def home_lajm
     if current_user != nil

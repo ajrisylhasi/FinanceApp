@@ -4,6 +4,7 @@ class ExportsController < ApplicationController
   
   def index
     @exports = Export.all
+    @export ||= Export.new
   end
   
   def show
@@ -63,7 +64,6 @@ class ExportsController < ApplicationController
   end
   
   def new
-    @export ||= Export.new
   end
   
   def edit

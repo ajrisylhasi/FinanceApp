@@ -1,41 +1,75 @@
-<h1>Index of Garancions</h1>
-<div>
-  <center>
-    <table border="1">
-      <tr>
-        <td>
-          <%= "Identifikimi" %>
-        </td>
-        <td>
-          <%= "Vlera" %>
-        </td>
-        <td>
-          <%= "Data" %>
-        </td>
-        <td>
-          <%= "Data Skadimit" %>
-        </td>
-        <td>
-          <%= "Pershkrimi" %>
-        </td>
-      </tr>
-      <% @garancions.each do |a| %>
-          <tr>
-            <td><%= a.identifikimi %></td>
-            <td><%= a.vlera %> €</td>
-            <td><%= a.data %></td>
-            <td><%= a.data_skadimit %></td>
-            <td><%= a.pershkrimi %></td>
-            <td><%= link_to 'Show', a %></td>
-            <td><%= link_to 'Edit', edit_garancion_path(a) %></td>
-            <td><%= link_to 'Destroy', a, method: :delete %></td>
+<center><h1 style="font-family: Barlow; margin-top: 30px">Lista e Garancioneve</h1></center>
+<div><%= render "layouts/flash" %></div>
+<center>
+  <div class="fatura-tabela" style="margin-top: -25px">
+      
+      <table>
+        <tr style="border: 0px; margin-top: 0px; padding-top: 0px">
+          <td style="min-width:75px;"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 30px; color: green;">&#43;</button></center></td>
+          <td colspan="9"><center></center></td>
+        </tr>
+        <tr class="hedi">
+          <td style="min-width:75px"><center>#</center></td>
+          <td style="min-width:75px"><center>Identifikimi</center></td>
+          <td style="min-width:75px"><center>Vlera</center></td>
+          <td style="min-width:75px"><center>Data</center></td>
+          <td style="min-width:100px"><center>Data Skadimit</center></td>
+          <td style="min-width:75px"><center>Pershkrimi</center></td>
+          <td colspan="4"><center></center></td>
+        </tr>
+        <% iter = 0 %>
+        <% @garancions.each do |a| %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td><center><%= iter+=1 %></td></center>
+            <td><center><%= a.identifikimi %></td></center>
+            <td><center><%= a.vlera %></td></center>
+            <td><center><%= a.data %></td></center>
+            <td><center><%= a.data_skadimit %></td></center>
+            <td><center><%= a.pershkrimi %></td></center>
+            <td style="width: 25px"></td>
+            <td style="width: 50px; border: 0px"><center><%= link_to a do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to edit_garancion_path(a) do %> <span class="glyphicon glyphicon-pencil" style="color: black; font-size: 18px"></span><% end %></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to a, method: :delete do %>
+              <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %>
+            </td></center>
           </tr>
-      <% end %>
-      <h2>Garancioni i mbetur <%= $garancioni_mbetur.round(3) %></h2>
-    </table>
-  </center>
-</div>
-<div>
-    <center><%= link_to "New Garancion", new_garancion_path, class:"btn btn-primary", style:"margin:15px" %></center>
+        <% end %>
+      </table>
+    </div>
+  <div>
+</center>
+    
 </div>
 
+<%= nested_form_for(@garancion)do |f|%>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel"><strong>Shto garancion të ri</strong></h4>
+        </div>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="modal-body">
+          <%= f.label :pershkrimi %>
+          <%= f.text_field :pershkrimi, class: 'form-control' %>
+          <%= f.label :data %>
+          <%= f.date_field :data, class: 'form-control' %>
+          <%= f.label :identifikimi %>
+          <%= f.text_field :identifikimi, class: 'form-control' %>
+          <%= f.label :vlera %>
+          <%= f.number_field :vlera, step: :any, class: 'form-control' %>
+          <%= f.label :data_skadimit %>
+          <%= f.date_field :data_skadimit, class: 'form-control' %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+          <%= f.submit "Shto", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

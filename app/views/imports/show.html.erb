@@ -161,7 +161,11 @@
   <div class="fatura-tabela" style="width:1600px">
     <table>
       <tr class="hedi">
-        <td colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
+        <% if enabled? %>
+          <td colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
+        <% else %>
+          <td colspan="2"><center><button type="button" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: grey; margin-bottom: 5px">&#43;</button></center></td>
+        <% end %>
         <td><center>Pershkrimi</center></td>
         <td><center>Tarif Kodi</center></td>
         <td><center>Emertimi</center></td>

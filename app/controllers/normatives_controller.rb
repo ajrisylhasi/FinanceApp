@@ -3,10 +3,11 @@ class NormativesController < ApplicationController
     
     def index
       @normatives = Normative.all
+      
+      @normative ||= Normative.new
     end
     
     def new
-      @normative ||= Normative.new
     end
     
     def create
