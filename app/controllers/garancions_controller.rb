@@ -1,6 +1,9 @@
 class GarancionsController < ApplicationController
   
+  before_action :refresh_taksa, only: [:index]
+  
   def index
+
     @garancions = Garancion.all
     @garancion ||= Garancion.new
   end

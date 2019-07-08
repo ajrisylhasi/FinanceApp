@@ -3,9 +3,6 @@ class ClientsController < ApplicationController
 
   def index
     @clients = Client.all
-  end
-  
-  def new
     @client ||= Client.new
   end
   
@@ -16,7 +13,7 @@ class ClientsController < ApplicationController
           redirect_to @client
           
       else
-          render 'new'
+          redirect_to clients_path
       end
   end
   
