@@ -1,5 +1,6 @@
 <center><h1 style="font-family: Barlow; margin-top: 30px">Lista e Klienteve</h1></center>
 <div><%= render "layouts/flash" %></div>
+<%= render 'shared/error_messages' %>
 <center>
   <div class="fatura-tabela" style="margin-top: -25px">
       
@@ -50,7 +51,6 @@
         <div class="modal-header">
           <h4 class="modal-title" id="exampleModalLabel"><strong>Shto klient të ri</strong></h4>
         </div>
-        <%= render 'shared/error_messages', object: f.object %>
         <div class="modal-body">
           <%= f.label :kompania %>
           <%= f.text_field :kompania, class: 'form-control' %>

@@ -5,6 +5,7 @@ class NormativesController < ApplicationController
       @normatives = Normative.all
       
       @normative ||= Normative.new
+      @errors = params[:errors]
     end
     
     def new
@@ -13,10 +14,15 @@ class NormativesController < ApplicationController
     def create
       @normative = Normative.new(normative_params)
       if @normative.save
-          flash[:succes] = "Normative successfuly updated"
           redirect_to @normative
       else
-          render 'new'
+        @errors = []
+        if @normative.errors.any?
+          @normative.errors.full_messages.each do |msg|
+            @errors.push msg
+          end
+        end
+        redirect_to exports_path(errors: @errors)
       end
     end
     
@@ -64,7 +70,6 @@ class NormativesController < ApplicationController
     
     def destroy
       @normative.destroy
-      flash[:success] = "Normative deleted"
       redirect_to normatives_path
       
     end

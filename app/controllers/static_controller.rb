@@ -1,6 +1,4 @@
 class StaticController < ApplicationController
-  before_action :reset_notifications, only: [:home]
-  before_action :home_lajm, only: [:home]
   
   def gjendja
     refresh_taksa

@@ -5,6 +5,7 @@ class ExportsController < ApplicationController
   def index
     @exports = Export.all
     @export ||= Export.new
+    @errors = params[:errors]
   end
   
   def show
@@ -76,7 +77,13 @@ class ExportsController < ApplicationController
     if @export.save 
       redirect_to @export
     else
-      redirect_to new_export_path
+      @errors = []
+      if @export.errors.any?
+        @export.errors.full_messages.each do |msg|
+          @errors.push msg
+        end
+      end
+      redirect_to exports_path(errors: @errors)
     end
   end
 

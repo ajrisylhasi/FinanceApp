@@ -4,6 +4,7 @@ class ClientsController < ApplicationController
   def index
     @clients = Client.all
     @client ||= Client.new
+    @errors = params[:errors]
   end
   
   def create
@@ -13,7 +14,13 @@ class ClientsController < ApplicationController
           redirect_to @client
           
       else
-          redirect_to clients_path
+        @errors = []
+        if @client.errors.any?
+          @client.errors.full_messages.each do |msg|
+            @errors.push msg
+          end
+        end
+        redirect_to exports_path(errors: @errors)
       end
   end
   

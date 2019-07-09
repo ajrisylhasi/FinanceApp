@@ -3,9 +3,9 @@ class GarancionsController < ApplicationController
   before_action :refresh_taksa, only: [:index]
   
   def index
-
     @garancions = Garancion.all
     @garancion ||= Garancion.new
+    @errors = params[:errors]
   end
   
   def new
@@ -17,8 +17,15 @@ class GarancionsController < ApplicationController
           flash[:success] = "garancion successfuly updated"
           redirect_to @garancion
       else
-          render 'new'
+        @errors = []
+        if @garancion.errors.any?
+          @garancion.errors.full_messages.each do |msg|
+            @errors.push msg
+          end
+        end
+        redirect_to exports_path(errors: @errors)
       end
+      refresh_taksa
   end
   
   def show
@@ -32,18 +39,17 @@ class GarancionsController < ApplicationController
   def destroy
     @garancion = Garancion.find(params[:id])
     @garancion.destroy
-    flash[:success] = "Garancion deleted"
     redirect_to garancions_path
   end
   
   def update 
       @garancion = Garancion.find(params[:id])
       if @garancion.update_attributes(garancion_params)
-        flash[:success] = "garancion successfuly updated"
         redirect_to @garancion
       else
         render 'edit'
       end
+      refresh_taksa
   end
   
   private

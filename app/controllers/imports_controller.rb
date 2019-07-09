@@ -1,11 +1,11 @@
 class ImportsController < ApplicationController
   
   before_action :vlera_garancionit, only: [:new]
-  
+
   def index
     @imports = Import.all
     @import ||= Import.new
-    
+    @errors = params[:errors]
   end
   
   def files
@@ -22,8 +22,14 @@ class ImportsController < ApplicationController
     @import = Import.new(import_params)
     if @import.save
       redirect_to @import
-    else
-      render 'new'
+    else  
+      @errors = []
+      if @import.errors.any?
+        @import.errors.full_messages.each do |msg|
+          @errors.push msg
+        end
+      end
+      redirect_to imports_path(errors: @errors)
     end
   end
   

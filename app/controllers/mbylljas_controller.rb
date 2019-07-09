@@ -5,6 +5,7 @@ class MbylljasController < ApplicationController
   # GET /mbylljas.json
   def index
     @mbylljas = Mbyllja.all
+    @mbyllja = Mbyllja.new
   end
 
   # GET /mbylljas/1
@@ -14,7 +15,6 @@ class MbylljasController < ApplicationController
 
   # GET /mbylljas/new
   def new
-    @mbyllja = Mbyllja.new
   end
 
   # GET /mbylljas/1/edit

@@ -1,5 +1,7 @@
 <center><h1 style="font-family: Barlow; margin-top: 30px">Lista e Importeve</h1></center>
 <div><%= render "layouts/flash" %></div>
+
+<%= render 'shared/error_messages' %>
 <center>
   <div class="fatura-tabela" style="margin-top: -25px">
       
@@ -57,8 +59,7 @@
         <div class="modal-header">
           <h4 class="modal-title" id="exampleModalLabel"><strong>Shto import te re</strong></h4>
         </div>
-        <%= render 'shared/error_messages', object: f.object %>
-        <div style="container">
+        <div class="modal-body">
           <%= f.label :nr_dud %>
           <%= f.text_field :nr_dud, class: 'form-control' %>
           <%= f.label :data %>
