@@ -54,7 +54,7 @@
         </div>
         <div class="modal-body">
           <%= f.label :nr_exportit %>
-          <%= f.number_field :nr_exportit, class: 'form-control' %>
+          <%= f.text_field :nr_exportit, class: 'form-control' %>
           <%= f.date_field :data, class: "form-control", value: Date.today %>
           <%= f.file_field :files, multiple: true%>
           <%= f.select("client_id", Client.all.collect {|n| [ n.kompania,  n.id ] }, { prompt: "Select Client", multiple: false, id: "n", class: "form-control" }) %>
