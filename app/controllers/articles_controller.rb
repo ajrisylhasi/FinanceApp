@@ -3,11 +3,11 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
+    @article ||= Article.new
+    @errors = params[:errors]
   end
   
   def new
-    @article ||= Article.new
-    @article.autorizim_articles.build
   end
   
   def create
@@ -17,7 +17,13 @@ class ArticlesController < ApplicationController
           redirect_to @article
           
       else
-          render 'new'
+        @errors = []
+        if @article.errors.any?
+          @article.errors.full_messages.each do |msg|
+            @errors.push msg
+          end
+        end
+        redirect_to articles_path(errors: @errors)
       end
   end
   

@@ -63,7 +63,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"><strong>Shto produkt te re</strong></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><strong>Shto produkt të re</strong></h4>
               </div>
               <%= f.fields_for :export_products do |na| %>
                 <%= render 'shared/error_messages', object: na.object %>
@@ -142,20 +142,24 @@ Pesha Neto: <%= @pesha_n %>
 <%= link_to 'Files', export_files_path(@export), class:"btn btn-primary" %>
 <%= link_to 'Edit', edit_export_path(@export), class:"btn btn-primary" %>
 <% $gabimet = [] %>
-<div class="modal fade" id="slow_warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="slow_warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="top:30%">
       <div class="modal-dialog" role="document">
-        <div class="modal-content" style="height: 450px;">
-          <div class="modal-header">
-            <center><h4 class="modal-title" id="exampleModalLabel" style="margin-top: 15px; font-family: Barlow"><strong>Duke u bere kalkulimet e Ekportit</strong></h4></center>
+        <div class="modal-content">
+          <div class="modal-header" style="height: 50px">
+            <center><h4 class="modal-title" id="exampleModalLabel" style="font-family: Barlow"><strong>Duke u realizuar kalkulimet e Ekportit</strong></h4></center>
           </div> 
-          <center><h4 class="modal-title" id="exampleModalLabel" style="margin-top: 15px; font-family: Barlow"><strong>Ju lutem prisni</strong></h4></center>
-          <center><h4 class="modal-title" id="exampleModalLabel" style="margin-top: 15px; font-family: Barlow"><strong>Mund te zgjas disa sekonda</strong></h4></center>
-          <div id="animation-box"></div>
+          <div class="modal-body">
+            <div id="animation-box"></div>
+            <center><h4 class="modal-title" id="exampleModalLabel" style="margin-top: 15px; font-family: Barlow"><strong>Ju lutem prisni derisa të realizohen kalkulimet.</strong></h4></center>
+          </div>
         </div>
       </div>
     </div>
 <script>
+
   function show_slow_warning() {
+    
+    $("#exampleModal").hide();
     $("#slow_warning").show();
     $("#slow_warning").modal({backdrop: 'static', keyboard: false});
   }

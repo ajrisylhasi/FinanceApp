@@ -194,10 +194,10 @@ ne: %</p>
         <p style="height: 50px; padding-top: 15px"><strong>Pesha e mbetjeve (kg):</strong></p>
       </td>
       <td>
-        <% if (@pesha_b - @pesha_n) == 0 %>
+        <% if @mbetja_ne_peshe == 0 %>
           <p style="height: 50px; padding-top: 15px"><strong>0.00</strong></p>
         <% else %>
-          <p style="height: 50px; padding-top: 15px"><strong><%= '%.4f' % (@pesha_b.round(4) - @pesha_n.round(4)).round(4) %></strong></p>
+          <p style="height: 50px; padding-top: 15px"><strong><%= '%.4f' % @mbetja_ne_peshe.round(4) %></strong></p>
         <% end %>
       </td>
       <td>

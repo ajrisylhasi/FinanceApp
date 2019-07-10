@@ -1,10 +1,10 @@
-
+<div style="height: 35px"></div>
 <%= nested_form_for @fatura, id: "form-id" do |f| %>
   <center>
     <div class="fatura-jumbo">
       <div class="fatura-niveli-pare">
         <% if kompania.image.file != nil %><div id="foto-fatura"><%= image_tag kompania.image_url(:thumber).to_s %></div><% end %>
-        <div class="fatura-tit"><h2 style="font-family: Barlow;"><strong>Invoice</strong></h2></div>
+        <div class="fatura-tit"><h2 style="font-family: Barlow;"><strong><%= f.text_field :default, value: @fatura.default, id: "fatura-text-def", class: 'form-control custom-control', style: "border-radius: 5px; text-align: center" %> </strong></h2></div>
         <div class="fatura-tedhenat">
           <p><strong>VAT No :</strong> <%= kompania.numri_tvsh %></p> 
           <p><strong>Fiscal No :</strong> <%= kompania.numri_fiskal %></p> 
@@ -44,14 +44,14 @@
                 <table>
                   <tr>
                     <td>
-                      <p><%= @fatura.export.nil? ? a.exportlande.client.kompania : a.export.client.kompania %></p> 
-                      <p><%= @fatura.export.nil? ? a.exportlande.client.adresa : a.export.client.adresa %> <%= @fatura.export.nil? ? a.exportlande.client.qyteti : a.export.client.qyteti%>, <%= @fatura.export.nil? ? a.exportlande.client.shteti : a.export.client.shteti %></p> 
-                      <p>Tel: <%= @fatura.export.nil? ? a.exportlande.client.numri_tel : a.export.client.numri_tel %></p> 
+                      <p><%= @fatura.export.nil? ? @fatura.exportlande.client.kompania : @fatura.export.client.kompania %></p> 
+                      <p><%= @fatura.export.nil? ? @fatura.exportlande.client.adresa : @fatura.export.client.adresa %> <%= @fatura.export.nil? ? @fatura.exportlande.client.qyteti : @fatura.export.client.qyteti%>, <%= @fatura.export.nil? ? @fatura.exportlande.client.shteti : @fatura.export.client.shteti %></p> 
+                      <p>Tel: <%= @fatura.export.nil? ? @fatura.exportlande.client.numri_tel : @fatura.export.client.numri_tel %></p> 
                     </td>
                     <td>
-                      <p>VAT No : <%= @fatura.export.nil? ? a.exportlande.client.numri_tvsh : a.export.client.numri_tvsh %></p> 
-                      <p>Fiscal No : <%= @fatura.export.nil? ? a.exportlande.client.numri_fiskal : a.export.client.numri_fiskal %></p> 
-                      <p>Email: <%= @fatura.export.nil? ? a.exportlande.client.email : a.export.client.email %></p> 
+                      <p>VAT No : <%= @fatura.export.nil? ? @fatura.exportlande.client.numri_tvsh : @fatura.export.client.numri_tvsh %></p> 
+                      <p>Fiscal No : <%= @fatura.export.nil? ? @fatura.exportlande.client.numri_fiskal : @fatura.export.client.numri_fiskal %></p> 
+                      <p>Email: <%= @fatura.export.nil? ? @fatura.exportlande.client.email : @fatura.export.client.email %></p> 
                     </td>
                   </tr>
                 </table>
@@ -66,9 +66,9 @@
                 <table>
                   <tr>
                     <td>
-                      <p><%= @fatura.export.nil? ? a.exportlande.client.konsignacioni : a.export.client.konsignacioni %></p> 
-                      <p><%= @fatura.export.nil? ? a.exportlande.client.adresa_k : a.export.client.adresa_k %> <%= @fatura.export.nil? ? a.exportlande.client.qyteti_k : a.export.client.qyteti_k %>, <%= @fatura.export.nil? ? a.exportlande.client.shteti_k : a.export.client.shteti_k %></p> 
-                      <p>Tel: <%= @fatura.export.nil? ? a.exportlande.client.numri_tel_k : a.export.client.numri_tel_k%></p> 
+                      <p><%= @fatura.export.nil? ? @fatura.exportlande.client.konsignacioni : @fatura.export.client.konsignacioni %></p> 
+                      <p><%= @fatura.export.nil? ? @fatura.exportlande.client.adresa_k : @fatura.export.client.adresa_k %> <%= @fatura.export.nil? ? @fatura.exportlande.client.qyteti_k : @fatura.export.client.qyteti_k %>, <%= @fatura.export.nil? ? @fatura.exportlande.client.shteti_k : @fatura.export.client.shteti_k %></p> 
+                      <p>Tel: <%= @fatura.export.nil? ? @fatura.exportlande.client.numri_tel_k : @fatura.export.client.numri_tel_k%></p> 
                     </td>
                 </table>
               </div>
@@ -377,6 +377,14 @@
     $(this).closest('form').submit();
   });
   $("#fatura-text").on('focus', function() {
+    $(this).css( {'background': 'white'});
+  });
+  $("#fatura-text-def").css( {'background': '#dee2e6'});
+  $("#fatura-text-def").on('blur', function() {
+    $(this).css( {'background': '#dee2e6'});
+    $(this).closest('form').submit();
+  });
+  $("#fatura-text-def").on('focus', function() {
     $(this).css( {'background': 'white'});
   });
 </script>

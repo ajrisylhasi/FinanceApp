@@ -4,6 +4,13 @@ class Fatura < ApplicationRecord
   has_many :fees, dependent: :destroy
   accepts_nested_attributes_for :fees, allow_destroy: true, reject_if: :all_blank
   
+
+  before_save :pre
+
+  def pre
+    self.default ||= "Invoice"
+  end
+  
   def nr_faturess
     if self.export != nil
       exi = self.export.nr_exportit

@@ -13,6 +13,7 @@ class Product < ApplicationRecord
   has_many :palet_products, dependent: :destroy
   has_many :palets, through: :palet_products
   
+  validates :pershkrimi, presence: true
   def working_normatives
     self.normatives.select { |n| n.kategoria != "test" }
   end

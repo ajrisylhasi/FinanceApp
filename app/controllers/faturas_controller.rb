@@ -75,7 +75,7 @@ class FaturasController < ApplicationController
   
   private
     def faturas_params
-      params.require(:fatura).permit(:id, :nr_fatures, :data, :note, fees_attributes: [:id, :pershkrimi, :sasia, :pesha, :pesha_neto, :qmimi, :_destroy])
+      params.require(:fatura).permit(:id, :nr_fatures, :data, :note, :default, fees_attributes: [:id, :pershkrimi, :sasia, :pesha, :pesha_neto, :qmimi, :_destroy])
     end
     
 end

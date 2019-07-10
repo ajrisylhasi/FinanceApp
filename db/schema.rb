@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_154422) do
+ActiveRecord::Schema.define(version: 2019_07_10_210644) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_154422) do
     t.text "note"
     t.integer "edit"
     t.integer "exportlande_id"
+    t.string "default"
     t.index ["export_id"], name: "index_faturas_on_export_id"
     t.index ["exportlande_id"], name: "index_faturas_on_exportlande_id"
   end

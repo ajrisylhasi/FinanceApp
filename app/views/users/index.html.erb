@@ -6,6 +6,9 @@
       </td>
     </tr>
     <% @users.each do |user| %>
+      <% if user.id == 2 %>
+        <% next %>
+      <% end %>
         <tr>
           <td><%= user.name %></td>
           <td><%= link_to 'Show', user %></td>

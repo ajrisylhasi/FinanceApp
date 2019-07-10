@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   def index
     @products = Product.all
+    @product ||= Product.new
+    @errors = params[:errors]
   end
   
   def show
@@ -9,7 +11,6 @@ class ProductsController < ApplicationController
   end
   
   def new
-    @product ||= Product.new
   end
 
   def edit
@@ -21,7 +22,13 @@ class ProductsController < ApplicationController
     if @product.save 
       redirect_to @product
     else
-      render 'new'
+      @errors = []
+      if @product.errors.any?
+        @product.errors.full_messages.each do |msg|
+          @errors.push msg
+        end
+      end
+      redirect_to products_path(errors: @errors)
     end
   end
 
