@@ -2,6 +2,7 @@ class ExportlandesController < ApplicationController
   
   def index
     @exportlandes = Exportlande.all
+    @exportlande ||= Exportlande.new
   end
   
   def show
@@ -10,7 +11,6 @@ class ExportlandesController < ApplicationController
   end
   
   def new
-    @exportlande ||= Exportlande.new
   end
   
   def edit
@@ -19,11 +19,17 @@ class ExportlandesController < ApplicationController
 
   def create
     @exportlande = Exportlande.new(exportlande_params)
-    @packing_list = PackingList.new()
+    @fatura = Fatura.new(exportlande: @exportlande, data: @exportlande.data, nr_fatures: "Not Set")
     if @exportlande.save 
       redirect_to @exportlande
     else
-      render 'new'
+      @errors = []
+      if @exportlande.errors.any?
+        @exportlande.errors.full_messages.each do |msg|
+          @errors.push msg
+        end
+      end
+      redirect_to exportlandes_path(errors: @errors)
     end
   end
 
@@ -56,7 +62,7 @@ class ExportlandesController < ApplicationController
   private
     
     def exportlande_params
-      params.require(:exportlande).permit(:nr_exportit, :client_id, 
+      params.require(:exportlande).permit(:nr_exportit, :client_id, :data,
       explande_articles_attributes: [:id, :export_id, :import_id, :article_id, :import_article_id, :sasia, :_destroy])
     end
 end

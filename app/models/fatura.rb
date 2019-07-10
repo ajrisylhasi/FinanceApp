@@ -1,11 +1,15 @@
 class Fatura < ApplicationRecord
-  belongs_to :export
-  
+  belongs_to :export, optional: true
+  belongs_to :exportlande, optional: true
   has_many :fees, dependent: :destroy
   accepts_nested_attributes_for :fees, allow_destroy: true, reject_if: :all_blank
   
   def nr_faturess
-    exi = self.export.nr_exportit
+    if self.export != nil
+      exi = self.export.nr_exportit
+    else 
+      exi = self.exportlande.nr_exportit
+    end
     fat = self.id
     exi = exi.gsub(" ", "")
     exi = exi.gsub("R", "")

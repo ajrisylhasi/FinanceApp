@@ -46,55 +46,57 @@
         </div>
       </td>
     </tr>
-    <tr style="height: 6	0px">
-      <td colspan="4">
-      	<center><h1 style="font-family: Barlow; margin-bottom:20px">Konsignacioni: <strong><%= @client.konsignacioni %></strong></h1></center>
-      </td>
-    </tr>
-    <tr>
-    	<td>
-        <div>
-          <strong>Shteti</strong>
-        </div>
-      </td>
-      <td>
-        <div>
-          <strong>Qyteti</strong>
-        </div>
-      </td>
-      <td>
-        <div>
-          <strong>Adresa</strong>
-        </div>
-      </td>
-      <td>
-        <div>
-          <strong>Numri Kontaktues</strong>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div>
-          <%= @client.shteti_k %>
-        </div>
-      </td>
-      <td>
-        <div>
-          <%= @client.qyteti_k %> 
-        </div>
-      </td>
-      <td>
-        <div>
-          <%= @client.adresa_k %> 
-        </div>
-      </td>
-      <td>
-        <div>
-          <%= @client.numri_tel_k %>
-        </div>
-      </td>
-    </tr>
+    <% if @client.konsignacioni != nil %>
+      <tr style="height: 6	0px">
+        <td colspan="4">
+        	<center><h1 style="font-family: Barlow; margin-bottom:20px">Konsignacioni: <strong><%= @client.konsignacioni %></strong></h1></center>
+        </td>
+      </tr>
+      <tr>
+      	<td>
+          <div>
+            <strong>Shteti</strong>
+          </div>
+        </td>
+        <td>
+          <div>
+            <strong>Qyteti</strong>
+          </div>
+        </td>
+        <td>
+          <div>
+            <strong>Adresa</strong>
+          </div>
+        </td>
+        <td>
+          <div>
+            <strong>Numri Kontaktues</strong>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div>
+            <%= @client.shteti_k %>
+          </div>
+        </td>
+        <td>
+          <div>
+            <%= @client.qyteti_k %> 
+          </div>
+        </td>
+        <td>
+          <div>
+            <%= @client.adresa_k %> 
+          </div>
+        </td>
+        <td>
+          <div>
+            <%= @client.numri_tel_k %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
   </table>
 </center>
 

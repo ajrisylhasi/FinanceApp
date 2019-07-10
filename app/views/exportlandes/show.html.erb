@@ -1,6 +1,54 @@
+
 <%= render 'layouts/flash' %>
-<h1><%= @exportlande.nr_exportit %></h1>
-<h1 style="color:black">Manage Articles</h1>
+<center><h1 style="font-family: Barlow; margin-top: 30px">Eksporti: <%= @exportlande.nr_exportit %></h1></center>
+<br>
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Data</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Klienti</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Fatura</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @exportlande.data %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @exportlande.client.kompania %> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @exportlande.fatura.nr_faturess %> 
+        </div>
+      </td>
+    </tr>
+  </table>
+</center>
+<style>
+  .tabela-import{
+    margin-bottom: 40px;
+  }
+  .tabela-import td {
+    width: 300px;
+    text-align: center;
+  }
+</style>
 <div class="row" style="width:100%">
   <div class="col-md-6 col-md-offset-3">
     <% if $gabimet.count != 0 %>
@@ -47,8 +95,6 @@
     <%= link_to "Back", exportlandes_path, class:"btn btn-primary" %>
   </center>
 </div>
-Pesha Bruto: <%= @pesha_b %><br>
-Pesha Neto: <%= @pesha_n %>
 <h1>Numri i Produkteve:<%= @exportlande.explande_articles.count %></h1>
 <center><table width="50%" border="solid #333 1px">
   <tr>

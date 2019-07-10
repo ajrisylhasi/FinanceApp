@@ -1,20 +1,35 @@
 class MbylljasController < ApplicationController
   before_action :set_mbyllja, only: [:show, :edit, :update, :destroy]
-  before_action :reset_notifications, only: [:new]
   # GET /mbylljas
   # GET /mbylljas.json
   def index
     @mbylljas = Mbyllja.all
     @mbyllja = Mbyllja.new
+    @errors = params[:errors]
   end
 
   # GET /mbylljas/1
   # GET /mbylljas/1.json
   def show
+    @totali_pesha = 0
+    @totali_qmimi_tot = 0
+    @totali_taksa_dogana = 0
+    @totali_taksa_akciza = 0
+    @totali_taksa_tvsh = 0
+    @totali_gjithsej_taksat = 0
+    @mbyllja.sub_mbylljas.each do |y|
+      @totali_pesha += y.pesha
+      @totali_qmimi_tot += y.qmimi_tot
+      @totali_taksa_dogana += y.taksa_dogana
+      @totali_taksa_akciza += y.taksa_akciza
+      @totali_taksa_tvsh += y.taksa_tvsh
+      @totali_gjithsej_taksat += y.gjithsej_taksa
+    end
   end
 
   # GET /mbylljas/new
   def new
+    @mbyllja = Mbyllja.new
   end
 
   # GET /mbylljas/1/edit
@@ -29,6 +44,14 @@ class MbylljasController < ApplicationController
       if @mbyllja.save
         mbyllja(@mbyllja)
         redirect_to @mbyllja  
+      else
+        @errors = []
+        if @mbyllja.errors.any?
+          @mbyllja.errors.full_messages.each do |msg|
+            @errors.push msg
+          end
+        end
+        redirect_to mbylljas_path(errors: @errors)
       end
   end
 
@@ -37,7 +60,7 @@ class MbylljasController < ApplicationController
   def update
     respond_to do |format|
       if @mbyllja.update(mbyllja_params)
-        format.html { redirect_to @mbyllja, notice: 'Mbyllja was successfully updated.' }
+        redirect_to @mbyllja
       else
         format.html { render :edit }
       end

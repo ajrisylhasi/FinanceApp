@@ -1,7 +1,13 @@
 class FaturasController < ApplicationController
   
   def index
-    @faturas = Fatura.all.select { |f| f.export.export_products.count != 0 }
+    @faturas = Fatura.all.select { |f| 
+      if f.export == nil 
+        f.exportlande.explande_articles.count != 0
+      else
+        f.export.export_products.count != 0 
+      end
+    }
     respond_to do |format|
       format.html
       format.csv { send_data @faturas.to_csv}
@@ -31,8 +37,13 @@ class FaturasController < ApplicationController
   
   def show
     @fatura = Fatura.find(params[:id])
-    @export = @fatura.export
-    product_search_export(@export)
+    unless @fatura.export.nil?
+      @export = @fatura.export
+      product_search_export(@export)
+    else
+      @exportlande = @fatura.exportlande
+      product_search_exportlande(@exportlande)
+    end
     @total_pa_vat = 0
     @total_vat = 0
     @total = 0

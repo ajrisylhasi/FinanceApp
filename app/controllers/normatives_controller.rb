@@ -22,7 +22,7 @@ class NormativesController < ApplicationController
             @errors.push msg
           end
         end
-        redirect_to exports_path(errors: @errors)
+        redirect_to normatives_path(errors: @errors)
       end
     end
     

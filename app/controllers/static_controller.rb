@@ -24,7 +24,7 @@ class StaticController < ApplicationController
     clients.each do |c|
       tot = 0.0
       taksa_tot = Client.find(c).imports.each { |i| tot += i.taksa}
-      @imports_taksa.push [Client.find(c).kompania, tot]
+      @imports_taksa.push [Client.find(c).kompania, tot.round(2)]
     end
   end
   

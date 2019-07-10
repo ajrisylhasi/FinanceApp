@@ -1,31 +1,83 @@
-<p id="notice"><%= notice %></p>
+<center><h1 style="font-family: Barlow; margin-top: 30px">Lista e Mbylljeve</h1></center>
+<div><%= render "layouts/flash" %></div>
 
-<h1>Mbylljas</h1>
+<%= render 'shared/error_messages' %>
+<center>
+  <div class="fatura-tabela" style="margin-top: -25px">
+      
+      <table>
+        <tr style="border: 0px; margin-top: 0px; padding-top: 0px">
+          <% if enabled? %>
+            <td><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 30px; color: green;">&#43;</button></center></td>
+          <% else %>
+            <td><center><button type="button" style="border: 0px; background: none; font-size: 30px; color: grey;">&#43;</button></center></td>
+          <% end %>
+          <td colspan="9"><center></center></td>
+          
+        </tr>
+        <tr class="hedi">
+          <td style="min-width:75px"><center>#</center></td>
+          <td style="min-width:75px"><center>Numri i Mbylljes</center></td>
+          <td style="min-width:75px"><center>Data</center></td>
+          <td style="min-width:75px"><center>Numri i Importeve</center></td>
+          <td colspan="4"><center></center></td>
+        </tr>
+        <% iter = 0 %>
+        <% @mbylljas.each do |a| %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td><center><%= iter+=1 %></td></center>
+            <td><center><%= a.nr_mbylljes %></td></center>
+            <td><center><%= a.data %></td></center>
+            <td><center><%= a.imports.count %></td></center>
+            <td style="width: 25px"></td>
+            <td style="width: 50px; border: 0px"><center><%= link_to a do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to edit_mbyllja_path(a) do %> <span class="glyphicon glyphicon-pencil" style="color: black; font-size: 18px"></span><% end %></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to a, method: :delete do %>
+              <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %>
+            </td></center>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <div>
+</center>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nr mbylljes</th>
-      <th>Data</th>
-      <th>Import</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @mbylljas.each do |mbyllja| %>
-      <tr>
-        <td><%= mbyllja.nr_mbylljes %></td>
-        <td><%= mbyllja.data %></td>
-        <td><%= mbyllja.imports.count %></td>
-        <td><%= link_to 'Show', mbyllja %></td>
-        <td><%= link_to 'Edit', edit_mbyllja_path(mbyllja) %></td>
-        <td><%= link_to 'Destroy', mbyllja, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Mbyllja', new_mbyllja_path %>
+<%= nested_form_for(@mbyllja)do |f|%>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel"><strong>Mbyll importet</strong></h4>
+        </div>
+        <div class="modal-body">
+          <%= f.label :nr_mbylljes %>
+          <%= f.text_field :nr_mbylljes, class: 'form-control' %>
+          <%= f.label :data %>
+          <%= f.date_field :data, class: 'form-control', value: Date.today %>
+          <h2>Empty Imports</h2>
+          <button type="button" id="check_all" class="btw">✔</button>
+          <% @empty_imports.each do |i| %>
+            <h4><%= check_box_tag "mbyllja[import_ids][]", i.id, f.object.imports.include?(i) %>
+            <%= i.nr_dud %></h4>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+          <%= f.submit "Shto", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<script>
+  var cbxs = $('input[type="checkbox"]');
+  cbxs.prop("checked", "checked");
+  $('#check_all').on("click", function(){
+    cbxs.prop("checked", !cbxs.prop("checked"));
+  });
+</script>

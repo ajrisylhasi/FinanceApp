@@ -408,6 +408,14 @@ module ReportsHelper
       @list.push(ep)
     end
   end
+
+  def product_search_exportlande(export)
+    @list = []
+    export.explande_articles.each do |ea|
+      @list.push(ea)
+    end
+  end
+  
   
   def official_bashkimi_search 
     @gjendja = {}

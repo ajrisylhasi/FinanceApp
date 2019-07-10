@@ -23,7 +23,7 @@ class GarancionsController < ApplicationController
             @errors.push msg
           end
         end
-        redirect_to exports_path(errors: @errors)
+        redirect_to garancions_path(errors: @errors)
       end
       refresh_taksa
   end

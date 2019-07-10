@@ -1,36 +1,40 @@
-<h1>Index of Faturas</h1>
-<div>
-  <center>
-    <table border="1">
-      <tr>
-        <td>
-          Klienti
-        </td>
-        <td>
-          Data
-        </td>
-        <td>
-          Eksporti
-        </td>
-        <td>
-          Data Eksportit
-        </td>
-      </tr>
-      <% @faturas.each do |a| %>
-          <tr>
-            <td><%= a.export.client.kompania %></td>
-            <td><%= a.data %></td>
-            <td><%= a.export.nr_exportit %></td>
-            <td><%= a.export.data %></td>
-            <td><%= link_to 'Show', a %></td>
-            <td><%= link_to 'Edit', edit_fatura_path(a) %></td>
-            <td><%= link_to 'Destroy', a, method: :delete %></td>
-          </tr>
-      <% end %>
-    </table>
-  </center>
-</div>
-<div>
-    <center><%= link_to "New Article", new_article_path, class:"btn btn-primary", style:"margin:15px" %></center>
-</div>
 
+<center><h1 style="font-family: Barlow; margin-top: 30px">Lista e Faturave</h1></center>
+<div><%= render "layouts/flash" %></div>
+<%= render 'shared/error_messages' %>
+<center>
+  <div class="fatura-tabela">
+      
+      <table>
+        <tr style="border: 0px; margin-top: 0px; padding-top: 0px">
+          <td colspan="10"><center></center></td>
+        </tr>
+        <tr class="hedi">
+          <td style="min-width:75px"><center>#</center></td>
+          <td style="min-width:75px"><center>Klienti</center></td>
+          <td style="min-width:75px"><center>Data</center></td>
+          <td style="min-width:75px"><center>Eksporti</center></td>
+          <td style="min-width:100px"><center>Data e Eksportit</center></td>
+          <td colspan="4"><center></center></td>
+        </tr>
+        <% iter = 0 %>
+        <% @faturas.each do |a| %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td><center><%= iter+=1 %></td></center>
+            <td><center><%= a.export.nil? ? a.exportlande.client.kompania : a.export.client.kompania %></td></center>
+            <td><center><%= a.data %></td></center>
+            <td><center><%= a.export.nil? ? a.exportlande.nr_exportit : a.export.nr_exportit %></td></center>
+            <td><center><%= a.export.nil? ? a.exportlande.data : a.export.data %></td></center>
+            <td style="width: 25px"></td>
+            <td style="width: 50px; border: 0px"><center><%= link_to a do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center></center>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <div>
+</center>
+  

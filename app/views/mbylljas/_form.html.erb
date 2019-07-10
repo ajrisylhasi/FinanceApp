@@ -23,12 +23,12 @@
   </div>
   
   <div>
-    <h2>Empty Imports</h2>
     <button type="button" id="check_all" class="btw">✔</button>
-    <% @empty_imports.each do |i| %>
-      <h4><%= check_box_tag "mbyllja[import_ids][]", i.id, form.object.imports.include?(i) %>
-      <%= i.nr_dud %></h4>
-    <% end %>
+          <% @empty_imports.each do |i| %>
+            <h4><%= check_box_tag "mbyllja[import_ids][]", i.id, f.object.imports.include?(i) %>
+            <%= i.nr_dud %></h4>
+          <% end %>
+    
   </div>  
 
   <div>
