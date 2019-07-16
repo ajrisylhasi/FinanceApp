@@ -2,19 +2,25 @@ class NjesisController < ApplicationController
 
   def index
     @njesis = Njesi.all
+    @njesi ||= Njesi.new
+    @errors = params[:errors]
   end
   
   def new
-    @njesi ||= Njesi.new
   end
   
   def create
       @njesi = Njesi.new(njesi_params)
       if @njesi.save
-          flash[:success] = "Njesi successfuly updated"
           redirect_to @njesi
       else
-          render 'new'
+        @errors = []
+        if @njesi.errors.any?
+          @njesi.errors.full_messages.each do |msg|
+            @errors.push msg
+          end
+        end
+        redirect_to njesis_path(errors: @errors)
       end
   end
   
@@ -30,14 +36,12 @@ class NjesisController < ApplicationController
   def destroy
       @njesi = Njesi.find(params[:id])
       @njesi.destroy
-      flash[:success] = "Njesi deleted"
-      redirect_to njesi_path
+      redirect_to njesis_path
   end
   
   def update 
       @njesi = Njesi.find(params[:id])
       if @njesi.update_attributes(njesi_params)
-        flash[:success] = "njesi successfuly updated"
         redirect_to @njesi
       else
         render 'edit'

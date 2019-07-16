@@ -2,8 +2,6 @@ class ReportsController < ApplicationController
   
   skip_before_action :access
   
-  def index
-  end
 
   def products
     @list = ExportProduct.all

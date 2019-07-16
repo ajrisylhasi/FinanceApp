@@ -1,13 +1,94 @@
 <%= render 'layouts/flash' %>
-<h1><%= @autorizim.id %></h1>
-
+<center><h1 style="font-family: Barlow; margin-top: 30px">Autorizimi i kompanisë: <%= kompania.kompania %></h1></center>
 <br>
-<p><strong>Data Leshimit:</strong> <%= @autorizim.data_leshimit %></p>
-<p><strong>Data Skadimit:</strong> <%= @autorizim.data_skadimit %></p>
-<p><strong>Shteti:</strong> <%= @autorizim.shteti %></p>
-<p><strong>Qyteti:</strong> <%= @autorizim.qyteti %></p>
-<p><strong>Adresa:</strong> <%= @autorizim.adresa %></p>
-
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Shteti</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Qyteti</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Adresa</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @autorizim.shteti %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @autorizim.qyteti %> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @autorizim.adresa %>
+        </div>
+      </td>
+    </tr>
+    <tr style="height: 40px">
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>
+      <div>
+          <strong>Data e Lëshimit</strong>
+      </div> 
+      </td>
+      <td>
+      </td>
+      <td>
+        <div>
+          <strong>Data e Skadimit</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <div>
+          <%= @autorizim.data_leshimit %>
+      </div> 
+      </td>
+      <td>
+        <center>
+          <table>
+            <tr>
+              <td style="border-right: 1px solid black; width: 50px">
+                <%= link_to edit_autorizim_path do %> <span class="glyphicon glyphicon-pencil" style="color: black; font-size: 18px"></span><% end %>
+              </td>
+              <td style="width:50px">
+                <%= link_to autorizim_files_path(@autorizim) do %> <span class="glyphicon glyphicon-folder-open" style="color: black; font-size: 18px"></span><% end %>
+              </td>
+            </tr>
+          </table>
+        </center>
+      </td>
+      <td>
+        <div>
+          <%= @autorizim.data_skadimit %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</center>
 <div class="row" style="width:100%; display: inline-block">
   <row>
     <div class="col-md-6 col-md-offset-3">
@@ -72,70 +153,80 @@
   </row>
 </div>
 <center>
-  <div class="fatura-tabela">
-    <table>
-      <tr class="hedi">
-        <td colspan="2" style="width: 50px"><center><button type="button" data-toggle="modal" data-target="#exampleModalart" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
-        <td style="width:100px"><center>Pershkrimi</center></td>
-        <td style="width:100px"><center>Tarif Kodi</center></td>
-        <td style="width:50px"><center>Perqindja Max</center></td>
-        <td style="width:100px"><center><span>&#x2715;</span></center></td>
-      </tr>
-      <% iter = 0 %>
-      <% @autorizim.autorizim_articles.each do |aa| %>
-        <% a = aa.article %>
-        <% if aa.persisted? %>
-          <% if iter.even? %>
-            <tr style="background: #dee2e6">  
-          <% else %>
-            <tr style="background: white"> 
-          <% end %>
-            <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
-            <td style="width:100px"><center><%= a.pershkrimi %></center></td>
-            <td style="width:100px"><center><%= a.tarif_kodi %></center></td>
-            <td style="width:75px"><center><%= aa.max %></center></td>
-            <td style="width:100px"><center>
-              <%= link_to aa, method: :delete do %>
-                <span>&#x2715;</span>
+  <table style="width: 1400px">
+    <tr>
+      <td style="vertical-align: top">
+        <center>
+          <div class="fatura-tabela" style="max-width: 600px">
+            <table>
+              <tr class="hedi">
+                <td colspan="2" style="width: 50px"><center><button type="button" data-toggle="modal" data-target="#exampleModalart" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
+                <td style="width:100px"><center>Pershkrimi</center></td>
+                <td style="width:100px"><center>Tarif Kodi</center></td>
+                <td style="width:50px"><center>Perqindja Max</center></td>
+                <td style="width:100px"><center><span>&#x2715;</span></center></td>
+              </tr>
+              <% iter = 0 %>
+              <% @autorizim.autorizim_articles.each do |aa| %>
+                <% a = aa.article %>
+                <% if aa.persisted? %>
+                  <% if iter.even? %>
+                    <tr style="background: #dee2e6">  
+                  <% else %>
+                    <tr style="background: white"> 
+                  <% end %>
+                    <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
+                    <td style="width:100px"><center><%= a.pershkrimi %></center></td>
+                    <td style="width:100px"><center><%= a.tarif_kodi %></center></td>
+                    <td style="width:75px"><center><%= aa.max %></center></td>
+                    <td style="width:100px"><center>
+                      <%= link_to aa, method: :delete do %>
+                        <span>&#x2715;</span>
+                      <% end %>
+                    </center></td>
+                  </tr>
+                <% end %>
               <% end %>
-            </center></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </table>
-  </div>
-</center>
-<center>
-  <div class="fatura-tabela">
-    <table>
-      <tr class="hedi">
-        <td colspan="2" style="width: 50px"><center><button type="button" data-toggle="modal" data-target="#exampleModalprod" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
-        <td style="width:100px"><center>Pershkrimi</center></td>
-        <td style="width:100px"><center>Tarif Kodi</center></td>
-        <td style="width:100px"><center><span>&#x2715;</span></center></td>
-      </tr>
-      <% iter = 0 %>
-      <% @autorizim.autorizim_products.each do |aa| %>
-        <% a = aa.product %>
-        <% if aa.persisted? %>
-          <% if iter.even? %>
-            <tr style="background: #dee2e6">  
-          <% else %>
-            <tr style="background: white"> 
-          <% end %>
-            <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
-            <td style="width:100px"><center><%= a.pershkrimi %></center></td>
-            <td style="width:100px"><center><%= a.tarif_kodi %></center></td>
-            <td style="width:100px"><center>
-              <%= link_to aa, method: :delete do %>
-                <span>&#x2715;</span>
+            </table>
+          </div>
+        </center>
+      </td>
+      <td style="vertical-align: top">
+        <center>
+          <div class="fatura-tabela" style="max-width: 600px">
+            <table>
+              <tr class="hedi">
+                <td colspan="2" style="width: 50px"><center><button type="button" data-toggle="modal" data-target="#exampleModalprod" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
+                <td style="width:100px"><center>Pershkrimi</center></td>
+                <td style="width:100px"><center>Tarif Kodi</center></td>
+                <td style="width:100px"><center><span>&#x2715;</span></center></td>
+              </tr>
+              <% iter = 0 %>
+              <% @autorizim.autorizim_products.each do |aa| %>
+                <% a = aa.product %>
+                <% if aa.persisted? %>
+                  <% if iter.even? %>
+                    <tr style="background: #dee2e6">  
+                  <% else %>
+                    <tr style="background: white"> 
+                  <% end %>
+                    <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
+                    <td style="width:100px"><center><%= a.pershkrimi %></center></td>
+                    <td style="width:100px"><center><%= a.tarif_kodi %></center></td>
+                    <td style="width:100px"><center>
+                      <%= link_to aa, method: :delete do %>
+                        <span>&#x2715;</span>
+                      <% end %>
+                    </center></td>
+                  </tr>
+                <% end %>
               <% end %>
-            </center></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </table>
-  </div>
+            </table>
+          </div>
+        </center>
+      </td>
+    </tr>
+  </table>
 </center>
 <div style="float:right;margin-right:5px"><%= @taksa %></div>
 <style>
@@ -145,6 +236,5 @@
   }
 </style>
 <div>
-  <%= link_to "Edit", edit_autorizim_path, class: "btn btn-primary" %>
-  <%= link_to 'Files', autorizim_files_path(@autorizim), class:"btn btn-primary" %>
+  
 </div>

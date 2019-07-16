@@ -2,19 +2,25 @@ class DoganasController < ApplicationController
 
   def index
     @doganas = Dogana.all
+    @dogana ||= Dogana.new
+    @errors = params[:errors]
   end
   
   def new
-    @dogana ||= Dogana.new
   end
   
   def create
       @dogana = Dogana.new(dogana_params)
       if @dogana.save
-          flash[:success] = "Dogana successfuly updated"
           redirect_to doganas_path
       else
-          render 'new'
+        @errors = []
+        if @dogana.errors.any?
+          @dogana.errors.full_messages.each do |msg|
+            @errors.push msg
+          end
+        end
+        redirect_to doganas_path(errors: @errors)
       end
   end
   
@@ -25,14 +31,12 @@ class DoganasController < ApplicationController
   def destroy
       @dogana = Dogana.find(params[:id])
       @dogana.destroy
-      flash[:success] = "Dogana deleted"
       redirect_to doganas_path
   end
   
   def update 
       @dogana = Dogana.find(params[:id])
       if @dogana.update_attributes(dogana_params)
-        flash[:success] = "Dogana successfuly updated"
         redirect_to doganas_path
       else
         render 'edit'

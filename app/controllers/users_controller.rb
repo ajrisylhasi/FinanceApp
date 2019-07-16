@@ -5,15 +5,8 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    respond_to do |format|
-      format.html
-      format.json
-      format.csv {
-        export = ExportUsers.new
-        export.collection = User.all
-        send_data export.to_csv
-      }
-    end
+    @user ||= User.new
+    @errors = params[:errors]
   end
 
   # GET /users/1
@@ -23,7 +16,6 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
   end
   
   def change_date
@@ -49,16 +41,18 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
       if @user.save
         format.html { redirect_to users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        @errors = []
+        if @user.errors.any?
+          @user.errors.full_messages.each do |msg|
+            @errors.push msg
+          end
+        end
+        redirect_to users_path(errors: @errors)
       end
-    end
   end
 
   # PATCH/PUT /users/1

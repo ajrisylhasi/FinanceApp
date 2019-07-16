@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :users
   get 'faturas/edit'
   get 'faturas/show'
-  get 'reports', to: 'reports#index'
   get 'reports/mbetja'
   get "/product_search", to: "reports#products"
   get "/import_search", to: "reports#imports"
