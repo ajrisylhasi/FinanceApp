@@ -131,4 +131,4 @@ AutorizimProduct.create([
 ])
 
 Export.create(nr_exportit: "R-65334", data: Date.today, client: Client.first)
-Fatura.create(export_id: 1, data: Date.today, nr_fatures: "Not Set")
+Fatura.create(export_id: 1, data: Date.today, nr_fatures: "Not Set", default: "Invoice")
