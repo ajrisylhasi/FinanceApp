@@ -40,8 +40,8 @@
           <p style="text-align: left"><strong>Date of Invoice:</strong> <%= @fatura.data %></p> 
         </div>
         <div class="fatura-tedhenat-side-two">
-          <p><strong>Export:</strong> <%= @fatura.export.nr_exportit %></p> 
-          <p><strong>Term of Payment:</strong> <%= @fatura.export.client.term %></p> 
+          <p><strong>Export:</strong> <%= @fatura.export.nil? ? @fatura.exportlande.nr_exportit : @fatura.export.nr_exportit %></p> 
+          <p><strong>Term of Payment:</strong> <%= @fatura.export.nil? ? @fatura.exportlande.client.term : @fatura.export.client.term %></p> 
         </div>
       </div>
       <table>
@@ -53,14 +53,14 @@
                 <table>
                   <tr>
                     <td>
-                      <p><%= @fatura.export.client.kompania %></p> 
-                      <p><%= @fatura.export.client.adresa %> <%= @fatura.export.client.qyteti %>, <%= @fatura.export.client.shteti %></p> 
-                      <p>Tel: <%= @fatura.export.client.numri_tel %></p> 
+                      <p><%= @fatura.export.nil? ? @fatura.exportlande.client.kompania : @fatura.export.client.kompania %></p> 
+                      <p><%= @fatura.export.nil? ? @fatura.exportlande.client.adresa : @fatura.export.client.adresa %> <%= @fatura.export.nil? ? @fatura.exportlande.client.qyteti : @fatura.export.client.qyteti%>, <%= @fatura.export.nil? ? @fatura.exportlande.client.shteti : @fatura.export.client.shteti %></p> 
+                      <p>Tel: <%= @fatura.export.nil? ? @fatura.exportlande.client.numri_tel : @fatura.export.client.numri_tel %></p> 
                     </td>
                     <td>
-                      <p>VAT No: <%= @fatura.export.client.numri_tvsh %></p> 
-                      <p>Fiscal No: <%= @fatura.export.client.numri_fiskal %></p> 
-                      <p>Email: <%= @fatura.export.client.email %></p> 
+                      <p>VAT No : <%= @fatura.export.nil? ? @fatura.exportlande.client.numri_tvsh : @fatura.export.client.numri_tvsh %></p> 
+                      <p>Fiscal No : <%= @fatura.export.nil? ? @fatura.exportlande.client.numri_fiskal : @fatura.export.client.numri_fiskal %></p> 
+                      <p>Email: <%= @fatura.export.nil? ? @fatura.exportlande.client.email : @fatura.export.client.email %></p> 
                     </td>
                   </tr>
                 </table>
@@ -75,9 +75,9 @@
                 <table>
                   <tr>
                     <td style="text-align: right">
-                      <p><%= @fatura.export.client.konsignacioni %></p> 
-                      <p><%= @fatura.export.client.adresa_k %> <%= @fatura.export.client.qyteti_k %>, <%= @fatura.export.client.shteti_k %></p> 
-                      <p>Tel: <%= @fatura.export.client.numri_tel_k %></p> 
+                      <p><%= @fatura.export.nil? ? @fatura.exportlande.client.konsignacioni : @fatura.export.client.konsignacioni %></p> 
+                      <p><%= @fatura.export.nil? ? @fatura.exportlande.client.adresa_k : @fatura.export.client.adresa_k %> <%= @fatura.export.nil? ? @fatura.exportlande.client.qyteti_k : @fatura.export.client.qyteti_k %>, <%= @fatura.export.nil? ? @fatura.exportlande.client.shteti_k : @fatura.export.client.shteti_k %></p> 
+                      <p>Tel: <%= @fatura.export.nil? ? @fatura.exportlande.client.numri_tel_k : @fatura.export.client.numri_tel_k%></p> 
                     </td>
                 </table>
               </div>
@@ -86,74 +86,142 @@
         </tr>
       </table>
     </div>
-    <div class="fatura-tabela"  style="width:1075px">
-      <table>
-        <tr class="hedi">
-          <td><center>#</center></td>
-          <td><center>Taric Code</center></td>
-          <td><center>Article No</center></td>
-          <td><center>Description</center></td>
-          <td><center>Weight Neto (KG)</center></td>
-          <td><center>Weight Gross (KG)</center></td>
-          <td><center>Quantity</center></td>
-          <td><center>Price</center></td>
-          <td><center>VAT</center></td>
-          <td><center>Total</center></td>
-        </tr>
-        <% i = 0 %>
-        <% @list.each do |ep| %>
-          <% if i.even? %>
-            <tr style="background: #dee2e6" class="pdf-tedhena">  
-          <% else %>
-            <tr style="background: white" class="pdf-tedhena"> 
-          <% end %>
-            <td style="width:50px"><center><%= i+=1 %></center></td>
-            <td style="width:100px"><center><%= ep.product.tarif_kodi %></center></td>
-            <td style="width:100px"><center><%= ep.product.articlenr %></center></td>
-            <td style="width:100px; white-space: nowrap"><center><%= ep.product.pershkrimi %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % (ep.normative.pesha_n * ep.sasia).round(2) %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % (ep.normative.pesha_b * ep.sasia).round(2) %></center></td>
-            <td style="width:100px"><center><%= ep.sasia %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % ep.qmimi %> €</center></td>
-            <td style="width:100px"><center><%= '%.2f' % ep.vat %> €</center></td>
-            <td style="width:100px"><center><%= '%.2f' % (ep.qmimi * ep.sasia) %> €</center></td>
+    <% unless @fatura.export.nil? %>
+      <div class="fatura-tabela"  style="width:1075px">
+        <table>
+          <tr class="hedi">
+            <td><center>#</center></td>
+            <td><center>Taric Code</center></td>
+            <td><center>Article No</center></td>
+            <td><center>Description</center></td>
+            <td><center>Weight Neto (KG)</center></td>
+            <td><center>Weight Gross (KG)</center></td>
+            <td><center>Quantity</center></td>
+            <td><center>Price</center></td>
+            <td><center>VAT</center></td>
+            <td><center>Total</center></td>
           </tr>
-        <% end %>
-        <% @fatura.fees.each do |f| %>
-          <% if !(f.persisted?) %>
-            <% next %>
+          <% i = 0 %>
+          <% @list.each do |ep| %>
+            <% if i.even? %>
+              <tr style="background: #dee2e6" class="pdf-tedhena">  
+            <% else %>
+              <tr style="background: white" class="pdf-tedhena"> 
+            <% end %>
+              <td style="width:50px"><center><%= i+=1 %></center></td>
+              <td style="width:100px"><center><%= ep.product.tarif_kodi %></center></td>
+              <td style="width:100px"><center><%= ep.product.articlenr %></center></td>
+              <td style="width:100px; white-space: nowrap"><center><%= ep.product.pershkrimi %></center></td>
+              <td style="width:100px"><center><%= '%.2f' % (ep.normative.pesha_n * ep.sasia).round(2) %></center></td>
+              <td style="width:100px"><center><%= '%.2f' % (ep.normative.pesha_b * ep.sasia).round(2) %></center></td>
+              <td style="width:100px"><center><%= ep.sasia %></center></td>
+              <td style="width:100px"><center><%= '%.2f' % ep.qmimi %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % ep.vat %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (ep.qmimi * ep.sasia) %> €</center></td>
+            </tr>
           <% end %>
-          <% if i.even? %>
-            <tr style="background: #dee2e6">  
-          <% else %>
-            <tr style="background: white"> 
+          <% @fatura.fees.each do |f| %>
+            <% if !(f.persisted?) %>
+              <% next %>
+            <% end %>
+            <% if i.even? %>
+              <tr style="background: #dee2e6">  
+            <% else %>
+              <tr style="background: white"> 
+            <% end %>
+              <td style="width:100px"><center><%= i+=1 %></center></td>
+              <td style="width:100px"></td>
+              <td style="width:100px"></td>
+              <td style="width:100px"><center><%= f.pershkrimi %></center></td>
+              <td style="width:100px"><center>Pesha:</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (f.pesha * f.sasia).round(2) %></center></td>
+              <td style="width:100px"><center><%= f.sasia.round %></center></td>
+              <td style="width:100px"><center><%= '%.2f' % f.qmimi %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * @export.client.vat / 100).round(2) %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * f.sasia) %> €</center></td>
+            </tr>
           <% end %>
-            <td style="width:100px"><center><%= i+=1 %></center></td>
+          <tr style="border-bottom: 0px">
+            <td style="width:50px"></td>
             <td style="width:100px"></td>
             <td style="width:100px"></td>
-            <td style="width:100px"><center><%= f.pershkrimi %></center></td>
-            <td style="width:100px"><center>Pesha:</center></td>
-            <td style="width:100px"><center><%= '%.2f' % (f.pesha * f.sasia).round(2) %></center></td>
-            <td style="width:100px"><center><%= f.sasia.round %></center></td>
-            <td style="width:100px"><center><%= '%.2f' % f.qmimi %> €</center></td>
-            <td style="width:100px"><center><%= '%.2f' % (f.qmimi * @export.client.vat / 100).round(2) %> €</center></td>
-            <td style="width:100px"><center><%= '%.2f' % (f.qmimi * f.sasia) %> €</center></td>
+            <td style="width:100px"><center><strong>Total:</strong></center></td>
+            <td style="width:150px"><center><strong><%= '%.2f' % @pesha_n.round(2) %> Kg</strong></center></td>
+            <td style="width:150px"><center><strong><%= '%.2f' % @pesha_b.round(2) %> Kg</strong></center></td>
+            <td style="width:100px"></td>
+            <td style="width:100px"></td>
+            <td style="width:100px; white-space: nowrap"><center><strong>Total without VAT: </strong></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @total_pa_vat %> €</strong></center></td>
           </tr>
-        <% end %>
-        <tr style="border-bottom: 0px">
-          <td style="width:50px"></td>
-          <td style="width:100px"></td>
-          <td style="width:100px"></td>
-          <td style="width:100px"><center><strong>Total:</strong></center></td>
-          <td style="width:150px"><center><strong><%= '%.2f' % @pesha_n.round(2) %> Kg</strong></center></td>
-          <td style="width:150px"><center><strong><%= '%.2f' % @pesha_b.round(2) %> Kg</strong></center></td>
-          <td style="width:100px"></td>
-          <td style="width:100px"></td>
-          <td style="width:100px; white-space: nowrap"><center><strong>Total without VAT: </strong></center></td>
-          <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @total_pa_vat %> €</strong></center></td>
-        </tr>
-      </table>
-    </div>
+        </table>
+      </div>
+    <% else %>
+      <div class="fatura-tabela"  style="width:1075px">
+        <table>
+          <tr class="hedi">
+            <td><center>#</center></td>
+            <td><center>Taric Code</center></td>
+            <td><center>Article Code</center></td>
+            <td><center>Description</center></td>
+            <td><center>Weight(KG)</center></td>
+            <td><center>Quantity</center></td>
+            <td><center>Price</center></td>
+            <td><center>VAT</center></td>
+            <td><center>Total</center></td>
+          </tr>
+          <% i = 0 %>
+          <% @list.each do |ea| %>
+            <% if i.even? %>
+              <tr style="background: #dee2e6" class="pdf-tedhena">  
+            <% else %>
+              <tr style="background: white" class="pdf-tedhena"> 
+            <% end %>
+              <td style="width:100px"><center><%= i+=1 %></center></td>
+              <td style="width:100px"><center><%= ea.article.tarif_kodi %></center></td>
+              <td style="width:100px"><center><%= ea.article.kodi %></center></td>
+              <td style="width:100px; white-space: nowrap;"><center><%= ea.article.pershkrimi %></center></td>
+              <td style="width:100px"><center><%= '%.2f' % (ea.pesha).round(2) %></center></td>
+              <td style="width:100px"><center><%= ea.sasia %></center></td>
+              <td style="width:100px"><center><%= '%.2f' % ea.qmimi %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % ea.vat %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (ea.qmimi * ea.sasia) %> €</center></td>
+            </tr>
+          <% end %>
+          <% @fatura.fees.each do |f| %>
+            <% if !(f.persisted?) %>
+              <% next %>
+            <% end %>
+            <% if i.even? %>
+              <tr style="background: #dee2e6">  
+            <% else %>
+              <tr style="background: white"> 
+            <% end %>
+              <td style="width:100px"><center><%= i+=1 %></center></td>
+              <td style="width:100px"></td>
+              <td style="width:100px"></td>
+              <td style="width:100px"><center><%= f.pershkrimi %></center></td>
+              <td style="width:100px"><center>Pesha:</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (f.pesha * f.sasia).round(2) %></center></td>
+              <td style="width:100px"><center><%= f.sasia.round %></center></td>
+              <td style="width:100px"><center><%= '%.2f' % f.qmimi %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * @export.client.vat / 100).round(2) %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * f.sasia) %> €</center></td>
+            </tr>
+          <% end %>
+          <tr style="border-bottom: 0px">
+            <td style="width:50px"></td>
+            <td style="width:100px"></td>
+            <td style="width:100px"></td>
+            <td style="width:100px"><center><strong>Total:</strong></center></td>
+            <td style="width:150px"><center><strong><%= '%.2f' % @pesha_n.round(2) %> Kg</strong></center></td>
+            <td style="width:150px"><center><strong><%= '%.2f' % @pesha_b.round(2) %> Kg</strong></center></td>
+            <td style="width:100px"></td>
+            <td style="width:100px; white-space: nowrap"><center><strong>Total without VAT: </strong></center></td>
+            <td style="width:100px; white-space: nowrap; text-align: right"><strong><%= '%.2f' % @total_pa_vat %> €</strong></td>
+          </tr> 
+        </table>
+      </div>
+    <% end %>
     <table style="margin-top: -5px; padding:0px">
       <tr style="padding-top: -5px">
         <td style='width: 537px'>

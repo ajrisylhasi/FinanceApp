@@ -37,24 +37,31 @@ class FaturasController < ApplicationController
   
   def show
     @fatura = Fatura.find(params[:id])
-    unless @fatura.export.nil?
-      @export = @fatura.export
-      product_search_export(@export)
-    else
-      @exportlande = @fatura.exportlande
-      product_search_exportlande(@exportlande)
-    end
     @total_pa_vat = 0
     @total_vat = 0
     @total = 0
     @pesha_n = 0
     @pesha_b = 0
-    @list.each do |ep|
-      @total_pa_vat +=  ep.qmimi * ep.sasia 
-      @total_vat += ep.vat * ep.sasia
-      @pesha_n += ep.normative.pesha_n * ep.sasia
-      @pesha_b += ep.normative.pesha_b * ep.sasia
+    
+    unless @fatura.export.nil?
+      @export = @fatura.export
+      product_search_export(@export)
+      @list.each do |ep|
+        @total_pa_vat +=  ep.qmimi * ep.sasia 
+        @total_vat += ep.vat * ep.sasia
+        @pesha_n += ep.normative.pesha_n * ep.sasia
+        @pesha_b += ep.normative.pesha_b * ep.sasia
+      end
+    else
+      @exportlande = @fatura.exportlande
+      product_search_exportlande(@exportlande)
+      @list.each do |ep|
+        @total_pa_vat +=  ep.qmimi * ep.sasia 
+        @total_vat += ep.vat * ep.sasia
+        @pesha_n += ep.pesha * ep.sasia
+      end
     end
+
     @fatura.fees.each do |f|
       qmimi_fee = f.qmimi * f.sasia
       @total_pa_vat +=  qmimi_fee

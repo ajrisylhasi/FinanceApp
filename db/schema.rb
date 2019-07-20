@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_210644) do
+ActiveRecord::Schema.define(version: 2019_07_19_152856) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_210644) do
     t.integer "article_id"
     t.float "pesha"
     t.float "qmimi"
+    t.float "vat"
     t.index ["article_id"], name: "index_explande_articles_on_article_id"
     t.index ["exportlande_id"], name: "index_explande_articles_on_exportlande_id"
     t.index ["import_article_id"], name: "index_explande_articles_on_import_article_id"
@@ -176,6 +177,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_210644) do
     t.string "nr_exportit"
     t.integer "client_id"
     t.date "data"
+    t.float "vat"
     t.index ["client_id"], name: "index_exportlandes_on_client_id"
   end
 

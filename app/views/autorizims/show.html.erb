@@ -1,6 +1,7 @@
 <%= render 'layouts/flash' %>
 <center><h1 style="font-family: Barlow; margin-top: 30px">Autorizimi i kompanisë: <%= kompania.kompania %></h1></center>
 <br>
+
 <center>
   <table class="tabela-import">
     <tr>
@@ -89,6 +90,8 @@
     </tr>
   </table>
 </center>
+
+<div style="margin-top:25px"><%= render 'shared/error_messages' %></div>
 <div class="row" style="width:100%; display: inline-block">
   <row>
     <div class="col-md-6 col-md-offset-3">
@@ -100,7 +103,6 @@
                 <h4 class="modal-title" id="exampleModalLabel"><strong>Shto artikull të ri</strong></h4>
               </div>
               <%= f.fields_for :autorizim_articles do |na| %>
-                <%= render 'shared/error_messages', object: na.object %>
                 <% unless na.object.persisted? %>
                   <div class="modal-body">
               
@@ -130,7 +132,6 @@
                 <h4 class="modal-title" id="exampleModalLabel"><strong>Shto produkt të re</strong></h4>
               </div>
               <%= f.fields_for :autorizim_products do |na| %>
-                <%= render 'shared/error_messages', object: na.object %>
                 <% unless na.object.persisted? %>
                   <div class="modal-body">
               

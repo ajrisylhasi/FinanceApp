@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user.data_gar = params[:useri][:data_gar]
     @user.save
     
-    redirect_to settings_path
+    redirect_to root_path
     lajm
   end
   # GET /users/1/edit

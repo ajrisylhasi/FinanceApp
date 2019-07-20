@@ -38,6 +38,46 @@
         </div>
       </td>
     </tr>
+    <tr style="height: 40px">
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <strong>Pesha Neto</strong>
+        </div>
+      </td>
+      <td>
+
+        <%= link_to export_files_path(@export) do %> <span class="glyphicon glyphicon-folder-open" style="color: black; font-size: 18px"></span><% end %>
+      </td>
+      <td>
+        <div>
+          <strong>Pesha Bruto</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @pesha_n %> Kg
+        </div>
+      </td>
+      <td>
+        <div>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @pesha_b %> Kg
+        </div>
+      </td>
+    </tr>
   </table>
 </center>
 <style>
@@ -90,13 +130,13 @@
         </div>
       <% end %>
   <center>
-    <%= link_to "Fatura", @export.fatura, class:"btn btn-primary" %>
-    <%= link_to "Specifikacioni", specifikacioni_path(@export), class:"btn btn-primary" %>
-    <%= link_to "Mbetja", export_mbetja_path(@export), class:"btn btn-primary" %>
+    <div style="margin-bottom: 25px">
+      <%= link_to "Fatura", @export.fatura, class:"btn btn-primary" %>
+      <%= link_to "Specifikacioni", specifikacioni_path(@export), class:"btn btn-primary" %>
+      <%= link_to "Mbetja", export_mbetja_path(@export), class:"btn btn-primary" %>
+    </div>
   </center>
 </div>
-Pesha Bruto: <%= @pesha_b %><br>
-Pesha Neto: <%= @pesha_n %>
 <center>
   <div class="fatura-tabela">
     <table>

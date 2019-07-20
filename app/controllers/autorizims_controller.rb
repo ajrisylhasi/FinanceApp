@@ -10,6 +10,8 @@ class AutorizimsController < ApplicationController
       @autorizim = Autorizim.find(params[:id])
       @autorizim.autorizim_articles.build
       @autorizim.autorizim_products.build
+
+      @errors = params[:errors]
   end
   
   def edit
@@ -27,7 +29,13 @@ class AutorizimsController < ApplicationController
       if @autorizim.update_attributes(autorizim_params)
         redirect_to @autorizim
       else
-        render 'show'
+        @errors = []
+        if @autorizim.errors.any?
+          @autorizim.errors.full_messages.each do |msg|
+            @errors.push msg
+          end
+        end
+        redirect_to autorizim_path(@autorizim, errors: @errors)
       end
   end
   

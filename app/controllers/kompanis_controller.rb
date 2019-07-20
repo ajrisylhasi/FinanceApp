@@ -7,7 +7,7 @@ class KompanisController < ApplicationController
   def update
     @kompania = Kompani.find(params[:id])
     if @kompania.update_attributes(kompani_params)
-      redirect_to settings_path
+      redirect_to root_path
     else
       redirect_to edit_kompani_path(@kompania)
     end
