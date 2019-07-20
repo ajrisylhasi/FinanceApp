@@ -1,6 +1,61 @@
 <div><%= render "layouts/flash" %></div>
-<h1><strong>Identifikimi:</strong> <%= @garancion.identifikimi %></h1>
-<p><strong>Data leshimit:</strong> <%= @garancion.data %></p>
-<p><strong>Data skadimit:</strong> <%= @garancion.data_skadimit %></p>
-<p><strong>Pershkrimi:</strong> <%= @garancion.pershkrimi %></p>
-<p><strong>Vlera:</strong> <%= @garancion.vlera %> €</p>
+<center><h1 style="font-family: Barlow; margin-top: 30px; margin-bottom: 25px">Garancioni: <%= @garancion.identifikimi %></h1></center>
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Përshkrimi</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Data e Lëshimit</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Data e Skadimit</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Vlera</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @garancion.pershkrimi %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @garancion.data %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @garancion.data_skadimit %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @garancion.vlera %> €
+        </div>
+      </td>
+    </tr>
+    <tr style="height: 40px">
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+   
+  </table>
+</center>

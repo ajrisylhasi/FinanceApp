@@ -1,56 +1,56 @@
-
-<div class="row" style="width:100%">
-  <div class="col-md-6 col-md-offset-3">
-    <%= nested_form_for(@kompania) do |f|%>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div style="container">
-        <%= f.label :kompania %>
-        <%= f.text_field :kompania, class: 'form-control' %>
-        
-        <%= f.label :numri_fiskal %>
-        <%= f.text_field :numri_fiskal, class: 'form-control' %>
-
-        <div class="field">
-          <%= f.label :numri_biznesit %>
-          <%= f.text_field :numri_biznesit, class: 'form-control' %>
-        </div>
-        
-        <div class="field">
-          <%= f.label :numri_identifikues, "Numri Identifikues" %>
-          <%= f.text_field :numri_identifikues, class: 'form-control' %>
-        </div>
+<center>
+<div class="col-md-6 col-md-offset-3" style="margin-top:0px">
+  <%= nested_form_for(@kompania) do |f|%>
+    <%= render 'shared/error_messages', object: f.object %><br>
+    <%= f.submit "Update Kompani", class: "btn btn-primary", style: "margin-bottom: 20px" %>
+    <div style="max-width: 500px">
+      <%= f.label :kompania %>
+      <%= f.text_field :kompania, class: 'form-control' %>
       
-        <div class="field">
-          <%= f.label :numri_tvsh %>
-          <%= f.text_field :numri_tvsh, class: 'form-control' %>
-        </div>
-        
-        <%= f.label :shteti %>
-        <%= f.text_field :shteti, class: 'form-control' %>
-        
-        <%= f.label :qyteti %>
-        <%= f.text_field :qyteti, class: 'form-control' %>
-        
-        <%= f.label :adresa %>
-        <%= f.text_field :adresa, class: 'form-control' %>
-        
-        <%= f.label :zip %>
-        <%= f.text_field :zip, class: 'form-control' %>
-        <div class="field">
+      <%= f.label :numri_fiskal %>
+      <%= f.text_field :numri_fiskal, class: 'form-control' %>
+
+      <div class="field">
+        <%= f.label :numri_biznesit %>
+        <%= f.text_field :numri_biznesit, class: 'form-control' %>
+      </div>
+      
+      <div class="field">
+        <%= f.label :numri_identifikues, "Numri Identifikues" %>
+        <%= f.text_field :numri_identifikues, class: 'form-control' %>
+      </div>
+    
+      <div class="field">
+        <%= f.label :numri_tvsh %>
+        <%= f.text_field :numri_tvsh, class: 'form-control' %>
+      </div>
+      
+      <%= f.label :shteti %>
+      <%= f.text_field :shteti, class: 'form-control' %>
+      
+      <%= f.label :qyteti %>
+      <%= f.text_field :qyteti, class: 'form-control' %>
+      
+      <%= f.label :adresa %>
+      <%= f.text_field :adresa, class: 'form-control' %>
+      
+      <%= f.label :zip %>
+      <%= f.text_field :zip, class: 'form-control' %>
+      <br>
+      <div class="field">
+        <center>
           <% if kompania.image.file.nil? %>
             <h2>Add Company Image</h2>
           <% else %>
             <h2>Change Company Image</h2>
           <% end %>
-          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
-        </div>
-        <%=  %>
-      </div>
-      <div class="buttons">
-        <%= f.submit "Update Kompani", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-  </div>
-  <%= link_to "Back", settings_path, class:"btn btn-primary" %>
+          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id:"file-input" %>
+        </center>
+    </div>
+  <% end %>
 </div>
 
+</center>
+<script>
+  $(":file").filestyle();
+</script>

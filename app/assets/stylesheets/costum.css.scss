@@ -743,3 +743,10 @@ $primary-font: 'Lato';
 .errorat {
   width: 500px;
 }
+.image-upload > input
+{
+   display: none;
+}
+.image-upload > label{
+  cursor:pointer;
+}
