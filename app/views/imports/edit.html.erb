@@ -1,10 +1,13 @@
-<h1 style="color:black">Edit Import</h1>
 
-<div class="row" style="width:100%">
-  <div class="col-md-6 col-md-offset-3">
+<center>
+<div class="row" style="max-width: 500px">
+    <center>
+  <div>
     <%= form_for(@import)do |f|%>
       <%= render 'shared/error_messages', object: f.object %>
-      <div style="container">
+    <div style="container">
+
+        <%= f.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
         <%= f.label :nr_dud %>
         <%= f.number_field :nr_dud, class: 'form-control' %>
         <%= f.label :data %>
@@ -13,13 +16,13 @@
         <%= f.number_field :transporti, class: 'form-control', step: :any %>
         <%= f.label :nr_fatures %>
         <%= f.text_field :nr_fatures, class: 'form-control' %>
+        <%= f.label :client_id, "Klienti" %>
+        <%= f.select("client_id", Client.all.collect {|n| [ n.kompania,  n.id ] }, { prompt: "Select Client", multiple: false, id: "n" }, class: "form-control") %>
+        <br>
         <%= f.file_field :files, multiple: true%>
-        <%= f.select("client_id", Client.all.collect {|n| [ n.kompania,  n.id ] }, { prompt: "Select Client", multiple: false, id: "n" }) %>
       </div>
-      <div class="buttons">
-        <%= f.submit "Edit Import", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-  </div>
-  <%= link_to "Back", @import, class:"btn btn-primary" %>
+      <% end %>
 </div>
+    </center>
+</div>
+</center>

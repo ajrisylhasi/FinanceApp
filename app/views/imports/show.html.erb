@@ -20,7 +20,7 @@
       </td>
       <td>
         <div>
-          <strong>Transporti</strong>
+          <strong>Transporti</strong> 
         </div>
       </td>
     </tr>
@@ -102,10 +102,9 @@
     </tr>
   </table>
 </center>
-
-<%= link_to 'Home', imports_path, class:"btn btn-primary" %>
-<%= link_to 'Files', import_files_path(@import), class:"btn btn-primary" %>
-<%= link_to 'Edit', edit_import_path(@import), class:"btn btn-primary" %>
+<center>
+<%= link_to import_files_path(@import) do %> <span class="glyphicon glyphicon-folder-open" style="color: black; font-size: 18px"></span><% end %>
+</center>
 <div class="row" style="width:100%">
   <div class="col-md-6 col-md-offset-3">
     <%= render 'layouts/flash' %>
@@ -122,7 +121,7 @@
                 <% unless f.object.persisted? %>
                   <div class="modal-body">
               
-                    <%= f.select("article_id", Article.all.select { |a| a.autorizims.first == Autorizim.first }.collect {|p| ["#{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Select Article", multiple: false}) %>
+                    <%= f.select("article_id", Article.all.select { |a| a.autorizims.first == Autorizim.first }.collect {|p| ["#{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Zgjedh Artikullin", multiple: false}) %>
                     
                     <%= f.label :emertimi %>
                     <%= f.text_field :emertimi, class: "form-control" %>
@@ -150,10 +149,6 @@
       <% end %>
     <% end %>
   </div>
-  <center>
-    <%= link_to "Back", imports_path, class:"btn btn-primary" %>
-    <%= link_to "Gjendja", import_gjendja_path(@import), class:"btn btn-primary" %>
-  </center>
 </div>
 <center>
   <div class="fatura-tabela" style="width:auto">
@@ -226,7 +221,7 @@
         <% end %>
       <% end %>
       <tr style="border-bottom: 0px">
-        <td style="width:100px" colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 35px; color: green; margin-top: -50px; margin-bottom: -40px;">&#43;</button></center></td>
+        <td style="width:100px" colspan="2"></td>
         <td style="width:100px"></td>
         <td style="width:100px"></td>
         <td style="width:100px"></td>
@@ -239,4 +234,3 @@
     </table>
   </div>
 </center>
-<div style="float:right;margin-right:5px"><%= @taksa %></div>

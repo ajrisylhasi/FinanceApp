@@ -14,5 +14,6 @@ class User < ApplicationRecord
     self.data_gar ||= 14
     self.first_name ||= ""
     self.last_name ||= ""
+    self.kategoria ||= "admin"
   end
 end
