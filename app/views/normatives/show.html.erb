@@ -48,7 +48,20 @@
       <td>
         <strong>Pesha Neto (me paketim)</strong>
       </td>
-      <td></td>
+      <td>
+        <center>
+          <table>
+            <tr>
+              <td style="border-right: 1px solid black; width: 50px">
+                <%= link_to asset_path("normatives/#{@normative.id}.pdf", skip_pipeline: true), target: '_blank' do %> <span class="glyphicon glyphicon-file" style="color: black; font-size: 18px"></span><% end %>
+              </td>
+              <td style="width:50px">
+                <%= link_to normative_files_path(@normative) do %> <span class="glyphicon glyphicon-folder-open" style="color: black; font-size: 18px"></span><% end %>
+              </td>
+            </tr>
+          </table>
+        </center>
+      </td>
       <td>
         <strong>Pesha Neto (pa paketim)</strong>
       </td>
@@ -143,16 +156,15 @@
         <td style="width:100px"></td>
         <td style="width:100px"></td>
         <td style="width:100px"></td>
-        <td style="width:100px"><center><strong></strong></center></td>
         <td style="width:100px"></td>
         <td style="width:100px"></td>
-        <td style="width:100px"><center><strong></strong></center></td>
+        <td style="width:100px"><center><strong>Totali:</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_pesha_b.round(4) %> Kg</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_mbetja_peshe.round(4) %> Kg</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_pesha_n.round(4) %> Kg</strong></center></td>
       </tr>
     </table>
   </div>
 </center>
-<%= link_to 'Produkti', @normative.product, class:"btn btn-primary" %>
-<%= link_to 'Home', normatives_path, class:"btn btn-primary" %>
-<%= link_to 'Edit', edit_normative_path, class:"btn btn-primary" %>
-<%= link_to 'Files', normative_files_path(@normative), class:"btn btn-primary" %>
-<%= link_to "PDF", asset_path("normatives/#{@normative.id}.pdf", skip_pipeline: true), class: "btn btn-primary", id: "pdf-fatura", target: "_blank" %>

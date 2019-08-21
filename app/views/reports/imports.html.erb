@@ -51,6 +51,6 @@
       </div>
     <div>
   </center>
-  <%= link_to "PDF", import_search_path( format: :pdf, :search => { :date_from => @date_from, :date_to => @date_to, :client_id => @client, :article_id => @article }), target: "_blank", class: "btn btn-primary", style: "margin: 15px" %> 
-          <%= link_to "CSV", '/import_search.csv', class: "btn btn-primary", style: "margin: 15px" %></center>
+  <%= link_to "PDF", import_search_path( format: :pdf, :search => { :date_from => @date_from, :date_to => @date_to, :client_id => @client, :article_id => @article }), target: "_blank", class: "btn btn-primary", id: "pdf-fatura", style: "margin: 15px" %> 
+          <%= link_to "CSV", '/import_search.csv', class: "btn btn-primary", id: 'csv-fatura', style: "margin: 15px" %></center>
 </center>

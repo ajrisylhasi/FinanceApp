@@ -136,7 +136,7 @@
                   <div class="modal-body">
               
                     <center>
-                      <%= na.select("product_id", Product.all.select { |a| a.autorizims.first != Autorizim.first }.collect {|p| ["#{p.pershkrimi}", p.id]}, { prompt: "Selekto Produktin", multiple: false }) %>
+                      <%= na.select("product_id", Product.all.select { |a| a.autorizims.first != Autorizim.first }.collect {|p| ["#{p.pershkrimi_plote}", p.id]}, { prompt: "Selekto Produktin", multiple: false }) %>
                     </center>
               
                   </div>
@@ -199,6 +199,7 @@
               <tr class="hedi">
                 <td colspan="2" style="width: 50px"><center><button type="button" data-toggle="modal" data-target="#exampleModalprod" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
                 <td style="width:100px"><center>Pershkrimi</center></td>
+                <td style="width:100px"><center>Kodi Produktit</center></td>
                 <td style="width:100px"><center>Tarif Kodi</center></td>
                 <td style="width:100px"><center><span>&#x2715;</span></center></td>
               </tr>
@@ -213,6 +214,7 @@
                   <% end %>
                     <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
                     <td style="width:100px"><center><%= a.pershkrimi %></center></td>
+                    <td style="width:100px"><center><%= a.articlenr %></center></td>
                     <td style="width:100px"><center><%= a.tarif_kodi %></center></td>
                     <td style="width:100px"><center>
                       <%= link_to aa, method: :delete do %>

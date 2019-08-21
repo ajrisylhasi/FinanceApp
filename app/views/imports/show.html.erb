@@ -80,22 +80,22 @@
     <tr>
       <td>
       <div>
-          <strong><%= @import.kodi_doganor %></strong>
+          <%= @import.kodi_doganor %>
       </div> 
       </td>
       <td>
         <div>
-          <strong><%= @import.zyra_doganore %></strong>
+          <%= @import.zyra_doganore %>
         </div>
       </td>
       <td>
         <div>
-          <strong><%= @import.kodi_destinim %></strong>
+          <%= @import.kodi_destinim %>
         </div>
       </td>
       <td>
         <div>
-          <strong><%= @import.zyra_destinim %></strong>
+          <%= @import.zyra_destinim %>
         </div>
       </td>
     </tr>
@@ -231,7 +231,7 @@
       <% end %>
       <tr style="border-bottom: 0px">
         <td style="width:100px" colspan="2"></td>
-        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong>Totali:</strong></center></td>
         <td style="width:100px"></td>
         <td style="width:100px"></td>
         <td style="width:100px"></td>
@@ -239,6 +239,18 @@
         <td style="width:100px"><center><strong><%= '%.2f' % @import.shuma_qmimi.round(2) %> €</strong></center></td>
         <td style="width:100px"></td>
         <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_qmimi_tot.round(2) %> €</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_pesha.round(2) %> Kg</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_akciza.round(2) %> €</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_tvsh.round(2) %> €</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_dogana.round(2) %> €</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_taksa.round(2) %> €</strong></center></td>
       </tr>
     </table>
   </div>

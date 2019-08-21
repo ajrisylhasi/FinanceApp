@@ -41,6 +41,22 @@ class ImportsController < ApplicationController
     refresh_gjendja
     bashkimi_importit(@import)
     refresh_taksa
+    @tot_qmimi_tot = 0
+    @tot_pesha = 0
+    @tot_akciza = 0
+    @tot_tvsh = 0
+    @tot_dogana = 0
+    @tot_taksa = 0
+
+    @import.import_articles.each do |i|
+      @tot_qmimi_tot += i.qmimi_tot
+      @tot_pesha += i.pesha
+      @tot_akciza += i.taksa_akciza
+      @tot_tvsh += i.taksa_tvsh
+      @tot_dogana += i.taksa_dogana
+      @tot_taksa += i.gjithsej_taksa
+    end
+
     respond_to do |format|
       format.html
       format.json

@@ -51,13 +51,24 @@ class NormativesController < ApplicationController
         @mbetja_ne_peshe = @normative.mbetja_ne_peshe
         @pesha_neto = @normative.pesha_neto
         @sasia_neto = @normative.sasia_neto
-        @normative.normative_articles.build
+        @tot_pesha_b = 0
+        @tot_mbetja_peshe = 0
+        @tot_pesha_n = 0
+
+        @normative.normative_articles.each do |n|
+          @tot_pesha_b += n.pesha_bruto
+          @tot_mbetja_peshe += n.mbetja_ne_peshe
+          @tot_pesha_n += n.pesha_neto
+        end
+
         respond_to do |format|
           format.html
           format.json
           format.pdf { render template: "normatives/normativa.pdf", pdf: "Normativa-Nr-#{@normative.nr_normatives} - #{@normative.data}", orientation: 'Portrait' }
           
         end
+
+        @normative.normative_articles.build
     end
     
     def files

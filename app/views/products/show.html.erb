@@ -1,23 +1,86 @@
-<h1><%= @product.pershkrimi %></h1>
-<%= render 'layouts/flash' %>
+
+<center><h1 style="font-family: Barlow; margin-top: 30px">Produkti: <strong><%= @product.pershkrimi %></strong></h1></center>
 <br>
-<p>Tarif kodi: <%= @product.tarif_kodi %></p>
-<p>Qmimi: <%= @product.qmimi %></p>
-<% @product.normatives.each do |norm| %>
-  <div style="padding:15px">
-    <h1><%= link_to "Normativa", norm, style: "text-decoration:none" %>: <%= norm.nr_normatives %></h1>
-    <table border="2">
-      <% norm.normative_articles.each do |na| %>
-      <tr>
-        <td style="padding:5px">
-          <%= na.article.pershkrimi %>
-        </td>
-        <td style="padding:5px">
-          <%= na.sasia %> <%= na.article.njesia %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-<% end %>
-<%= link_to "Edit", edit_product_path, class:"btn btn-primary" %>
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Tarif Kodi</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Kodi Produktit</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Qmimi</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @product.tarif_kodi %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @product.articlenr %> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @product.qmimi %> 
+        </div>
+      </td>
+    </tr>
+  </table>
+</center>
+<style>
+  .tabela-import{
+    margin-bottom: 40px;
+  }
+  .tabela-import td {
+    width: 300px;
+    text-align: center;
+  }
+</style>
+
+<center>
+  <div class="fatura-tabela" style="margin-top:75px">
+      
+      <table>
+        <tr style="border: 0px; margin-top: 0px; padding-top: 0px">
+          <td colspan="10"><center></center></td>
+        </tr>
+        <tr class="hedi">
+          <td style="min-width:75px"><center>#</center></td>
+          <td style="min-width:75px"><center>Numri i Normatives</center></td>
+          <td style="min-width:75px"><center>Data</center></td>
+          <td colspan="4"><center></center></td>
+        </tr>
+        <% iter = 0 %>
+        <% @product.normatives.each do |a| %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td><center><%= iter+=1 %></td></center>
+            <td><center><%= a.nr_normatives %></td></center>
+            <td><center><%= a.data %></td></center>
+            <td style="width: 25px"></td>
+            <td style="width: 50px; border: 0px"><center><%= link_to a do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to edit_product_path(a) do %> <span class="glyphicon glyphicon-pencil" style="color: black; font-size: 18px"></span><% end %></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to a, method: :delete do %>
+              <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %>
+            </td></center>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <div>
+</center>

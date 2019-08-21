@@ -1,26 +1,53 @@
-<h1 style="color:black">Edit Normative</h1>
 
-<div class="row" style="width:100%">
-  <div class="col-md-6 col-md-offset-3">
-    <%= nested_form_for(@normative)do |f|%>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div style="container">
-        <%= f.label :nr_normatives %>
-        <%= f.number_field :nr_normatives, class: 'form-control' %>
-        <%= f.date_field :data, class: "form-control"%>
-        <%= f.file_field :files, multiple: true %><br>
-        <%= f.label :kategoria, "Test" %>
-        <%= f.radio_button :kategoria, "test", :checked => (@normative.kategoria == "test") %>|
-        <%= f.label :kategoria, "Manual" %>
-        <%= f.radio_button :kategoria, "manual", :checked => (@normative.kategoria == "manual") %>|
-        <%= f.label :kategoria, "Automatik" %>
-        <%= f.radio_button :kategoria, "auto", :checked => (@normative.kategoria == "auto") %><br>
-        <%= f.select "product_id", Product.all.collect{ |u| [u.pershkrimi, u.id] }, :promt => 'Select Product' %>
+<center>
+  <div class="row" style="width:500px">
+    <div>
+      <div>
+        <div>
+          <center>
+          <%= nested_form_for(@normative)do |f|%>
+            <%= render 'shared/error_messages', object: f.object %>
+            <div style="container">
+              <%= f.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
+              <%= f.label :nr_normatives %>
+              <%= f.number_field :nr_normatives, class: 'form-control' %>
+              <%= f.label :product_id, "Produkti" %>
+              <%= f.select "product_id", Product.all.collect{ |u| [u.pershkrimi_plote, u.id] }, {:promt => 'Select Product'}, class: 'form-control'  %>
+              <%= f.label :data %>
+              <%= f.date_field :data, class: "form-control"%>
+              <br>
+              <table style="width: 500px">
+                <tr>
+                  <td>
+                    <center>
+                    <%= f.radio_button :kategoria, "test", :checked => (@normative.kategoria == "test") %>
+                    <%= f.label :kategoria, "Test" %>
+                  </center>
+                  </td>
+                  <td>
+                    <center>
+                    <%= f.radio_button :kategoria, "manual", :checked => (@normative.kategoria == "manual") %>
+                    <%= f.label :kategoria, "Manual" %>
+                  </center>
+                  </td>
+                  <td>
+                    <center>
+                    <%= f.radio_button :kategoria, "auto", :checked => (@normative.kategoria == "auto") %>
+                    <%= f.label :kategoria, "Automatik" %>
+                    </center>
+                  </td>
+                </tr>
+              </table>
+              <br>
+              <%= f.file_field :files, multiple: true %><br>
+            
+            <div class="buttons">
+            </div>
+          <% end %>
+        </center>
+        </div>
       </div>
-      <div class="buttons">
-        <%= f.submit "Edit Normative", class: "btn btn-primary" %>
-      </div>
-    <% end %>
+    </div>
+    
   </div>
-  <%= link_to "Back", normatives_path, class:"btn btn-primary" %>
-</div>
+</center>

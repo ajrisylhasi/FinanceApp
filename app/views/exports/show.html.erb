@@ -65,7 +65,7 @@
     <tr>
       <td>
         <div>
-          <%= @pesha_n %> Kg
+          <%= '%.2f' % @pesha_n.round(2) %> Kg
         </div>
       </td>
       <td>
@@ -74,7 +74,7 @@
       </td>
       <td>
         <div>
-          <%= @pesha_b %> Kg
+          <%= '%.2f' % @pesha_b.round(2) %> Kg
         </div>
       </td>
     </tr>
@@ -110,7 +110,7 @@
                 <% unless na.object.persisted? %>
                   <div class="modal-body">
                 
-                    <%= na.select :product_id, Product.pluck( :pershkrimi, :id), { prompt: "Select Product", multiple: false}, :id => "product_select", class: "form-control" %>
+                    <%= na.select :product_id, Product.pluck( :pershkrimi, :id), { include_blank: "Selekto Produktin", multiple: false}, :id => "product_select", class: "form-control" %>
                     <%= na.label :sasia %>
                     <%= na.number_field :sasia, step: :any, class: "form-control" %>
                     <div>
@@ -171,9 +171,6 @@
     </table>
   </div>
 </center>
-<%= link_to 'Home', exports_path, class:"btn btn-primary" %>
-<%= link_to 'Files', export_files_path(@export), class:"btn btn-primary" %>
-<%= link_to 'Edit', edit_export_path(@export), class:"btn btn-primary" %>
 <% $gabimet = [] %>
 <div class="modal fade" id="slow_warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="top:30%">
       <div class="modal-dialog" role="document">

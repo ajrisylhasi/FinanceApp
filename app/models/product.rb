@@ -17,4 +17,8 @@ class Product < ApplicationRecord
   def working_normatives
     self.normatives.select { |n| n.kategoria != "test" }
   end
+
+  def pershkrimi_plote
+    self.pershkrimi + " (#{self.articlenr})"
+  end
 end
