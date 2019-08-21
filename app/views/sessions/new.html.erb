@@ -1,29 +1,56 @@
-<div class="form">
-  <div class="tab-content">
-    <h1>Log in</h1>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <%= form_for(:session, url: login_path) do |f| %>
-              <%= render 'layouts/flash' %>
-                <div class="top-row">
-                  <center><div class="field-wrap">
-                    <label>
-                      User Name<span class="req">*</span>
-                    </label>
-                    <%= f.text_field :name, autocomplete:"off"%>
-                  </div></center>
-                </div>
-                <div class="top-row">
-                  <center><div class="field-wrap">
-                    <label>
-                      Password<span class="req">*</span>
-                    </label>
-                    <%= f.password_field :password, autocomplete:"off"%>
-                  </div></center>
-                </div>
-                <button class="button button-block"><%= f.submit "Log in" ,style:"border:solid white 0px" %></button>
-            <% end %>
+<body style="background: #343d4a">
+<center><div class="form">
+  <center>
+    <%= image_tag "pb_4.png", style: "width: 250px; height: 100px; margin: 30px" %>
+  </center>
+  <%= form_for(:session, url: login_path) do |f| %>
+    <%= render 'layouts/flash' %>
+      <div class="top-row">
+        <div class="field-wrap">
+          <%= f.label :name, "Emri i Përdoruesit" %>
+          <%= f.text_field :name, autocomplete:"off", class: 'form-control', placeholder: "Shkruani Emrin e Përdoruesit", style: "height: 38px" %>
         </div>
-    </div>
-  </div>
-</div>
+      </div>
+      <br> 
+      <br>
+      <div class="top-row">
+        <center><div class="field-wrap">
+          <%= f.label :password, "Fjalëkalimi" %>
+          <%= f.password_field :password, autocomplete:"off", class: 'form-control', placeholder: "Shkruani Fjalëkalimin", style: "height: 38px"  %>
+        </div></center>
+      </div>
+      <br><br>
+      <%= f.submit "Kyqu", class: "butoni_log" %>
+  <% end %>
+</div></center>
+</body>
+<style>
+  .form {
+    width: 451px;
+    height: 458px;
+    background: white;
+    border-radius: 5px;
+    margin-top: 200px;
+  }
+  .top-row {
+    width: 400px;
+  }
+  .top-row label {
+    float: left;
+    color: #6c757d;
+    font-size: 17px;
+  }
+  .butoni_log {
+    border: 0px;
+    background: #31ce77;
+    width: 400px;
+    height: 40px;
+    color: white;
+    font-size: 18px;
+    border-radius: 2.5px;
+  }
+  .butoni_log:hover {
+    background: #259b59;
+  }
+
+</style>
