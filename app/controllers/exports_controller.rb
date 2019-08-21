@@ -32,10 +32,10 @@ class ExportsController < ApplicationController
         all_keys_as_array = ["Importi", "Emertimi", "Tarif Kodi", "Kodi i Artikullit", "Pershkrimi", "Sasia", "Njesia", "Pesha",
                          "Qmimi Total", "Taksa Doganore", "Akciza", "TVSH", "Gjithsej Taksa"]
         csv_string = CSV.generate do |csv|
-          csv << ["Adresa: #{kompania.adresa}", "", "", "", "", "", "", "", "", "", "", "Nr. VAT: #{kompania.numri_tvsh}"]
-          csv << ["#{kompania.zip} #{kompania.qyteti}, #{kompania.shteti}", "", "", "", "", "", "#{kompania.kompania}", "", "", "", "", "Nr. Fiskal: #{kompania.numri_fiskal}"]
-          csv << ["Numri Kontaktues: #{current_user.tel_number}", "", "", "", "", "", "", "", "", "", "", "Nr. Biznesit: #{kompania.numri_biznesit}"]
-          csv << ["Email: #{current_user.email}", "", "", "", "", "", "Eksporti: #{@export.nr_exportit}", "", "", "", "", "Nr. Identifikues: #{kompania.numri_identifikues}"]
+          csv << ["Adresa: #{kompania.adresa}", "", "", "", "", "", "", "", "", "", "", "", "Nr. VAT: #{kompania.numri_tvsh}"]
+          csv << ["#{kompania.zip} #{kompania.qyteti}, #{kompania.shteti}", "", "", "", "", "", "#{kompania.kompania}", "", "", "", "", "", "Nr. Fiskal: #{kompania.numri_fiskal}"]
+          csv << ["Numri Kontaktues: #{current_user.tel_number}", "", "", "", "", "", "", "", "", "", "", "", "Nr. Biznesit: #{kompania.numri_biznesit}"]
+          csv << ["Email: #{current_user.email}", "", "", "", "", "", "Eksporti: #{@export.nr_exportit}", "", "", "", "", "", "Nr. Identifikues: #{kompania.numri_identifikues}"]
           csv << [""]
           csv << all_keys_as_array
           @subsat.each do |sub_group|
@@ -60,7 +60,7 @@ class ExportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf { render template: "exports/pdf_mbetja", pdf: "Mbetjet nga Shkarkim - #{Date.today.to_s}", orientation: 'Landscape' }
+      format.pdf { render template: "exports/pdf_mbetja", pdf: "Mbetjet nga Shkarkimi - #{@export.data}", orientation: 'Landscape' }
     end
   end
   

@@ -163,6 +163,8 @@
                                   <%= link_to l, garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
                                 <% elsif l.include? "Garancioni:" %>
                                   <%= link_to l, garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
+                                <% elsif l.include? "as nje garancion" %>
+                                  <%= link_to l, garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
                                 <% else %>
                                   <%= link_to l, edit_autorizim_path(Autorizim.first), class: "dropdown-btn1", style: "font-family: Barlow" %>
                                 <% end %>

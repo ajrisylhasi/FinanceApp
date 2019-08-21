@@ -50,7 +50,7 @@
           <%= f.text_field :nr_normatives, class: 'form-control' %>
           <%= f.file_field :files, multiple: true%>
           <%= f.date_field :data, value: Date.today, class: "form-control"%>
-          <%= f.select "product_id", options_for_select(Product.all.select { |p| p.autorizims.first == Autorizim.first }.collect{ |u| [u.pershkrimi, u.id] }), :prompt => 'Select Product', class: 'form-control' %>
+          <%= f.select "product_id", options_for_select(Product.all.select { |p| p.autorizims.first == Autorizim.first }.collect{ |u| [u.pershkrimi, u.id] }), :prompt => 'Zgjedh Produktin', class: 'form-control' %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>

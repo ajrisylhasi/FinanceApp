@@ -64,6 +64,15 @@
     </tr>
   </table>
 </center>
+<style>
+  .tabela-import{
+    margin-bottom: 40px;
+  }
+  .tabela-import td {
+    width: 300px;
+    text-align: center;
+  }
+</style>
 <% if @normative.kategoria == "auto" %>
   <%= render 'auto' %>
 <% elsif @normative.kategoria == "manual" %>

@@ -22,6 +22,9 @@
         <%= f.label :numri_tel %>
         <%= f.text_field :numri_tel, class: 'form-control' %>
         
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+        
         <%= f.label :numri_fiskal %>
         <%= f.text_field :numri_fiskal, class: 'form-control' %>
         
@@ -49,8 +52,6 @@
         <%= f.label :term, "Koha e pageses se Fatures" %>
         <%= f.number_field :term, class: 'form-control' %>
         
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
         
         <%= f.label :vat, "Perqindja e VAT" %>
         <%= f.number_field :vat, class: 'form-control', step: :any %>

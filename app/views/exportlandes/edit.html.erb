@@ -1,20 +1,22 @@
-<h1 style="color:black">Edit Export</h1>
-
-<div class="row" style="width:100%">
-  <div class="col-md-6 col-md-offset-3">
+<center>
+<div class="row" style="width:500px">
+  <div>
+    <center>
     <%= nested_form_for(@exportlande)do |f|%>
       <%= render 'shared/error_messages', object: f.object %>
       <div style="container">
+        <%= f.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
         <%= f.label :nr_exportit %>
         <%= f.number_field :nr_exportit, class: 'form-control' %>
+        <%= f.label :data %>
         <%= f.date_field :data, class: "form-control" %>
+        <%= f.label :client_id, "Klienti" %>
+        <%= f.select("client_id", Client.all.collect {|n| [ n.kompania,  n.id ] }, { prompt: "Zgjedh Klientin", multiple: false, id: "n" }, class: "form-control") %>
+        <br>
         <%= f.file_field :files, multiple: true %>
-        <%= f.select("client_id", Client.all.collect {|n| [ n.kompania,  n.id ] }, { prompt: "Zgjedh Klientin", multiple: false, id: "n" }) %>
-      </div>
-      <div class="buttons">
-        <%= f.submit "Edit Export",  class: "btn btn-primary" %>
       </div>
     <% end %>
+  </center>
   </div>
-  <%= link_to "Back", exportlande_path, class:"btn btn-primary" %>
 </div>
+</center>

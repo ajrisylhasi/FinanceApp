@@ -11,6 +11,7 @@
       </ul>
     </div>
   <% end %>
+  <%= form.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
 
   <div class="field">
     <%= form.label :nr_mbylljes %>
@@ -21,20 +22,6 @@
     <%= form.label :data %>
     <%= form.date_field :data, class: "form-control", value: Date.today %>
   </div>
-  
-  <div>
-    <button type="button" id="check_all" class="btw">✔</button>
-          <% @empty_imports.each do |i| %>
-            <h4><%= check_box_tag "mbyllja[import_ids][]", i.id, f.object.imports.include?(i) %>
-            <%= i.nr_dud %></h4>
-          <% end %>
-    
-  </div>  
-
-  <div>
-    <%= form.submit "Krijo nje proces te mbylljes", class: "btn btn-primary" %>
-  </div>
-  <%= link_to 'Back', mbylljas_path %>
 </div>
 
 <% end %>

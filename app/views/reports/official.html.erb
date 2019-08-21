@@ -72,4 +72,6 @@
     </table>
   </div>
   <%= link_to "PDF", official_path( format: :pdf, :search => { :date => @date, :import_id => @import }), target: "_blank", class: "btn btn-primary", style: "margin: 15px" %> 
-</center> 
+
+  <%= link_to "CSV", '/official.csv', class: "btn btn-primary", style: "margin: 15px" %></center>
+</center>               

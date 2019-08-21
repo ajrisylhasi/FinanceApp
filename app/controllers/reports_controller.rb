@@ -21,10 +21,21 @@ class ReportsController < ApplicationController
     @client = Client.find(params[:search][:client_id]) rescue 0
     @product = Product.find(params[:search][:product_id]) rescue 0
     product_search
+    all_keys_as_array = ["Klienti", "Data e Eksportit", "Numri i Eksportit", "Numri i Fatures", "Data e Fatures", "Produkti", "Sasia", "Qmimi", "Total"]
     respond_to do |format|
       format.html
       format.json
-      format.pdf { render template: "reports/product_search", pdf: "Product Report - #{Date.today.to_s}"}
+      format.pdf { render template: "reports/product_search", pdf: "Exports Report-#{@date_from}/#{@date_to}"}
+      format.csv {
+        csv_string = CSV.generate do |csv|
+          csv << all_keys_as_array
+          @list.each do |y|
+            csv << [ y.export.client.kompania, y.export.data, y.export.nr_exportit, y.export.fatura.nr_faturess, y.export.fatura.data, y.product.pershkrimi,
+                     y.sasia, y.qmimi, y.qmimi * y.sasia ]
+          end
+        end
+        send_data csv_string, filename: "Product Export-#{@date_from}/#{@date_to}.csv"
+      }
     end
   end
   
@@ -45,8 +56,8 @@ class ReportsController < ApplicationController
     else
       gjendja_bashkimi
     end
-    all_keys_as_array = ["Data", "Importi", "Emertimi", "Tarif Kodi", "Kodi Artikullit", "Pershkrimi", "Sasia", "Njesia", "Pesha",
-                         "Qmimi Total", "Taksa Doganore", "Akciza", "TVSH", "Gjithsej Taksa"]
+    all_keys_as_array = ["Data", "Importi", "Emertimi", "Tarif Kodi", "Kodi Artikullit", "Pershkrimi", "Sasia", "Njesia", "Pesha (KG)",
+                         "Qmimi Total (€)", "Taksa Doganore (€)", "Akciza (€)", "TVSH (€)", "Gjithsej Taksa (€)"]
     respond_to do |format|
       format.html
       format.json
@@ -58,11 +69,12 @@ class ReportsController < ApplicationController
             csv << [ y[2].data, y[2].nr_dud, y[1], x[3].article.tarif_kodi, y[0], Article.where(kodi: y[0]).first.pershkrimi,
                      x[0].round(4), x[3].njesia, x[1].round(4), x[2].round(4), x[4].round(4), x[5].round(4), x[6].round(4), x[7].round(4)]
           end
+          csv << ["", "", "", "", "", "Totali", "", "", @totali_pesha.round(4), @totali_qmimi_tot.round(4), @totali_taksa_dogana.round(4), @totali_taksa_akciza.round(4), @totali_taksa_tvsh.round(4), @totali_gjithsej_taksat.round(4)]
         end
         if @date != 0
-          send_data csv_string, filename: "Gjendja-#{@date}.csv"
+          send_data csv_string, filename: "Gjendja e Pergjithshme-#{@date}.csv"
         else
-          send_data csv_string, filename: "Gjendja-#{Date.today}.csv"
+          send_data csv_string, filename: "Gjendja e Pergjithshme-#{Date.today}.csv"
         end
       }
     end
@@ -126,10 +138,30 @@ class ReportsController < ApplicationController
     else
       official_bashkimi
     end
+    all_keys_as_array = ["Data", "Importi", "Emertimi", "Tarif Kodi", "Kodi Artikullit", "Pershkrimi", "Sasia", "Njesia", "Pesha (KG)",
+                         "Qmimi Total (€)", "Taksa Doganore (€)", "Akciza (€)", "TVSH (€)", "Gjithsej Taksa (€)"]
     respond_to do |format|
       format.html
       format.json
       format.pdf { render template: "reports/official", pdf: "Official Report - #{Date.today.to_s}"}
+      format.csv {
+        csv_string = CSV.generate do |csv|
+          csv << all_keys_as_array
+          @gjendja.each do |y, x|
+            csv << [ y[2].data, y[2].nr_dud, y[1], x[3].article.tarif_kodi, y[0], Article.where(kodi: y[0]).first.pershkrimi,
+                     x[0].round(4), x[3].njesia, x[1].round(4), x[2].round(4), x[4].round(4), x[5].round(4), x[6].round(4), x[7].round(4)]
+            csv << [ y[2].data.strftime("%d/%m/%Y"), y[2].nr_dud, y[1], x[3].article.tarif_kodi, y[0], Article.where(kodi: y[0]).first.pershkrimi_gjate, 
+                      '%.2f' % x[0].round(2), x[3].njesia, '%.2f' % x[1].round(2), '%.2f' % x[2].round(2), '%.2f' % x[4].round(2), '%.2f' % x[5].round(2), 
+                      '%.2f' % x[6].round(2), '%.2f' % x[7].round(2)]
+          end
+          csv << ["", "", "", "", "", "Totali", "", "", @totali_pesha.round(4), @totali_qmimi_tot.round(4), @totali_taksa_dogana.round(4), @totali_taksa_akciza.round(4), @totali_taksa_tvsh.round(4), @totali_gjithsej_taksat.round(4)]
+        end
+        if @date != 0
+          send_data csv_string, filename: "Gjendja Zyrtare-#{@date}.csv"
+        else
+          send_data csv_string, filename: "Gjendja Zyrtare-#{Date.today}.csv"
+        end
+      }
     end
   end
 end

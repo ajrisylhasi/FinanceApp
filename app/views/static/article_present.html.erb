@@ -10,7 +10,7 @@
 <% if @articles.count != 0 %>
   <center>
     <% @articles.each do |a| %>
-      <div style="width: 25%; padding: 15px">
+      <div style="width: 50%; padding: 15px">
         <h2><%= a.pershkrimi %> - <%= a.tarif_kodi %></h2>
       </div>
     <% end %>
@@ -25,8 +25,3 @@
     </div>
   </center>
 <% end %>
-<center>
-  <%= link_to "Autorizimi", autorizim_path(autorizimi), class: "btn btn-primary" %>
-  <%= link_to "Artikujt", articles_path, class: "btn btn-primary" %>
-  <%= link_to "Importet", imports_path, class: "btn btn-primary" %>
-</center>

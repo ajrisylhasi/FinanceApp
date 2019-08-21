@@ -4,7 +4,6 @@
   </title>
 </head>
 <center>
-  <%= link_to "Back", @export, class:"btn btn-primary" %>
   <%= link_to "PDF", specifikacioni_path( format: :pdf), target: "_blank", class: "btn btn-primary", style: "margin: 15px" %> 
   <%= link_to "CSV", specifikacioni_path( format: :csv), target: "_blank", class: "btn btn-primary" %> 
   <% @subsat.each do |sub_group| %>
