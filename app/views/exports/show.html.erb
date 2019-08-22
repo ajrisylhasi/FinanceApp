@@ -110,12 +110,12 @@
                 <% unless na.object.persisted? %>
                   <div class="modal-body">
                 
-                    <%= na.select :product_id, Product.pluck( :pershkrimi, :id), { include_blank: "Selekto Produktin", multiple: false}, :id => "product_select", class: "form-control" %>
+                    <%= na.select :product_id, Product.all.collect { |p| [p.pershkrimi_plote, p.id]}, { include_blank: "Selekto Produktin", multiple: false}, :id => "product_select", class: "form-control" %>
                     <%= na.label :sasia %>
                     <%= na.number_field :sasia, step: :any, class: "form-control" %>
                     <div>
                     <%= na.label :normative_id, "Selekto Normativen" %>
-                    <%= na.grouped_collection_select("normative_id", Product.order(:pershkrimi), :working_normatives, :pershkrimi, :id, :show_text,
+                    <%= na.grouped_collection_select("normative_id", Product.order(:pershkrimi), :working_normatives, :pershkrimi_plote, :id, :show_text,
                                                                           { include_blank: "Select Normative", multiple: false}, :id => "normative_select", class: "form-control") %>
                     </div>
                   </div>
@@ -156,7 +156,7 @@
             <tr style="background: white"> 
           <% end %>
             <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
-            <td style="width:100px"><center><%= pr.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= pr.pershkrimi_plote %></center></td>
             <td style="width:100px"><center><%= pr.tarif_kodi %></center></td>
             <td style="width:75px"><center><%= ep.sasia %></center></td>
             <td style="width:100px"><center><%= (pr.qmimi * ep.sasia ).round(2)%></center></td>
@@ -198,4 +198,7 @@
       show_slow_warning();
     });
   });
+
+
+
 </script>

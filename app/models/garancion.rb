@@ -7,4 +7,7 @@ class Garancion < ApplicationRecord
   def default_values
     update_column(:vlera_t, self.vlera)
   end
+
+  def graph_pershkrimi
+  end
 end

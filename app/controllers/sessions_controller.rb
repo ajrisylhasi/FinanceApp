@@ -7,16 +7,16 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(name: params[:session][:name])
     if !(user)
-      flash[:danger] = 'No User'
+      flash[:danger] = 'Perdoruesi nuk ekziston.'
       redirect_to login_path
     elsif !(user.authenticate(params[:session][:password]))
-      flash[:danger] = 'Wrong Password'
+      flash[:danger] = 'Fjalekalimi eshte Gabimi'
       redirect_to login_path
     elsif
       log_in(user)
       redirect_to root_path
     else
-      flash[:danger] = "Something Wrong"
+      flash[:danger] = "Diqka eshte Gabim"
       redirect_to login_path
     end
   end

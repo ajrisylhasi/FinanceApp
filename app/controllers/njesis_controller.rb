@@ -42,7 +42,7 @@ class NjesisController < ApplicationController
   def update 
       @njesi = Njesi.find(params[:id])
       if @njesi.update_attributes(njesi_params)
-        redirect_to @njesi
+        redirect_to njesis_path
       else
         render 'edit'
       end

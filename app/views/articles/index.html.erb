@@ -23,7 +23,7 @@
           <td colspan="4"><center></center></td>
         </tr>
         <% iter = 0 %>
-        <% @articles.each do |a| %>
+        <% @articles.each do |a| %> 
           <% if iter.even? %>
             <tr style="background: #dee2e6">  
           <% else %>
@@ -39,7 +39,6 @@
             <td><center><%= a.lloji_akcizes  %></td></center>
             <td><center><%= a.akciza  %> <% unless a.lloji_akcizes == "%" %>€<% else %>%<% end %></td></center>
             <td style="width: 25px"></td>
-            <td style="width: 50px; border: 0px"><center><%= link_to a do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center>
             <td style="width: 50px; border: 0px"><center><%= link_to edit_article_path(a) do %> <span class="glyphicon glyphicon-pencil" style="color: black; font-size: 18px"></span><% end %></td></center>
             <td style="width: 50px; border: 0px"><center><%= link_to a, method: :delete do %>
               <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %>

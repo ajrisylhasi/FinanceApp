@@ -55,8 +55,8 @@
     </table>
   </div>
   
-  <%= link_to "PDF", mbetja_path( format: :pdf, :search => { :date => @date }), target: "_blank", class: "btn btn-primary", style: "margin: 15px" %>
-  <%= link_to "CSV", mbetja_path( format: :csv, :search => { :date => @date }), target: "_blank", class: "btn btn-primary", style: "margin: 15px" %>
+  <%= link_to "PDF", mbetja_path( format: :pdf, :search => { :date => @date }), target: "_blank", class: "btn btn-primary", id: 'pdf-fatura', style: "margin: 15px" %>
+  <%= link_to "CSV", mbetja_path( format: :csv, :search => { :date => @date }), target: "_blank", class: "btn btn-primary", id: 'csv-fatura', style: "margin: 15px" %>
 </center>
 <style>
   .fatura-tabela td {

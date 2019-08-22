@@ -1,3 +1,29 @@
-
-<%= pie_chart @imports_taksa %>
-
+<center>
+<div style="margin-top: 50px">
+<center>
+	<table>
+		<tr>
+			<td style="width: 600px">
+				<center><p>Vlera Aktuale e Garancionit: <%= @vlera_garancioneve %>  €</p></center>
+				<%= area_chart @garancions_graph %>
+			</td>
+			<td style="width: 600px">
+				<%= pie_chart @imports_taksa %>
+			</td>
+		</tr>
+		<tr style="height: 50px">
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 600px">
+				<%= pie_chart @imports_taksa %>
+			</td>
+			<td style="width: 600px">
+				<%= pie_chart @imports_taksa %>
+			</td>
+		</tr>
+	</table>
+</center>
+</div>
+</center>

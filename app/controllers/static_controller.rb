@@ -26,6 +26,15 @@ class StaticController < ApplicationController
       taksa_tot = Client.find(c).imports.each { |i| tot += i.taksa}
       @imports_taksa.push [Client.find(c).kompania, tot.round(2)]
     end
+    @garancions_graph = []
+    garancions = Garancion.last(5)
+    garancions.each do |c|
+      @garancions_graph.push ["Garancioni: #{c.identifikimi}", c.vlera]
+    end
+    garancionet_valide = Garancion.all.select { |g| g.data_skadimit > Date.current }
+    garancionet_valide.each do |g|
+      @vlera_garancioneve += g.vlera
+    end
   end
   
   def reportet

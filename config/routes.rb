@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :doganas
   resources :destinims
   resources :kompanis, only: [:edit, :update, :show]
-  get 'sessions/new'
   resources :users
   get 'faturas/edit'
   get 'faturas/show'
@@ -11,7 +10,7 @@ Rails.application.routes.draw do
   get "/product_search", to: "reports#products"
   get "/import_search", to: "reports#imports"
   get "/official", to: "reports#official"
-  root 'static#home'
+  get '/home', to: "static/home"
   
   get "/gjendja", to: "reports#gjendja"
   get "/mbetja", to: "reports#mbetja"
