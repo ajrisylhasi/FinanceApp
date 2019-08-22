@@ -19,7 +19,7 @@ module SessionsHelper
   def go_login
     unless logged_in?
       flash[:danger] = "Sta ka kakit dhomi"
-      redirect_to login_path
+      redirect_to root_path
     end
   end
   

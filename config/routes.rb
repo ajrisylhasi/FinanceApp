@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "/product_search", to: "reports#products"
   get "/import_search", to: "reports#imports"
   get "/official", to: "reports#official"
-  get '/home', to: "static/home"
+  get '/home', to: 'static#home'
   
   get "/gjendja", to: "reports#gjendja"
   get "/mbetja", to: "reports#mbetja"
@@ -96,7 +96,7 @@ Rails.application.routes.draw do
   post 'faturas/:id', to: 'faturas#change_edit', as: "change_edit"
   get 'normatives/:id/normativa', to: "normatives#pdf", as: "normative_pdf"
   
-  get 'login' => 'sessions#new'
+  root 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   
