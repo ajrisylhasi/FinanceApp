@@ -6,6 +6,10 @@ class SubMbyllja < ApplicationRecord
     self.sub.import_gjendja.import_article
   end
 
+  def e
+    self.sub.export
+  end
+  
   def transport
     a = BigDecimal.new(self.qmimi.to_s)
     b = BigDecimal.new(i.qmimi.to_s)

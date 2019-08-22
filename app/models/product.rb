@@ -21,4 +21,15 @@ class Product < ApplicationRecord
   def pershkrimi_plote
     self.pershkrimi + " (#{self.articlenr})"
   end
+
+  def shitja
+    shuma = 0
+    self.export_products.each do |ep|
+      shuma += ep.product.qmimi * ep.sasia
+    end
+    shuma
+
+  end
+  
+
 end

@@ -4,11 +4,14 @@
 	<table>
 		<tr>
 			<td style="width: 600px">
-				<center><p>Vlera Aktuale e Garancionit: <%= @vlera_garancioneve %>  €</p></center>
-				<%= area_chart @garancions_graph %>
+				<center><h3>Garancionet</h3></center>
+				<center><p>Vlera Aktuale e Garancionit: <%= $vlera_garancioneve.round(3) %>  €</p></center>
+				<%= pie_chart @garancions_graph %>
 			</td>
 			<td style="width: 600px">
-				<%= pie_chart @imports_taksa %>
+				<center><h3>Taksat e Importeve sipas Klientit</h3></center>
+				<br>
+				<%= column_chart @imports_taksa%>
 			</td>
 		</tr>
 		<tr style="height: 50px">
@@ -17,10 +20,26 @@
 		</tr>
 		<tr>
 			<td style="width: 600px">
-				<%= pie_chart @imports_taksa %>
+				<center><h3>Taksat e Mbetjeve sipas Eksportit</h3></center>
+				<br>
+				<%= column_chart @mbetja_taksa %>
 			</td>
 			<td style="width: 600px">
-				<%= pie_chart @imports_taksa %>
+				<center><h3>Taksat e Importeve</h3></center>
+				<br>
+				<%= column_chart @imports_taksa_pa %>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 600px">
+				<center><h3>Shitja e Produkteve</h3></center>
+				<br>
+				<%= column_chart @shitja_produktit %>
+			</td>
+			<td style="width: 600px">
+				<center><h3>Taksat e Eksporteve sipas Klientit</h3></center>
+				<br>
+				<%= column_chart @exports_taksat %>
 			</td>
 		</tr>
 	</table>

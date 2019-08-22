@@ -130,7 +130,7 @@
                 <% unless f.object.persisted? %>
                   <div class="modal-body">
               
-                    <%= f.select("article_id", Article.all.select { |a| a.autorizims.first == Autorizim.first }.collect {|p| ["#{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Zgjedh Artikullin", multiple: false}) %>
+                    <%= f.select("article_id", Article.all.select { |a| a.autorizims.first == Autorizim.first }.collect {|p| ["#{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Zgjedh Artikullin", multiple: false}) %><br>
                     
                     <%= f.label :emertimi %>
                     <%= f.text_field :emertimi, class: "form-control" %>
@@ -139,10 +139,10 @@
                     <%= f.number_field :sasia, step: :any, class: "form-control" %>
                     
                     <%= f.label :qmimi, "Qmimi" %>
-                    <%= f.number_field :qmimi, step: :any, class: "form-control" %> €
+                    <%= f.number_field :qmimi, step: :any, class: "form-control" %> 
                       
                     <%= f.label :pesha, "Pesha" %>
-                    <%= f.number_field :pesha, step: :any, class: "form-control" %><%= " Kg" %>
+                    <%= f.number_field :pesha, step: :any, class: "form-control" %>
                   
               
                   </div>

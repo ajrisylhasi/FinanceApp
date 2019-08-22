@@ -12,6 +12,7 @@ class ExportsController < ApplicationController
     @export = Export.find(params[:id])
     @pesha_b = @export.pesha_b
     @pesha_n = @export.pesha_n
+    @pesha_bruto = @export.pesha_bruto
     @ep = @export.export_products.build
   end
   

@@ -23,6 +23,7 @@
     <table>
       <tr class="hedi">
         <td><center>Importi</center></td>
+        <td><center>Eksporti</center></td>
         <td><center>Emertimi</center></td>
         <td><center>Tarif Kodi</center></td>
         <td><center>Kodi Artikullit</center></td>
@@ -45,6 +46,7 @@
           <tr style="background: white"> 
         <% end %>
           <td style=""><center><%= y.i.import.nr_dud %></center></td>
+          <td style=""><center><%= y.e.nr_exportit %></center></td>
           <td style=""><center><%= y.emertimi %></center></td>
           <td style=""><center><%= y.i.article.tarif_kodi %></center></td>
           <td style=""><center><%= y.i.article.kodi %></center></td>
@@ -67,12 +69,12 @@
         <td style="width:100px"><center><strong>Total:</strong></center></td>
         <td style="width:100px"></td>
         <td style="width:100px"></td>
-        <td style="width:100px"><center><strong><%= '%.2f' % @totali_pesha.round(2) %> Kg</strong></center></td>
-        <td style="width:100px"><center><strong><%= '%.2f' % @totali_qmimi_tot.round(2) %> €</strong></center></td>
-        <td style="width:100px"><center><strong><%= '%.2f' % @totali_taksa_dogana.round(2) %> €</strong></center></td>
-        <td style="width:100px"><center><strong><%= '%.2f' % @totali_taksa_akciza.round(2) %> €</strong></center></td>
-        <td style="width:100px"><center><strong><%= '%.2f' % @totali_taksa_tvsh.round(2) %> €</strong></center></td>
-        <td style="width:100px"><center><strong><%= '%.2f' % @totali_gjithsej_taksat.round(2) %> €</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_pesha.round(2) %> Kg</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_qmimi_tot.round(2) %> €</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_taksa_dogana.round(2) %> €</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_taksa_akciza.round(2) %> €</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_taksa_tvsh.round(2) %> €</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_gjithsej_taksat.round(2) %> €</strong></center></td>
       </tr>
     </table>
   </div>

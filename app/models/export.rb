@@ -38,4 +38,41 @@ class Export < ApplicationRecord
     end
     shuma
   end
+
+  def pesha_bruto
+    shuma = 0
+    self.export_products.each do |a|
+      shuma += a.normative.pesha_bruto * a.sasia
+    end
+    shuma
+  end
+
+  def mbetja_taksa
+    shuma = 0
+    self.subs.each do |s|
+      if s.sub_mbyllja != nil
+        if s.sub_mbyllja.sasia > 0 
+          shuma += s.sub_mbyllja.gjithsej_taksa
+        end
+      else
+        shuma += s.mbetja_gjithsej_taksa
+      end
+
+    end
+    shuma
+  end
+
+  def taksa
+    shuma = 0
+    self.subs.each do |s|
+      if s.sub_mbyllja != nil
+        if s.sub_mbyllja.sasia > 0 
+          shuma += s.sub_mbyllja.gjithsej_taksa
+        end
+      else
+        shuma += s.gjithsej_taksa
+      end
+    end
+    shuma
+  end
 end

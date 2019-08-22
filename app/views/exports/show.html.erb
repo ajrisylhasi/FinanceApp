@@ -69,16 +69,19 @@
         </div>
       </td>
       <td>
-      </td>
-      <td>
         <div>
           <%= '%.2f' % @pesha_b.round(2) %> Kg
         </div>
       </td>
+      <td>
+        <div>
+          <%= '%.2f' % @pesha_bruto.round(2) %> Kg
+        </div>
+      </td>
     </tr>
-    <tr>
+    <tr style="">
       <td colspan="3">
-        <center><%= link_to export_files_path(@export) do %> <span class="glyphicon glyphicon-folder-open" style="color: black; font-size: 18px"></span><% end %></center>
+        <center><%= link_to export_files_path(@export) do %> <span class="glyphicon glyphicon-folder-open" style="color: black; font-size: 18px; padding-top: 25px"></span><% end %></center>
       </td>
     </tr>
   </table>
@@ -145,7 +148,7 @@
         <td style="width:100px"><center>Pershkrimi</center></td>
         <td style="width:100px"><center>Tarif Kodi</center></td>
         <td style="width:100px"><center>Sasia</center></td>
-        <td style="width:100px"><center>Qmimi</center></td>
+        <td style="width:100px"><center>Shuma</center></td>
         <td style="width:100px"><center><span>&#x2715;</span></center></td>
       </tr>
       <% iter = 0 %>

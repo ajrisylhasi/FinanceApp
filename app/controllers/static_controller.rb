@@ -27,6 +27,7 @@ class StaticController < ApplicationController
       @imports_taksa.push [Client.find(c).kompania, tot.round(2)]
     end
     @garancions_graph = []
+    @vlera_garancioneve = 0
     garancions = Garancion.last(5)
     garancions.each do |c|
       @garancions_graph.push ["Garancioni: #{c.identifikimi}", c.vlera]
@@ -34,6 +35,28 @@ class StaticController < ApplicationController
     garancionet_valide = Garancion.all.select { |g| g.data_skadimit > Date.current }
     garancionet_valide.each do |g|
       @vlera_garancioneve += g.vlera
+    end
+    @imports_taksa_pa = []
+    imports = Import.last(5)
+    imports.each do |c|
+      @imports_taksa_pa.push ["Importi: #{c.nr_dud}", c.taksa.round(2)]
+    end
+    @mbetja_taksa = []
+    exports = Export.last(5)
+    exports.each do |c|
+      @mbetja_taksa.push ["Eksporti: #{c.nr_exportit}", c.mbetja_taksa.round(2)]
+    end
+    @shitja_produktit = []
+    prod = Product.all.sort_by { |pr| pr.shitja}.reverse.first(10)
+    prod.each do |p|
+      @shitja_produktit.push ["Produkti: #{p.pershkrimi_plote}", p.shitja.round(2)]
+    end
+    @exports_taksat = []
+    clients_e = Export.pluck(:client_id).uniq 
+    clients_e.each do |c|
+      tot = 0.0
+      taksa_tot = Client.find(c).exports.each { |e| tot += e.taksa}
+      @exports_taksat.push [Client.find(c).kompania, tot.round(2)]
     end
   end
   

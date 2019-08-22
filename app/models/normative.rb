@@ -63,6 +63,14 @@ class Normative < ApplicationRecord
         end
         vlera
     end
+
+    def pesha_bruto
+        vlera = 0 
+        self.normative_articles.each do |a|
+            vlera += a.pesha_bruto
+        end
+        vlera
+    end
     
     def show_text
         "#{nr_normatives} - #{self.product.pershkrimi}"
