@@ -19,7 +19,7 @@
     </div>
     <div style="display: inline-block; height: 120px; width: 600px; vertical-align: top;; margin-bottom: 20px">
       <center><div style="font-size: 25px; position:absolute; vertical-align:top; left: 0; width: 100%;"><%= wicked_pdf_image_tag kompania.image_url(:thumb).to_s %></div></center>
-      <center><p style="font-size: 25px; position:absolute; vertical-align:top; left: 0; width: 100%; top: 8%;"><strong><%= kompania.kompania %></strong></p></center>
+      <center><p style="font-size: 25px; position:absolute; vertical-align:top; left: 0; width: 100%; top: 90px;"><strong><%= kompania.kompania %></strong></p></center>
     </div>
     <div style="display: inline-block; height: 120px; width: 440px; vertical-align: top">
       <div style="">
@@ -35,8 +35,8 @@
   <center><div style="display: inline-block;">
     <h3 style="text-align: center; white-space: nowrap;"> Specifikacioni per Shkarkim</h3>
   </div>
-  <div style="display: inline-block; position: absolute; margin-left:100px;">
-    <h3 style="text-align: right; white-space: nowrap; margin-top:30px">Eksporti: <%= @export.nr_exportit %></h3>
+  <div style="display: inline-block; position: absolute; margin-left:150px;">
+    <h3 style="text-align: right; white-space: nowrap; margin-top:25px">Eksporti: <%= @export.nr_exportit %></h3>
   </div></center>
   <% i = 0 %>
   <% @subsat.each do |sub_group| %>
@@ -77,20 +77,7 @@
             </tr>
           <% end %>
         </table>
-        <table style="width: 1300px">
-          <tr>
-            <td>
-              <div>
-                <p>Totali i peshes per shkarkim: <%= @tot_pesha %> Kg</p>
-                <p>Totali i vleres se qmimit per shkarkim: <%= @tot_qmimi %> €</p>
-                <p>Totali i vleres se takses doganore: <%= @tot_dog %> €</p>
-                <p>Totali i vleres se takses akcizes: <%= @tot_akciza %> €</p>
-                <p>Totali i vleres se TVSH: <%= @tot_tvsh %> €</p>
-                <p>Totali i vleres se taksave: <%= @tot_taksa %> €</p>
-              </div>
-            </td>
-          </tr>
-        </table>
+        
       </center>
       <% if i == @numri - 1 %>
         <div style="margin-top: 100px">
@@ -104,6 +91,22 @@
     </div>
     <% i+=1 %>
   <% end %>
+  <center>
+    <table style="width: 1300px">
+      <tr>
+        <td>
+          <div>
+            <p>Totali i peshes per shkarkim: <%= @tot_pesha.round(2) %> Kg</p>
+            <p>Totali i vleres se qmimit per shkarkim: <%= @tot_qmimi.round(2) %> €</p>
+            <p>Totali i vleres se takses doganore: <%= @tot_dog.round(2) %> €</p>
+            <p>Totali i vleres se takses akcizes: <%= @tot_akciza.round(2) %> €</p>
+            <p>Totali i vleres se TVSH: <%= @tot_tvsh.round(2) %> €</p>
+            <p>Totali i vleres se taksave: <%= @tot_taksa.round(2) %> €</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </center>
 </html>
 <style type="text/css">
     table { page-break-inside:auto }

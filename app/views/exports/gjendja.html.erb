@@ -49,12 +49,12 @@
   <tr>
     <td>
       <div>
-        <p>Totali i peshes per shkarkim: <%= @tot_pesha %> Kg</p>
-        <p>Totali i vleres se qmimit per shkarkim: <%= @tot_qmimi %> €</p>
-        <p>Totali i vleres se takses doganore: <%= @tot_dog %> €</p>
-        <p>Totali i vleres se takses akcizes: <%= @tot_akciza %> €</p>
-        <p>Totali i vleres se TVSH: <%= @tot_tvsh %> €</p>
-        <p>Totali i vleres se taksave: <%= @tot_taksa %> €</p>
+        <p>Totali i peshes per shkarkim: <%= @tot_pesha.round(2) %> Kg</p>
+        <p>Totali i vleres se qmimit per shkarkim: <%= @tot_qmimi.round(2) %> €</p>
+        <p>Totali i vleres se takses doganore: <%= @tot_dog.round(2) %> €</p>
+        <p>Totali i vleres se takses akcizes: <%= @tot_akciza.round(2) %> €</p>
+        <p>Totali i vleres se TVSH: <%= @tot_tvsh.round(2) %> €</p>
+        <p>Totali i vleres se taksave: <%= @tot_taksa.round(2) %> €</p>
       </div>
     </td>
   </tr>
