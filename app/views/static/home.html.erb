@@ -5,12 +5,13 @@
 		<tr>
 			<td style="width: 600px">
 				<center><h3>Garancionet</h3></center>
-				<center><p>Vlera Aktuale e Garancionit: <%= $vlera_garancioneve.round(3) %>  €</p></center>
+				<center><p>Garancionet te regjistruara: <%= $vlera_garancioneve.round(3) %>  €</p></center>
+				<center><p>Vlera Aktuale e Garancioneve: <%= $garancioni_mbetur.round(3) %>  €</p></center>
 				<%= pie_chart @garancions_graph %>
 			</td>
 			<td style="width: 600px">
 				<center><h3>Taksat e Importeve sipas Klientit</h3></center>
-				<br>
+				<br> <br> <br> <br>
 				<%= column_chart @imports_taksa%>
 			</td>
 		</tr>
@@ -32,7 +33,7 @@
 		</tr>
 		<tr>
 			<td style="width: 600px">
-				<center><h3>Shitja e Produkteve</h3></center>
+				<center><h3>10 Produktet me te shitura</h3></center>
 				<br>
 				<%= column_chart @shitja_produktit %>
 			</td>

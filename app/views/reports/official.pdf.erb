@@ -32,14 +32,14 @@
     </div>
   </div>
 <center><div style="display: inline-block;">
-    <h1 style="text-align: center;">Raport per Institucionet Doganore</h1>
+    <h3 style="text-align: center; white-space: nowrap;">Raport per Institucionet Doganore</h3>
   </div>
 </center>
 <h4><strong>Pasqyra e gjendjes se stokut ne Perpunim te Brendshem</strong></h3>
 <% if @date != 0 %>
-  <h4>Kjo pasqyre tregon gjendjen e stokut per muajin <%= I18n.localize @date, format: :long %> pas shkarkimit te fundit te fundit me DUD - EX3</h3>
+  <h4>Kjo pasqyre tregon gjendjen e stokut per muajin <%= I18n.localize @date, format: :long %> pas shkarkimit te fundit te fundit me DUD EX-3</h3>
 <% else %>
-  <h4>Kjo pasqyre tregon gjendjen e stokut per muajin <%= I18n.localize Date.today, format: :long %> pas shkarkimit te fundit te fundit me DUD - EX3</h3>
+  <h4>Kjo pasqyre tregon gjendjen e stokut per muajin <%= I18n.localize Date.today, format: :long %> pas shkarkimit te fundit te fundit me DUD EX-3</h3>
 <% end %>
 <center><table style="border: 2px solid black; margin-bottom: 30px; margin-top: 5px">
     <tr id="trjat" style="background: grey; border: 1px solid black;">
