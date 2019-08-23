@@ -25,6 +25,23 @@ class ExportsController < ApplicationController
     @export = Export.find(params[:id])
     bashkimi_sub(@export)
     @numri = @subsat.count
+    @tot_array = []
+    @tot_pesha = 0
+    @tot_qmimi = 0
+    @tot_dog = 0
+    @tot_akciza = 0
+    @tot_tvsh = 0
+    @tot_taksa = 0
+    @subsat.each do |sub_g|
+      sub_g.each do |x, y|
+        @tot_pesha += y[1]
+        @tot_qmimi += y[2]
+        @tot_dog += y[3]
+        @tot_akciza += y[4]
+        @tot_tvsh += y[5]
+        @tot_taksa += y[6]
+      end
+    end
     respond_to do |format|
       format.html
       format.json
