@@ -21,7 +21,7 @@
       <center><div style="font-size: 25px; position:absolute; vertical-align:top; left: 0; width: 100%;"><%= wicked_pdf_image_tag kompania.image_url(:thumb).to_s %></div></center>
       <center><p style="font-size: 25px; position:absolute; vertical-align:top; left: 0; width: 100%; top: 8%;"><strong><%= kompania.kompania %></strong></p></center>
     </div>
-    <div style="display: inline-block; height: 120px; width: 480px; vertical-align: top">
+    <div style="display: inline-block; height: 120px; width: 550px; vertical-align: top">
       <div style="">
         <center>
           <% if kompania.numri_tvsh != "" %><div style=" font-size:15px; font-weight: bold; text-align: right; margin-right: 15px;">Nr. VAT: <%= kompania.numri_tvsh %></div><% end %>
@@ -35,14 +35,14 @@
   <center><div style="display: inline-block;">
     <h1 style="text-align: center;"> Specifikacioni per Shkarkim</h1>
   </div>
-  <div style="display: inline-block; position: absolute; margin-left:260px;">
+  <div style="display: inline-block; position: absolute; margin-left:100px;">
     <h2 style="text-align: right; white-space: nowrap; margin-top:30px">Eksporti: <%= @export.nr_exportit %></h2>
   </div></center>
   <% i = 0 %>
   <% @subsat.each do |sub_group| %>
     <div class="mesdaj">
       <center>
-        <h3 style="font-size: 23px">Ky material duhet te shkarkohet nga DUD-i me numer te references: <%= sub_group.keys.first[2].nr_dud %> Date: <%= sub_group.keys.first[2].data.strftime("%d/%m/%Y") %> i cili eshte me procedure IM-5.</h3>
+        <h3 style="font-size: 21px; white-space: nowrap;">Ky material duhet te shkarkohet nga DUD-i me numer te references: <%= sub_group.keys.first[2].nr_dud %> Date: <%= sub_group.keys.first[2].data.strftime("%d/%m/%Y") %> i cili eshte me procedure IM-5.</h3>
         <table style="border: 2px solid black; margin-bottom: 30px; margin-top: 5px">
           <tr id="trjat" style="background: grey; border: 1px solid black;">
             <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Importi</center></td>

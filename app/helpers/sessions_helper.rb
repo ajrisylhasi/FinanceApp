@@ -18,7 +18,7 @@ module SessionsHelper
   
   def go_login
     unless logged_in?
-      flash[:danger] = "Sta ka kakit dhomi"
+      flash[:danger] = "Duhet te kyqeni paraprakisht."
       redirect_to root_path
     end
   end
