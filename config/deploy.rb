@@ -2,7 +2,7 @@
 lock "~> 3.11.2"
 
 set :application, "perpunim-brendshem"
-set :repo_url, "git@github.com:username/myapp.git"
+set :repo_url, "https://git.heroku.com/perpunimi-test.git"
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
