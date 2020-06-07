@@ -1,0 +1,13 @@
+<center>
+  <%= link_to "Back", @import, class:"btn btn-primary" %>
+  <table border="4">
+    <h1> Gjendja </h1>
+    <% @gjendja.each do |x, y| %>
+      <tr>  
+        <td style="width:100px"><center><%= Article.where(kodi: x[0]).first.pershkrimi %></center></td>
+        <td style="width:100px"><center><%= y %> <%= Article.where(kodi: x[0]).first.njesia %></center></td>
+        <td style="width:100px"><center><%= x[1] %></center></td>
+      </tr>
+    <% end %>
+  </table>
+</center>

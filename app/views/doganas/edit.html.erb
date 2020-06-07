@@ -1,0 +1,25 @@
+
+<center>
+  <div class="row" style="width:500px">
+    <div>
+      <div>
+        <div>
+          <center>
+          <%= nested_form_for(@dogana)do |f|%>
+            <%= render 'shared/error_messages', object: f.object %>
+            <div>
+              <%= f.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
+              <%= f.label :kodi, "Kodi" %>
+              <%= f.text_field :kodi, class: 'form-control' %>
+              <%= f.label :pershkrimi%>
+              <%= f.text_field :pershkrimi, class: 'form-control' %>
+            </div>
+          <% end %>
+        </center>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</center>
+<p style="color: white">s</p>

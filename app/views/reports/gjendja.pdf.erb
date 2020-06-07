@@ -1,0 +1,112 @@
+<head>
+    <%= wicked_pdf_stylesheet_link_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+  </head>
+<div class="pdfheader">
+    <div style="display: inline-block; height: 85px;">
+      <p style="font-size:15px; padding: 0px; margin: 0px"><strong>Adresa: <%= kompania.adresa %></strong></p> 
+      <p style="font-size:15px; padding: 0px; margin: 0px"><strong><%= kompania.zip %> <%= kompania.qyteti %>, <%= kompania.shteti %></strong></p> 
+      <p style="font-size:15px; padding: 0px; margin: 0px"><strong>Nr. Kontaktues: <%= current_user.tel_number %></strong></p> 
+      <p style="font-size:15px; padding: 0px; margin: 0px"><strong>Email: <%= current_user.email %></strong></p> 
+    </div>
+    <div style="display: inline-block; height: 120px; width: 600px; vertical-align: top;; margin-bottom: 20px">
+      <center><div style="font-size: 25px; position:absolute; vertical-align:top; left: 0; width: 100%;"><%= wicked_pdf_image_tag kompania.image_url(:thumb).to_s %></div></center>
+      <center><p style="font-size: 25px; position:absolute; vertical-align:top; left: 0; width: 100%; top: 90px;"><strong><%= kompania.kompania %></strong></p></center>
+    </div>
+    <div style="display: inline-block; height: 120px; width: 440px; vertical-align: top">
+      <div style="">
+        <center>
+          <% if kompania.numri_tvsh != "" %><div style=" font-size:15px; font-weight: bold; text-align: right; margin-right: 15px;">Nr. TVSH: <%= kompania.numri_tvsh %></div><% end %>
+          <% if kompania.numri_fiskal != "" %><div style=" font-size:15px; font-weight: bold; text-align: right; margin-right: 15px;">Numri Fiskal: <%= kompania.numri_fiskal %></div><% end %>
+          <% if kompania.numri_biznesit != "" %><div style=" font-size:15px; font-weight: bold; text-align: right; margin-right: 15px;">Numri Biznesit: <%= kompania.numri_biznesit %></div><% end %>
+          <% if kompania.numri_identifikues != ""%><div style=" font-size:15px; font-weight: bold; text-align: right; margin-right: 15px;">Numri Identifikues: <%= kompania.numri_identifikues %></div> <% end %>
+        </center>
+      </div>
+    </div>
+  </div>
+<center><div style="display: inline-block;">
+    <h1 style="text-align: center;">Gjendja e Pergjithshme</h1>
+  </div>
+</center>
+<center><table style="border: 2px solid black; margin-bottom: 30px; margin-top: 5px">
+    <tr id="trjat" style="background: grey; border: 1px solid black;">
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Importi</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Data</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Emertimi</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Tarif Kodi</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Kodi Artikullit</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black;  width: 20em;"><center>Pershkrimi</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Sasia</center></td> 
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Njesia</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black;  width: 8em;"><center>Pesha</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Qmimi Total</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Taksa Doganora</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Akciza</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>TVSH</center></td>
+      <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Gjithsej Taksat</center></td>
+    </tr>
+    <% @gjendja.each do |y, x| %>
+      <tr id="trjat" style=" border-bottom: 1px solid black;">  
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= y[2].nr_dud %></center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= y[2].data.strftime("%d/%m/%Y") %></center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= y[1] %></center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= x[3].article.tarif_kodi %></center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= y[0] %></center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black;"><center><%= Article.where(kodi: y[0]).first.pershkrimi %></center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % x[0].round(2) %></center></td> 
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= x[3].njesia %></center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % x[1].round(2) %></center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % x[2].round(2) %> €</center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % x[4].round(2) %> €</center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % x[5].round(2) %> €</center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % x[6].round(2) %> €</center></td>
+        <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % x[7].round(2) %> €</center></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px;"></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px;"></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px;"></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px;"></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px;"></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px;"><center><strong>Totali:</strong></center></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px;"></td> 
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px;"></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px; white-space: nowrap; border: 1px solid black"><center><strong><%= '%.2f' % @totali_pesha.round(2) %> Kg</strong></center></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px; white-space: nowrap; border: 1px solid black"><center><strong><%= '%.2f' % @totali_qmimi_tot.round(2) %> €</strong></center></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px; white-space: nowrap; border: 1px solid black"><center><strong><%= '%.2f' % @totali_taksa_dogana.round(2) %> €</strong></center></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px; white-space: nowrap; border: 1px solid black"><center><strong><%= '%.2f' % @totali_taksa_akciza.round(2) %> €</strong></center></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px; white-space: nowrap; border: 1px solid black"><center><strong><%= '%.2f' % @totali_taksa_tvsh.round(2) %> €</strong></center></td>
+      <td style="padding-left: 5px; padding-right: 5px; height: 25px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_gjithsej_taksat.round(2) %> €</strong></center></td>
+    </tr>
+    
+  </table></center>
+  <div style="margin-top: 100px">
+          <div style="width:1100px; display: inline-block"></div>
+          <div style=" width: 200px; display: inline-block">
+            <hr style="border: 1px solid black; margin:0px"></hr>
+            <p style="font-size: 16px">Nenshkrimi</p>
+          </div>
+        </div>
+  <style type="text/css">
+    table { page-break-inside:auto }
+    tr    { page-break-inside:avoid; page-break-after:auto }
+    thead { display:table-header-group }
+    tfoot { display:table-footer-group }
+    .mesdaj {
+      page-break-inside:avoid;
+    }
+    h3 {
+      break-inside:avoid;
+    }
+    td {
+      font-size: 14px;
+    }
+</style>

@@ -1,0 +1,54 @@
+<center>
+  <%= form_with(model: user, local: true) do |form| %>
+    <% if user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div style="max-width: 500px">
+      <%= form.submit "Ndrysho", class: "btn btn-primary", style:"margin-bottom: 25px" %>
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+      
+      <div class="field">
+        <%= form.label :first_name %>
+        <%= form.text_field :first_name, class: "form-control" %>
+      </div>
+      
+      <div class="field">
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name, class: "form-control" %>
+      </div>
+      
+      <div class="field">
+        <%= form.label :tel_number %>
+        <%= form.text_field :tel_number, class: "form-control" %>
+      </div>
+      
+      <div class="field">
+        <%= form.label :email %>
+        <%= form.email_field :email, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :password %>
+        <%= form.password_field :password, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation, class: "form-control" %>
+      </div>
+    </div>
+    <div class="actions">
+      
+    </div>
+  <% end %>
+</center>

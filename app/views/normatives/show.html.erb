@@ -1,0 +1,170 @@
+
+<center><h1 style="font-family: Barlow; margin-top: 30px">Normativa: <%= @normative.nr_normatives %></h1></center>
+<br>
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Data</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Produkti</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Menyra</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @normative.data %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @normative.product.pershkrimi %> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <% if @normative.kategoria == "auto" %>
+            Automatike
+          <% elsif @normative.kategoria == "manual" %>
+            Manuale
+          <% elsif @normative.kategoria == "test" %>
+            Test
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <tr style="height:20px"></tr>
+    <tr>
+      <td>
+        <strong>Pesha neto me paketim</strong>
+      </td>
+      <td>
+        <center>
+          <table>
+            <tr>
+              <td style="border-right: 1px solid black; width: 50px">
+                <%= link_to asset_path("normatives/#{@normative.id}.pdf", skip_pipeline: true), target: '_blank' do %> <span class="glyphicon glyphicon-file" style="color: black; font-size: 18px"></span><% end %>
+              </td>
+              <td style="width:50px">
+                <%= link_to normative_files_path(@normative) do %> <span class="glyphicon glyphicon-folder-open" style="color: black; font-size: 18px"></span><% end %>
+              </td>
+            </tr>
+          </table>
+        </center>
+      </td>
+      <td>
+        <strong>Pesha neto pa paketim</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= @pesha_b.round(2) %> Kg
+      </td>
+      <td></td>
+      <td>
+        <%= @pesha_n.round(2) %> Kg
+      </td>
+    </tr>
+  </table>
+</center>
+<style>
+  .tabela-import{
+    margin-bottom: 40px;
+  }
+  .tabela-import td {
+    width: 300px;
+    text-align: center;
+  }
+</style>
+<% if @normative.kategoria == "auto" %>
+  <%= render 'auto' %>
+<% elsif @normative.kategoria == "manual" %>
+  <%= render 'manual' %>
+<% elsif @normative.kategoria == "test" %>
+  <%= render 'manual' %>
+<% end %>
+
+<center>
+  <div class="fatura-tabela" style="width:1400px">
+    <table>
+      <tr class="hedi">
+        <% if @normative.kategoria == "auto" %>
+          <td style="width:100px" colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModalauto" style="border: 0px; background: none; font-size: 35px; color: green; margin-top: -50px; margin-bottom: -40px;">&#43;</button></center></td>
+        <% elsif @normative.kategoria == "manual" %>
+          <td style="width:100px" colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModalman" style="border: 0px; background: none; font-size: 35px; color: green; margin-top: -50px; margin-bottom: -40px;">&#43;</button></center></td>
+        <% elsif @normative.kategoria == "test" %>
+          <td style="width:100px" colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModalman" style="border: 0px; background: none; font-size: 35px; color: green; margin-top: -50px; margin-bottom: -40px;">&#43;</button></center></td>
+        <% end %>
+        <td><center>Tarif Kodi</center></td>
+        <td><center>Kodi</center></td>
+        <td><center>Përshkrimi</center></td>
+        <td><center>Njesia</center></td>
+        <td><center>Sasia Bruto</center></td>
+        <td><center>Mbetja Sasisë</center></td>
+        <td style="white-space: nowrap; width: 125px"><center>Mbetja në Sasi</center></td>
+        <td><center>Sasia Neto</center></td>
+        <td><center>Pesha Bruto</center></td>
+        <td><center>Mbetja Peshes</center></td>
+        <td><center>Mbetja në Peshë</center></td>
+        <td><center>Pesha Neto</center></td>
+        <td style="width:100px"><center><span>&#x2715;</span></center></td>
+      </tr>
+      <% iter = 0 %>
+      <% @normative.normative_articles.each do |na| %>
+        <% n = na.normative %>
+        <% a = na.article %>
+        <% if na.persisted? %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
+            <td style="width:100px"><center><%= na.article.tarif_kodi%></center></td>
+            <td style="width:100px"><center><%= na.article.kodi %></center></td>
+            <td style="width:100px"><center><%= na.article.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= na.njesia %></center></td>
+            <td style="width:100px"><center><%= na.sasia %></center></td>
+            <td style="width:100px"><center><%= "#{'%.2f' % na.mbetja.round(2)}" %> %</center></td>
+            <td style="width:100px"><center><%= '%.2f' % na.mbetja_ne_sasi.round(2) %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % na.sasia_neto.round(2) %></center></td>
+            <td style="width:100px"><center><%= '%.2f' % na.pesha_bruto.round(2) %> Kg</center></td>
+            <td style="width:100px"><center><%= '%.2f' % na.mbetja_peshe.round(2) %> %</center></td>
+            <td style="width:100px"><center><%= '%.2f' % na.mbetja_ne_peshe.round(2) %> Kg</center></td>
+            <td style="width:100px"><center><%= '%.2f' % na.pesha_neto.round(2) %> Kg</center></td>
+            <td style="width:100px"><center>
+              <%= link_to na, method: :delete do %>
+                <span>&#x2715;</span>
+              <% end %>
+            </center></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tr style="border-bottom: 0px">
+        <td style="width:100px" colspan="2"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong>Totali:</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_pesha_b.round(4) %> Kg</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_mbetja_peshe.round(4) %> Kg</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_pesha_n.round(4) %> Kg</strong></center></td>
+      </tr>
+    </table>
+  </div>
+</center>

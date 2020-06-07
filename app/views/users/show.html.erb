@@ -1,0 +1,86 @@
+
+<center><h1 style="font-family: Barlow; margin-top: 30px">Përdoruesi: <%= @user.name %></h1></center>
+<br>
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Emri i plotë</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Email</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Numri Tel.</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @user.first_name %> <%= @user.last_name %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @user.email %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @user.tel_number %>
+        </div>
+      </td>
+    </tr>
+    <tr style="height: 40px">
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <strong>Data Autorizimit</strong>
+        </div>
+      </td>
+      <td>
+      </td>
+      <td>
+      <div>
+          <strong>Data Garancionit</strong>
+      </div> 
+      </td>
+    <tr>
+      <td>
+      <div>
+          <%= @user.data_auto %>
+      </div> 
+      </td>
+      <td>
+      </td>
+      <td>
+        <div>
+          <%= @user.data_gar %>
+        </div>
+      </td>
+    </tr>
+    </tr>
+  </table>
+</center>
+<style>
+  .tabela-import{
+    margin-bottom: 40px;
+  }
+  .tabela-import td {
+    width: 300px;
+    text-align: center;
+  }
+</style>

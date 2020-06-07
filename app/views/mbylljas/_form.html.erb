@@ -1,0 +1,34 @@
+<%= form_with(model: mbyllja, local: true) do |form| %>
+<div class="col-md-6 col-md-offset-3">
+  <% if mbyllja.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mbyllja.errors.count, "error") %> prohibited this mbyllja from being saved:</h2>
+
+      <ul>
+      <% mbyllja.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
+
+  <div class="field">
+    <%= form.label :nr_mbylljes %>
+    <%= form.text_field :nr_mbylljes, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.date_field :data, class: "form-control", value: Date.today %>
+  </div>
+</div>
+
+<% end %>
+<script>
+  var cbxs = $('input[type="checkbox"]');
+  cbxs.prop("checked", "checked");
+  $('#check_all').on("click", function(){
+    cbxs.prop("checked", !cbxs.prop("checked"));
+  });
+</script>

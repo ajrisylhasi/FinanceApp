@@ -1,0 +1,23 @@
+<h1 style="color:black">New Product</h1>
+
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3">
+    <%= nested_form_for(@product)do |f|%>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div style="container">
+        <%= f.label :pershkrimi %>
+        <%= f.text_field :pershkrimi, class: 'form-control' %>
+        <%= f.label :articlenr, "Kodi Produktit" %>
+        <%= f.text_field :articlenr, class: 'form-control' %>
+        <%= f.label :tarif_kodi %>
+        <%= f.number_field :tarif_kodi, class: 'form-control' %>
+        <%= f.label :qmimi %>
+        <%= f.number_field :qmimi, step: :any, class: 'form-control' %>
+      </div>
+      <div class="buttons">
+        <%= f.submit "Add Product",  class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Back", products_path, class:"btn btn-primary" %>
+</div>

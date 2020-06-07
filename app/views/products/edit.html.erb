@@ -1,0 +1,30 @@
+<center>
+  <div class="row" style="width:500px">
+    <div>
+      <div>
+        <div>
+          <center>
+          <%= nested_form_for(@product)do |f|%>
+            <%= render 'shared/error_messages', object: f.object %>
+            <div style="container">
+              <%= f.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
+              <%= f.label :pershkrimi %>
+              <%= f.text_field :pershkrimi, class: 'form-control' %>
+              <%= f.label :articlenr, "Kodi Produktit" %>
+              <%= f.text_field :articlenr, class: 'form-control' %>
+              <%= f.label :tarif_kodi %>
+              <%= f.number_field :tarif_kodi, class: 'form-control' %>
+              <%= f.label :qmimi %>
+              <%= f.number_field :qmimi, step: :any, class: 'form-control' %>
+            </div>
+            
+            <div class="buttons">
+            </div>
+          <% end %>
+        </center>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</center>

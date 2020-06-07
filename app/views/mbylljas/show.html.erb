@@ -1,0 +1,82 @@
+<center><h1 style="font-family: Barlow; margin-top: 30px">Mbyllja: <%= @mbyllja.nr_mbylljes %></h1></center>
+<br>
+<center>
+  <table class="tabela-import" style="; margin-bottom: 30px">
+    <tr>
+      <td>
+        <div>
+          <strong>Data</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @mbyllja.data %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</center>
+<center>
+  <div class="fatura-tabela">
+    <table>
+      <tr class="hedi">
+        <td><center>Importi</center></td>
+        <td><center>Eksporti</center></td>
+        <td><center>Emertimi</center></td>
+        <td><center>Tarif Kodi</center></td>
+        <td><center>Kodi Artikullit</center></td>
+        <td><center>Pershkrimi</center></td>
+        <td><center>Sasia</center></td>
+        <td><center>Njesia</center></td>
+        <td><center>Pesha</center></td>
+        <td><center>Qmimi Total</center></td>
+        <td><center>Taksa Doganore</center></td>
+        <td><center>Akciza</center></td>
+        <td><center>Taksa TVSH</center></td>
+        <td><center>Gjithsej Taksat</center></td>
+      </tr>
+      <% i = 1 %>
+      <% @mbyllja.sub_mbylljas.each do |y| %>
+        <% i+=1 %>
+        <% if i.even? %>
+          <tr style="background: #dee2e6">  
+        <% else %>
+          <tr style="background: white"> 
+        <% end %>
+          <td style=""><center><%= y.i.import.nr_dud %></center></td>
+          <td style=""><center><%= y.e.nr_exportit %></center></td>
+          <td style=""><center><%= y.emertimi %></center></td>
+          <td style=""><center><%= y.i.article.tarif_kodi %></center></td>
+          <td style=""><center><%= y.i.article.kodi %></center></td>
+          <td style="white-space: nowrap"><center><%= y.i.article.pershkrimi %></center></td>
+          <td style=""><center><%= '%.2f' % y.sasia.round(2) %></center></td>
+          <td style=""><center><%= y.i.article.njesia %></center></td>
+          <td style=""><center><%= '%.2f' % y.pesha.round(2) %> Kg</center></td>
+          <td style=""><center><%= '%.2f' % y.qmimi_tot.round(2) %> €</center></td>
+          <td style=""><center><%= '%.2f' % y.taksa_dogana.round(2) %> €</center></td>
+          <td style=""><center><%= '%.2f' % y.taksa_akciza.round(2) %> €</center></td>
+          <td style=""><center><%= '%.2f' % y.taksa_tvsh.round(2) %> €</center></td>
+          <td style=""><center><%= '%.2f' % y.gjithsej_taksa.round(2) %> €</center></td>
+        </tr>
+      <% end %>
+      <tr style="border-bottom: 0px">
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong>Total:</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_pesha.round(2) %> Kg</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_qmimi_tot.round(2) %> €</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_taksa_dogana.round(2) %> €</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_taksa_akciza.round(2) %> €</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_taksa_tvsh.round(2) %> €</strong></center></td>
+        <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @totali_gjithsej_taksat.round(2) %> €</strong></center></td>
+      </tr>
+    </table>
+  </div>
+</center>
+ 

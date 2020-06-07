@@ -1,0 +1,29 @@
+<center>
+  <div style="width: 300px; height: 300px; border-radius: 20px;" id="dataa">
+    <%= form_for "", url: change_date_post_url, role: "useri", method: :post  do |f|%>
+
+      <div class="field">
+        <%= f.label "useri[data_auto]", "Numri i Diteve per Lajmerim te Autorizimit" %>
+        <%= f.number_field "useri[data_auto]", value: "#{@data_auto}", class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label "useri[data_gar]", "Numri i Diteve per Lajmerim te Garancionit" %>
+        <%= f.number_field "useri[data_gar]", value: "#{@data_gar}", class: "form-control" %>
+      </div>
+      
+      <div class="actions">
+        <%= submit_tag "Done",  class: "btn btn-primary", style: 'margin-top: 20px' %>
+      </div>
+    <% end %>
+  </div>
+</center>
+<style>
+  #dataa {
+    margin-top: 10%;
+    padding: 30px;
+    -webkit-box-shadow: 0px 10px 210px -23px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 10px 210px -23px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 10px 210px -23px rgba(0, 0, 0, 0.5);
+  }
+</style>

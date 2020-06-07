@@ -1,0 +1,221 @@
+<head>
+  <title>PDF <%= @normative.nr_normatives %></title>
+  <%= wicked_pdf_stylesheet_link_tag "application" %>
+    <%= wicked_pdf_javascript_include_tag "application" %>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet"> 
+    <style>
+      p {
+        margin-bottom: 0px;
+        font-size: 14px;
+      }
+      .normative-tabela {
+        width: 1300px;
+        border: 2px solid black;
+      }
+      .normative-tabela td {
+        padding: 5px;
+        text-align: center;
+        border: 1px solid black;
+        
+      }
+      .normative-tabela tr {
+        
+        border: 1px solid black;
+      }
+      
+      table { page-break-inside:auto }
+      tr    { page-break-inside:avoid; page-break-after:auto }
+    </style>
+</head>
+<center>
+  <table class="normative-tabela">
+    <tr>
+      <td colspan="14"><h3>SHËNIME SHPJEGUESE PËR PRODUKTE KOMPENZUESE</h3></td>
+    </tr>
+    <tr>
+     <td colspan="14"><p>Mbajtësi i autorizimit: <strong><%= kompania.kompania %></strong></p></td>
+    </tr>
+    <tr>
+      <td colspan="14">
+        <% if kompania.numri_biznesit != "" %><p style="display: inline; margin-right: 15px">Numri Biznesit: <%= kompania.numri_biznesit %></p><% end %>
+        <% if kompania.numri_fiskal != "" %><p style="display: inline; margin-right: 15px">Numri Fiskal: <%= kompania.numri_fiskal %></p><% end %>
+        <% if kompania.numri_identifikues != "" %><p style="display: inline; margin-right: 15px">Numri Identifikues: <%= kompania.numri_identifikues %></p><% end %>
+      </td>
+    </tr>
+    
+    <tr>
+      <td style="width:300px" colspan="2">
+        <p style="height: 50px; padding-top: 15px">Produktet Kompenzuese</p>
+      </td>
+      <td style="width:700px" colspan="8">
+        <p style="height: 50px; padding-top: 15px">Sasia e mallrave të importuar për prodhimin e 1 Copë si produkt kompenzues i cekur në kolonën e majtë</p>
+      </td>
+      <td style="width:300px" colspan="4">
+        <p style="height: 50px; padding-top: 15px" colspan="4">Produktet kompenzuese dytesore - (mbetjet)</p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td style="width:130px" rowspan="2">
+        <p>Numri i
+referencës
+Nr. <%= @normative.nr_normatives %></p>
+      </td>
+      <td style="width:170px" rowspan="2">
+        <p>Përshkrimi i
+produktit
+kompenzues dhe
+njësia</p>
+      </td>
+      <td style="width:400px" colspan="3">
+        <p style="height: 50px; padding-top:15px">Përshkrimi i mallrave të importuara
+(emri, numri tariforë)</p>
+      </td>
+      <td style="width:275px" colspan="5">
+        <p>Sasia për 1 Copë</p>
+      </td>
+      <td style="width:300px" colspan="4">
+        <p>Sasia e mbetjeve për 1 Copë</p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td style="width:200px">
+        <p>Përshkrimi</p>
+      </td>
+      <td style="width:100px">
+        <p>Nr. Tarifor:</p>
+      </td>
+      <td style="width:100px">
+        <p>Kodi i artikullit</p>
+      </td>
+      <td style="width:200px" colspan="4">
+        <p>Njësia plotësuese - Bruto</p>
+      </td>
+      <td style="width:75px">
+        <p>Mbetja deri
+ne: %</p>
+      </td>
+      <td colspan="4">
+        <p>Mbetjet</p>
+      </td>
+    </tr>
+    <% i = 0 %>
+    <% @normative.normative_articles.each do |na| %>
+      <% i +=1 %>
+      <% n = na.normative %>
+      <% a = na.article %>
+      <% if na.valid? %>
+        <tr>
+          <td>
+            <p><%= i %></p>
+          </td>
+          <% if i < 2 %>
+            <td rowspan="<%= @numri_rreshtave %>" style="vertical-align:top;">
+              <div style=" margin-top: 25px">
+                <p><%= @normative.product.tarif_kodi %></p>
+                <p><%= @normative.product.pershkrimi %></p>
+                <p><%= @normative.product.articlenr %></p>
+              </div>
+            </td>
+          <% end %>
+          
+          <td style="width:200px">
+            <p><%= a.pershkrimi_gjate %></p>
+          </td>
+          <td>
+            <p><%= a.tarif_kodi %></p>
+          </td>
+          <td>
+            <p><%= a.kodi %></p>
+          </td>
+          <td>
+            <p><%= '%.4f' % na.sasia.round(4) %></p>
+          </td>
+          <td>
+            <p><%= na.njesia %></p>
+          </td>
+          <td>  
+            <p><%= '%.4f' % na.pesha_bruto.round(4) %></p>
+          </td>
+          <td style="width:35px">
+            <p>kg</p>
+          </td>
+          <td>
+            <% if na.mbetja == 0 %>
+              <p><%= '%.2f' % na.mbetja %> %</p>
+            <% else %>
+              <p><%= na.mbetja %> %</p>
+            <% end %>
+          </td>
+          <td>
+            <% if na.mbetja_ne_sasi == 0 %>
+              <p>0.00</p>
+            <% else %>
+              <p><%= '%.4f' % na.mbetja_ne_sasi.round(4) %></p>
+            <% end %>
+          </td>
+          <td>
+            <p><%= na.njesia %></p>
+          </td>
+          <td>
+            <% if na.mbetja_ne_peshe == 0 %>
+              <p>0.00</p>
+            <% else %>
+              <p><%= '%.4f' % na.mbetja_ne_peshe.round(4) %></p>
+            <% end %>
+          </td>
+          <td>
+            <p>kg</p>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    <tr>
+      <td style="border:0px; text-align:left">
+        <p style="height: 50px; padding-top: 15px"><strong>Pesha Neto (kg):</strong></p>
+      </td>
+      <td style="border:0px; border-right:1px solid black; text-align:right">
+        <p style="height: 50px; padding-top: 15px"><strong><%= '%.4f' %  @pesha_n.round(5) %> kg</strong></p>
+      </td>
+      <td colspan="5" style="text-align:right;margin-right:15px">
+        <p style="height: 50px; padding-top: 15px"><strong>Pesha Totale:</strong></p>
+      </td>
+      <td>
+        <p style="height: 50px; padding-top: 15px"><strong><%= '%.4f' % @pesha_b.round(4) %></strong></p>
+      </td>
+      <td>
+        <p style="height: 50px; padding-top: 15px"><strong>kg</strong></p>
+      </td>
+      <td colspan="3" style="text-align:right;margin-right:10px">
+        <p style="height: 50px; padding-top: 15px"><strong>Pesha e mbetjeve (kg):</strong></p>
+      </td>
+      <td>
+        <% if @mbetja_ne_peshe == 0 %>
+          <p style="height: 50px; padding-top: 15px"><strong>0.00</strong></p>
+        <% else %>
+          <p style="height: 50px; padding-top: 15px"><strong><%= '%.4f' % @mbetja_ne_peshe.round(4) %></strong></p>
+        <% end %>
+      </td>
+      <td>
+        <p style="height: 50px; padding-top: 15px"><strong>kg</strong></p>
+      </td>
+    </tr>
+    <tr style="height: 100px">
+      <td colspan="4" style="border:0px;text-align:left">
+        <p style="margin: 5px; line-height: 25px">Data: <strong><%= @normative.data.strftime("%d/%m/%Y") %></strong></p>
+        <p style="margin: 5px; line-height: 25px">Vendi: <strong><%= kompania.qyteti %></strong></p>
+        <p style="margin: 5px; line-height: 25px">Nënshkrimi i mbajtësit të Autorizimit: <strong><%= kompania.kompania %></strong></p>
+      </td>
+      <td colspan="10" style="border:0px;text-align:left;">
+        <div style="margin-left: 25px">
+          <p>Vula:</p>
+          <hr style="border:1px solid black; width:100px; float:left; margin-left: 100px">
+        </div>
+      </td>
+    </tr>
+  </table>
+</center>
