@@ -15,7 +15,7 @@ set :keep_releases, 5
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
- set :deploy_via, "remote_cache"
+ # set :deploy_via, "remote_cache"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
