@@ -43,7 +43,7 @@ set :keep_releases, 5
 # set :keep_releases, 5
 namespace :custom do
   task :task do
-    run "cd #{current_path} && bundle exec rake db:reset RAILS_ENV=#{rails_env}"
+    run "cd #{current_path} && bundle exec rake db:reset RAILS_ENV=production"
   end
 end
 

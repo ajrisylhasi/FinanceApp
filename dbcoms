@@ -12,3 +12,6 @@ cap deploy:db:rollback                     # Run rake db:rollback        Roll th
 cap deploy:db:seed                         # Run rake db:seed            Load the seed data from db/seed.rb
 cap deploy:db:setup                        # Run rake db:setup           Create the database, load the schema, and initialize with the seed data
 cap deploy:db:version
+
+
+TRUNCATE TABLE clients, autorizims, akcizas, doganas, destinims, njesis, products, normatives, articles, autorizim_Articles, import_articles, import_gjendjas, explande_articles, subs, imports, garancion_gjendjas, subexpls, sub_mbylljas, exports, normative_articles, autorizim_products, faturas, exportlandes, export_products, product_packets, palet_products, export_gjendjas, packing_lists, fees, lists;

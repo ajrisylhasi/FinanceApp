@@ -10,7 +10,7 @@ class AddStuffToImportArticles < ActiveRecord::Migration[5.2]
     add_column :import_articles, :qmimi_kg, :float
     add_column :import_articles, :dogana, :float
     add_column :import_articles, :taksa_dogana, :float
-    add_column :import_articles, :lloji_akcizes, :float
+    add_column :import_articles, :lloji_akcizes, :string
     add_column :import_articles, :akciza, :float
     add_column :import_articles, :tvsh, :float
     add_column :import_articles, :taksa_tvsh, :float
