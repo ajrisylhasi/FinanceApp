@@ -1,7 +1,7 @@
 Kompani.create(kompania: "Kompania Test", numri_fiskal: "1239635", numri_biznesit: "75396312", numri_tvsh: "1452638", numri_identifikues: "8528528", shteti: "Kosove", qyteti: "Gjakove", adresa: "Tirana", zip: "50000",
                bank_account: "XK051701001012556636", bank: "NLB BANKA", account_holder: "Intertex shpk", corresponding_bank: "NLB Banka", swift_code: "NLPR XK PR")
 User.create([{first_name: "Ajri", last_name: "Sylhasi", name: "Ajri", password: "kjkszpj", kategoria: "admin", password_confirmation: "kjkszpj", email: "test@test.com", tel_number: "+383 411 011"},
-            {first_name: "Admin", last_name: "Admin", name: "Admin", password: "123456", kategoria: "admin", password_confirmation: "123456", email: "test@test.com", tel_number: "+383 011 110"}])
+            {first_name: "arlinduus", last_name: "Admin", name: "arlinduus", password: "Lindilindi91..", kategoria: "admin", password_confirmation: "Lindilindi91..", email: "test@test.com", tel_number: "+383 011 110"}])
 # Client.create([{kompania: "Intertex", shteti: "Kosove", qyteti: "Gjakove", adresa: "Tirana", numri_tel: "+383 45 555 666", numri_fiskal: "123456789", numri_biz: "987654321", numri_tvsh: "258963147", konsignacioni: "Sporting", shteti_k: "Kosove", qyteti_k: "Prizren", adresa_k: "Qendra", numri_tel_k: "+383 44 999 888", term: 65, email: "test@test.com", vat:18}, {kompania: "Helo", term: 65, vat:0}])
 # Import.create([{nr_dud: 37515, data: "2017-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
 #               {nr_dud: 39056, data: "2017-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
