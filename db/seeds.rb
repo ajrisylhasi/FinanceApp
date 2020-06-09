@@ -6,7 +6,7 @@ User.create([{first_name: "Ajri", last_name: "Sylhasi", name: "Ajri", password: 
 # Import.create([{nr_dud: 37515, data: "2017-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
 #               {nr_dud: 39056, data: "2017-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
 #               {nr_dud: 222, data: "2017-07-21", transporti: 1500, client_id: 2, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"}])
-Autorizim.create([{data_leshimit: "2017-05-12", data_skadimit: "2019-07-12", shteti: "Kosove", qyteti: "Prishtine", adresa: "Bujar Roka"}])
+Autorizim.create([{data_leshimit: "2017-05-12", data_skadimit: "2200-07-12", shteti: "Kosove", qyteti: "Prishtine", adresa: "Bujar Roka"}])
 # Garancion.create(identifikimi: "234234", pershkrimi: "Garancioni 1", vlera: 10000.0, data: "2017-05-12", data_skadimit: "2019-07-12")
 # Garancion.create(identifikimi: "421452", pershkrimi: "Garancioni 2", vlera: 20000.0, data: "2017-05-12", data_skadimit: "2019-07-12")
 # Akciza.create([{lloji: "%"}, {lloji: "Pa akcize"}, {lloji: "€/Kg"}, {lloji: "€/Njesi"}])
