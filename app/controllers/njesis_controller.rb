@@ -12,7 +12,7 @@ class NjesisController < ApplicationController
   def create
       @njesi = Njesi.new(njesi_params)
       if @njesi.save
-          redirect_to @njesi
+          redirect_to home_path
       else
         @errors = []
         if @njesi.errors.any?
