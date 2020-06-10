@@ -27,9 +27,11 @@ module ApplicationHelper
     Sub.all.each do |s|
       $taksa_pergjithshme += s.mbetja_gjithsej_taksa
     end
-    garancionet_valide = Garancion.all.select { |g| g.data_skadimit > Date.current }
-    garancionet_valide.each do |g|
-      $vlera_garancioneve += g.vlera
+    if Garancion.all.count > 0
+      garancionet_valide = Garancion.all.select { |g| g.data_skadimit > Date.current }
+      garancionet_valide.each do |g|
+        $vlera_garancioneve += g.vlera
+      end
     end
     
     $garancioni_mbetur = $vlera_garancioneve - $taksa_pergjithshme
