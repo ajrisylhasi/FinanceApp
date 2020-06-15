@@ -19,7 +19,7 @@ class Normative < ApplicationRecord
         self.normative_articles.each do |a|
             vlera += a.mbetja_ne_sasi
         end
-        vlera
+        return vlera
     end
     
     def mbetja_ne_peshe
@@ -27,7 +27,7 @@ class Normative < ApplicationRecord
         self.normative_articles.each do |a|
             vlera += a.mbetja_ne_peshe
         end
-        vlera
+        return vlera
     end
     
     def sasia_neto
@@ -35,7 +35,7 @@ class Normative < ApplicationRecord
         self.normative_articles.each do |a|
             vlera += a.sasia_neto
         end
-        vlera
+        return vlera
     end
     
     def pesha_neto
@@ -43,7 +43,7 @@ class Normative < ApplicationRecord
         self.normative_articles.each do |a|
             vlera += a.pesha_neto
         end
-        vlera
+        return vlera
     end
 
     def pesha_b
@@ -51,7 +51,7 @@ class Normative < ApplicationRecord
         self.normative_articles.each do |a|
             vlera += a.pesha_neto
         end
-        vlera
+        return vlera
     end
     
     def pesha_n
@@ -61,7 +61,7 @@ class Normative < ApplicationRecord
             vlera += na.pesha_neto
           end
         end
-        vlera
+        return vlera
     end
 
     def pesha_bruto
@@ -69,7 +69,7 @@ class Normative < ApplicationRecord
         self.normative_articles.each do |a|
             vlera += a.pesha_bruto
         end
-        vlera
+        return vlera
     end
     
     def show_text

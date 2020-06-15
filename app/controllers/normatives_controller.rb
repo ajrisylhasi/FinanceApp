@@ -94,7 +94,7 @@ class NormativesController < ApplicationController
       elsif @normative.update_attributes(normative_params)
         redirect_to @normative
       else
-        render 'show'
+        redirect_to @normative
       end
     end
     

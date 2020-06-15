@@ -1,2 +1,3 @@
 class Njesi < ApplicationRecord
+	
 end

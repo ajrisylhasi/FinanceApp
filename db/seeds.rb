@@ -1,25 +1,25 @@
 Kompani.create(kompania: "Kompania Test", numri_fiskal: "1239635", numri_biznesit: "75396312", numri_tvsh: "1452638", numri_identifikues: "8528528", shteti: "Kosove", qyteti: "Gjakove", adresa: "Tirana", zip: "50000",
                bank_account: "XK051701001012556636", bank: "NLB BANKA", account_holder: "Intertex shpk", corresponding_bank: "NLB Banka", swift_code: "NLPR XK PR")
 User.create({first_name: "arlinduus", last_name: "Admin", name: "arlinduus", password: "Lindilindi91..", kategoria: "admin", password_confirmation: "Lindilindi91..", email: "test@test.com", tel_number: "+383 011 110"})
-# Client.create([{kompania: "Intertex", shteti: "Kosove", qyteti: "Gjakove", adresa: "Tirana", numri_tel: "+383 45 555 666", numri_fiskal: "123456789", numri_biz: "987654321", numri_tvsh: "258963147", konsignacioni: "Sporting", shteti_k: "Kosove", qyteti_k: "Prizren", adresa_k: "Qendra", numri_tel_k: "+383 44 999 888", term: 65, email: "test@test.com", vat:18}, {kompania: "Helo", term: 65, vat:0}])
+Client.create([{kompania: "Intertex", shteti: "Kosove", qyteti: "Gjakove", adresa: "Tirana", numri_tel: "+383 45 555 666", numri_fiskal: "123456789", numri_biz: "987654321", numri_tvsh: "258963147", konsignacioni: "Sporting", shteti_k: "Kosove", qyteti_k: "Prizren", adresa_k: "Qendra", numri_tel_k: "+383 44 999 888", term: 65, email: "test@test.com", vat:18}, {kompania: "Helo", term: 65, vat:0}])
 # Import.create([{nr_dud: 37515, data: "2017-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
 #               {nr_dud: 39056, data: "2017-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
 #               {nr_dud: 222, data: "2017-07-21", transporti: 1500, client_id: 2, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"}])
 Autorizim.create([{data_leshimit: "2017-05-12", data_skadimit: "2200-07-12", shteti: "Kosove", qyteti: "Prishtine", adresa: "Bujar Roka"}])
 # Garancion.create(identifikimi: "234234", pershkrimi: "Garancioni 1", vlera: 10000.0, data: "2017-05-12", data_skadimit: "2019-07-12")
-# Garancion.create(identifikimi: "421452", pershkrimi: "Garancioni 2", vlera: 20000.0, data: "2017-05-12", data_skadimit: "2019-07-12")
+Garancion.create(identifikimi: "421452", pershkrimi: "Garancioni 2", vlera: 20000.0, data: "2017-05-12", data_skadimit: "2019-07-12")
 Akciza.create([{lloji: "%"}, {lloji: "Pa akcize"}, {lloji: "€/Kg"}, {lloji: "€/Njesi"}])
-# Dogana.create([{kodi: "3031", pershkrimi: "PKK MERDARE"}])
-# Destinim.create([{kodi: "2020", pershkrimi: "ZBD PRISHTINE"}])
-# Njesi.create([{lloji: "Metra"}, {lloji: "Cope"}, {lloji: "Liter"}])
-# Product.create([{pershkrimi: "Tiguan Rails HBC", tarif_kodi: 17016591, qmimi: 15, articlenr: "908"}, {pershkrimi: "Touran Rails HBC", tarif_kodi: 17009630, qmimi: 25, articlenr: "911"}, {pershkrimi: "Cord Only", tarif_kodi: 17009630, qmimi: 50, articlenr: "456"}])
-# Normative.create([{nr_normatives: 1, product_id: 1, data: Date.today.to_s, kategoria: "auto"}, {nr_normatives: 2, product_id: 2, data: Date.today.to_s, kategoria: "auto"}, {nr_normatives: 3, product_id: 3, data: Date.today.to_s, kategoria: "auto"}])
+Dogana.create([{kodi: "3031", pershkrimi: "PKK MERDARE"}])
+Destinim.create([{kodi: "2020", pershkrimi: "ZBD PRISHTINE"}])
+Njesi.create([{lloji: "Metra"}, {lloji: "Cope"}, {lloji: "Liter"}])
+Product.create([{pershkrimi: "Tiguan Rails HBC", tarif_kodi: 17016591, qmimi: 15, articlenr: "908"}, {pershkrimi: "Touran Rails HBC", tarif_kodi: 17009630, qmimi: 25, articlenr: "911"}, {pershkrimi: "Cord Only", tarif_kodi: 17009630, qmimi: 50, articlenr: "456"}])
+Normative.create([{nr_normatives: 1, product_id: 1, data: Date.today.to_s, kategoria: "auto"}, {nr_normatives: 2, product_id: 2, data: Date.today.to_s, kategoria: "auto"}, {nr_normatives: 3, product_id: 3, data: Date.today.to_s, kategoria: "auto"}])
 
-# Article.create([
+Article.create([
 # {pershkrimi: 'Laminat 1550 ', tarif_kodi: 39219090, njesia: 'Metra', kodi: '25123', pershkrimi_gjate: 'Pllaka, fleta, filma, krisafe dhe shirita të tjera, prej plastike', dogana: 10.0, akciza: 0, lloji_akcizes: 'Pa akcize', tvsh: 18.0, kategoria: 'lende'},
 # {pershkrimi: 'Laminat 1870', tarif_kodi: 39219090, njesia: 'Metra', kodi: '25124', pershkrimi_gjate: 'Pllaka, fleta, filma, krisafe dhe shirita të tjera, prej plastike', dogana: 10.0, akciza: 0, lloji_akcizes: 'Pa akcize', tvsh: 18.0, kategoria: 'lende'},
 # {pershkrimi: 'Laminat 1700', tarif_kodi: 39219090, njesia: 'Metra', kodi: '25126', pershkrimi_gjate: 'Pllaka, fleta, filma, krisafe dhe shirita të tjera, prej plastike', dogana: 10.0, akciza: 0, lloji_akcizes: 'Pa akcize', tvsh: 18.0, kategoria: 'lende'},
-# {pershkrimi: 'Cord', tarif_kodi: 56075090, njesia: 'Metra', kodi: '30107', pershkrimi_gjate: 'Spango, kordonë, litarëdhe kabllo, nëse janë apo jo të gërshetuara apo të pështjelluar dhe nëse janë apo jo të ngopura, veshura, mbuluara apo mbrojtura me gomë apo plastike', dogana: 10.0, akciza: 0, lloji_akcizes: 'Pa akcize', tvsh: 18.0, kategoria: 'lende'},
+{pershkrimi: 'Cord', tarif_kodi: 56075090, njesia: 'Metra', kodi: '30107', pershkrimi_gjate: 'Spango, kordonë, litarëdhe kabllo, nëse janë apo jo të gërshetuara apo të pështjelluar dhe nëse janë apo jo të ngopura, veshura, mbuluara apo mbrojtura me gomë apo plastike', dogana: 10.0, akciza: 0, lloji_akcizes: 'Pa akcize', tvsh: 18.0, kategoria: 'lende'}])
 # {pershkrimi: 'Thread', tarif_kodi: 54011014, njesia: 'Metra', kodi: '30108', pershkrimi_gjate: 'Fill për qepje prej filamenteve të bëra nga njerëzit, nëse është vendosur apo jo për shitjen me pakicë', dogana: 10.0, akciza: 0, lloji_akcizes: 'Pa akcize', tvsh: 18.0, kategoria: 'lende'},
 # {pershkrimi: 'Foam 8 mm', tarif_kodi: 56075090, njesia: 'Metra', kodi: '30111', pershkrimi_gjate: 'Spango, kordonë, litarëdhe kabllo, nëse janë apo jo të gërshetuara apo të pështjelluar dhe nëse janë apo jo të ngopura, veshura, mbuluara apo mbrojtura me gomë apo plastike', dogana: 10.0, akciza: 0, lloji_akcizes: 'Pa akcize', tvsh: 18.0, kategoria: 'lende'},
 # {pershkrimi: 'WindowFilm 1050mm', tarif_kodi: 39201089, njesia: 'Metra', kodi: '30205', pershkrimi_gjate: 'Pllaka, fleta, filma, krisafe dhe shirita të tjerë, prej plastike, jo celulare dhe jo të përforcuara, jo të laminuara të pambështetura apo të pakombinuara në mënyra të ngjashme e materiale të tjera', dogana: 10.0, akciza: 0, lloji_akcizes: 'Pa akcize', tvsh: 18.0, kategoria: 'lende'},
