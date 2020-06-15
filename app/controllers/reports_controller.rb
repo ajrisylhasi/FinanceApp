@@ -25,7 +25,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf { render template: "reports/product_search", pdf: "Exports Report-#{@date_from}/#{@date_to}"}
+      format.pdf { render template: "reports/product_search", pdf: "Exports Report-#{@date_from}/#{@date_to}", :encoding => 'UTF-8;'}
       format.csv {
         csv_string = CSV.generate do |csv|
           csv << all_keys_as_array
@@ -61,7 +61,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf { render template: "reports/gjendja", pdf: "State Report - #{Date.today.to_s}"}
+      format.pdf { render template: "reports/gjendja", pdf: "State Report - #{Date.today.to_s}", :encoding => 'UTF-8;'}
       format.csv {
         csv_string = CSV.generate do |csv|
           csv << all_keys_as_array
@@ -101,7 +101,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf { render template: "reports/import_search", pdf: "Import Report - #{Date.today.to_s}"}
+      format.pdf { render template: "reports/import_search", pdf: "Import Report - #{Date.today.to_s}", :encoding => 'UTF-8;'}
       
     end
   end
@@ -117,7 +117,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf { render template: "reports/mbetja", pdf: "Residue Report - #{Date.today.to_s}"}
+      format.pdf { render template: "reports/mbetja", pdf: "Residue Report - #{Date.today.to_s}", :encoding => 'UTF-8;'}
     end
   end
   
@@ -143,7 +143,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf { render template: "reports/official", pdf: "Official Report - #{Date.today.to_s}"}
+      format.pdf { render template: "reports/official", pdf: "Official Report - #{Date.today.to_s}", :encoding => 'UTF-8;'}
       format.csv {
         csv_string = CSV.generate do |csv|
           csv << all_keys_as_array
