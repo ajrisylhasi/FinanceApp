@@ -115,9 +115,9 @@
               <td style="width:100px"><center><%= '%.2f' % (ep.normative.pesha_n * ep.sasia).round(2) %></center></td>
               <td style="width:100px"><center><%= '%.2f' % (ep.normative.pesha_b * ep.sasia).round(2) %></center></td>
               <td style="width:100px"><center><%= ep.sasia %></center></td>
-              <td style="width:100px"><center><%= '%.2f' % ep.qmimi %> €</center></td>
-              <td style="width:100px"><center><%= '%.2f' % ep.vat %> €</center></td>
-              <td style="width:100px"><center><%= '%.2f' % (ep.qmimi * ep.sasia) %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % ep.qmimi %> &#8364;</center></td>
+              <td style="width:100px"><center><%= '%.2f' % ep.vat %> &#8364;</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (ep.qmimi * ep.sasia) %> &#8364;</center></td>
             </tr>
           <% end %>
           <% @fatura.fees.each do |f| %>
@@ -136,9 +136,9 @@
               <td style="width:100px"><center>Pesha:</center></td>
               <td style="width:100px"><center><%= '%.2f' % (f.pesha * f.sasia).round(2) %></center></td>
               <td style="width:100px"><center><%= f.sasia.round %></center></td>
-              <td style="width:100px"><center><%= '%.2f' % f.qmimi %> €</center></td>
-              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * @export.client.vat / 100).round(2) %> €</center></td>
-              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * f.sasia) %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % f.qmimi %> &#8364;</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * @export.client.vat / 100).round(2) %> &#8364;</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * f.sasia) %> &#8364;</center></td>
             </tr>
           <% end %>
           <tr style="border-bottom: 0px">
@@ -151,7 +151,7 @@
             <td style="width:100px"></td>
             <td style="width:100px"></td>
             <td style="width:100px; white-space: nowrap"><center><strong>Total without VAT: </strong></center></td>
-            <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @total_pa_vat %> €</strong></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><strong><%= '%.2f' % @total_pa_vat %> &#8364;</strong></center></td>
           </tr>
         </table>
       </div>
@@ -182,9 +182,9 @@
               <td style="width:100px; white-space: nowrap;"><center><%= ea.article.pershkrimi %></center></td>
               <td style="width:100px"><center><%= '%.2f' % (ea.pesha).round(2) %></center></td>
               <td style="width:100px"><center><%= ea.sasia %></center></td>
-              <td style="width:100px"><center><%= '%.2f' % ea.qmimi %> €</center></td>
-              <td style="width:100px"><center><%= '%.2f' % ea.vat %> €</center></td>
-              <td style="width:100px"><center><%= '%.2f' % (ea.qmimi * ea.sasia) %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % ea.qmimi %> &#8364;</center></td>
+              <td style="width:100px"><center><%= '%.2f' % ea.vat %> &#8364;</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (ea.qmimi * ea.sasia) %> &#8364;</center></td>
             </tr>
           <% end %>
           <% @fatura.fees.each do |f| %>
@@ -203,9 +203,9 @@
               <td style="width:100px"><center>Pesha:</center></td>
               <td style="width:100px"><center><%= '%.2f' % (f.pesha * f.sasia).round(2) %></center></td>
               <td style="width:100px"><center><%= f.sasia.round %></center></td>
-              <td style="width:100px"><center><%= '%.2f' % f.qmimi %> €</center></td>
-              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * @export.client.vat / 100).round(2) %> €</center></td>
-              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * f.sasia) %> €</center></td>
+              <td style="width:100px"><center><%= '%.2f' % f.qmimi %> &#8364;</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * @export.client.vat / 100).round(2) %> &#8364;</center></td>
+              <td style="width:100px"><center><%= '%.2f' % (f.qmimi * f.sasia) %> &#8364;</center></td>
             </tr>
           <% end %>
           <tr style="border-bottom: 0px">
@@ -217,7 +217,7 @@
             <td style="width:150px"><center><strong><%= '%.2f' % @pesha_b.round(2) %> Kg</strong></center></td>
             <td style="width:100px"></td>
             <td style="width:100px; white-space: nowrap"><center><strong>Total without VAT: </strong></center></td>
-            <td style="width:100px; white-space: nowrap; text-align: right"><strong><%= '%.2f' % @total_pa_vat %> €</strong></td>
+            <td style="width:100px; white-space: nowrap; text-align: right"><strong><%= '%.2f' % @total_pa_vat %> &#8364;</strong></td>
           </tr> 
         </table>
       </div>
@@ -240,8 +240,8 @@
         </td>
         <td style='width: 90px vertical-align: top; padding-top: -5px; white-space: nowrap; text-align: left;'>
           <div class="fatura-total">
-            <h5 style="font-family: Barlow;"><strong><center><%= '%.2f' % @total_vat %> €</center></strong></h3>
-            <h5 style="font-family: Barlow;"><strong><center><%= '%.2f' % @total %> €</center></strong></h3>
+            <h5 style="font-family: Barlow;"><strong><center><%= '%.2f' % @total_vat %> &#8364;</center></strong></h3>
+            <h5 style="font-family: Barlow;"><strong><center><%= '%.2f' % @total %> &#8364;</center></strong></h3>
           </div>
         </td>
       </tr>

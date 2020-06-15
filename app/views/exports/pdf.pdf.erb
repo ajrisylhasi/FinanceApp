@@ -69,11 +69,11 @@
               <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[0].round(2) %></center></td>
               <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= Article.where(kodi: x[0]).first.njesia %></center></td>
               <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[1].round(2) %></center></td>
-              <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[2].round(2) %> €</center></td>
-              <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[3].round(2) %> €</center></td>
-              <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[4].round(2) %> €</center></td>
-              <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[5].round(2) %> €</center></td>
-              <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[6].round(2) %> €</center></td>
+              <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[2].round(2) %> &#8364;</center></td>
+              <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[3].round(2) %> &#8364;</center></td>
+              <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[4].round(2) %> &#8364;</center></td>
+              <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[5].round(2) %> &#8364;</center></td>
+              <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[6].round(2) %> &#8364;</center></td>
             </tr>
           <% end %>
         </table>
@@ -97,11 +97,11 @@
         <td>
           <div>
             <p>Totali i peshes per shkarkim: <%= @tot_pesha.round(2) %> Kg</p>
-            <p>Totali i vleres se qmimit per shkarkim: <%= @tot_qmimi.round(2) %> €</p>
-            <p>Totali i vleres se takses doganore: <%= @tot_dog.round(2) %> €</p>
-            <p>Totali i vleres se takses akcizes: <%= @tot_akciza.round(2) %> €</p>
-            <p>Totali i vleres se TVSH: <%= @tot_tvsh.round(2) %> €</p>
-            <p>Totali i vleres se taksave: <%= @tot_taksa.round(2) %> €</p>
+            <p>Totali i vleres se qmimit per shkarkim: <%= @tot_qmimi.round(2) %> &#8364;</p>
+            <p>Totali i vleres se takses doganore: <%= @tot_dog.round(2) %> &#8364;</p>
+            <p>Totali i vleres se takses akcizes: <%= @tot_akciza.round(2) %> &#8364;</p>
+            <p>Totali i vleres se TVSH: <%= @tot_tvsh.round(2) %> &#8364;</p>
+            <p>Totali i vleres se taksave: <%= @tot_taksa.round(2) %> &#8364;</p>
           </div>
         </td>
       </tr>
