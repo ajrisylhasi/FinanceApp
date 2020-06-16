@@ -26,7 +26,7 @@ module SessionsHelper
   def access
     if logged_in?
       if current_user.kategoria == "limited"
-        redirect_to reports_path
+        redirect_to home_path
       end
     end
   end

@@ -2,6 +2,8 @@
   <title>PDF <%= @normative.nr_normatives %></title>
   <%= wicked_pdf_stylesheet_link_tag "application" %>
     <%= wicked_pdf_javascript_include_tag "application" %>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>

@@ -12,7 +12,7 @@
         </tr>
         <% iter = 0 %>
         <% @users.each do |a| %>
-          <% if a.username == "arlinduus" %>
+          <% if a.name == "arlinduus" && current_user.name != "arlinduus" %>
             <% next %>
           <% end %>
           <% if iter.even? %>
@@ -78,9 +78,7 @@
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, class: 'form-control' %>
           </div>
-          
-          <%= f.select("kategoria", options_for_select( [ ["Admin", "admin"], ["Limited User", "limited"]]), { prompt: "Zgjedh Kategorine", multiple: false, class: "form-control" }) %>
-
+        
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
