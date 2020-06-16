@@ -10,7 +10,7 @@
 </head>
 <body>
   <center>
-    <div class="fatura-jumbo" style="width:1075px">
+    <div class="fatura-jumbo" style="width:1075px; margin-top: 50px">
       <div class="fatura-niveli-pare">
         <% if kompania.image.file != nil %><div id="foto-fatura"><%= wicked_pdf_image_tag kompania.image_url(:thumber).to_s %></div><% end %>
         <div class="fatura-tit"><h2 style="font-family: Barlow"><strong><%= @fatura.default %></strong></h2></div>
