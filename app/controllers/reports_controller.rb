@@ -133,7 +133,7 @@ class ReportsController < ApplicationController
         else
           send_data csv_string, filename: "Mbetja-#{Date.today}.csv"
         end
-      end
+      }
     end
   end
   
