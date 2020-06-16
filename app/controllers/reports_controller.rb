@@ -123,7 +123,7 @@ class ReportsController < ApplicationController
       format.csv {
         csv_string = CSV.generate do |csv|
           csv << all_keys_as_array
-          @gjendja.each do |y, x|
+          @hash_mbetja.sort_by {|x, y| x[1]}.each do |x, y|
             csv << [ x[3].nr_exportit, x[2].nr_dud, x[1], Article.where(kodi: x[0]).first.tarif_kodi, x[0], Article.where(kodi: x[0]).first.pershkrimi,
                      '%.2f' % y[0].round(2), Article.where(kodi: x[0]).first.njesia, '%.2f' % y[1].round(2), '%.2f' % y[3].round(2), '%.2f' % y[4].round(2), '%.2f' % y[5].round(2), '%.2f' % y[6].round(2), '%.2f' % y[7].round(2)]
           end
