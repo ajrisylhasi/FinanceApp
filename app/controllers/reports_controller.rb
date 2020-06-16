@@ -107,17 +107,32 @@ class ReportsController < ApplicationController
   end
 
   def mbetja
-    if params[:search]
+  if params[:search]
       params[:search] ||= {}
       @date = Date.parse(params[:search][:date]) rescue 0
       mbetja_bashkimi_search
     else
       mbetja_bashkimi
     end
+    all_keys_as_array = ["Exporti", "Importi", "Emertimi", "Tarif Kodi", "Kodi Artikullit", "Pershkrimi", "Sasia", "Njesia", "Pesha (KG)",
+                         "Qmimi Total (€)", "Taksa Doganore (€)", "Akciza (€)", "TVSH (€)", "Gjithsej Taksa (€)"]
     respond_to do |format|
       format.html
       format.json
       format.pdf { render template: "reports/mbetja", pdf: "Residue Report - #{Date.today.to_s}", :encoding => 'UTF-8;'}
+      format.csv {
+        csv_string = CSV.generate do |csv|
+          csv << all_keys_as_array
+          @gjendja.each do |y, x|
+            csv << [ x[3].nr_exportit, x[2].nr_dud, x[1], Article.where(kodi: x[0]).first.tarif_kodi, x[0], Article.where(kodi: x[0]).first.pershkrimi,
+                     '%.2f' % y[0].round(2), Article.where(kodi: x[0]).first.njesia, '%.2f' % y[1].round(2), '%.2f' % y[3].round(2), '%.2f' % y[4].round(2), '%.2f' % y[5].round(2), '%.2f' % y[6].round(2), '%.2f' % y[7].round(2)]
+          end
+        end
+        if @date != 0
+          send_data csv_string, filename: "Mbetja-#{@date}.csv"
+        else
+          send_data csv_string, filename: "Mbetja-#{Date.today}.csv"
+        end
     end
   end
   
@@ -148,8 +163,7 @@ class ReportsController < ApplicationController
         csv_string = CSV.generate do |csv|
           csv << all_keys_as_array
           @gjendja.each do |y, x|
-            csv << [ y[2].data, y[2].nr_dud, y[1], x[3].article.tarif_kodi, y[0], Article.where(kodi: y[0]).first.pershkrimi,
-                     x[0].round(4), x[3].njesia, x[1].round(4), x[2].round(4), x[4].round(4), x[5].round(4), x[6].round(4), x[7].round(4)]
+            
             csv << [ y[2].data.strftime("%d/%m/%Y"), y[2].nr_dud, y[1], x[3].article.tarif_kodi, y[0], Article.where(kodi: y[0]).first.pershkrimi_gjate, 
                       '%.2f' % x[0].round(2), x[3].njesia, '%.2f' % x[1].round(2), '%.2f' % x[2].round(2), '%.2f' % x[4].round(2), '%.2f' % x[5].round(2), 
                       '%.2f' % x[6].round(2), '%.2f' % x[7].round(2)]
