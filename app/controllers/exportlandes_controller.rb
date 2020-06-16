@@ -19,7 +19,7 @@ class ExportlandesController < ApplicationController
 
   def create
     @exportlande = Exportlande.new(exportlande_params)
-    @fatura = Fatura.new(exportlande: @exportlande, data: @exportlande.data, nr_fatures: "Not Set")
+    @fatura = Fatura.new(exportlande: @exportlande.id, data: @exportlande.data, nr_fatures: "Not Set")
     if @exportlande.save 
       redirect_to @exportlande
     else
@@ -42,7 +42,13 @@ class ExportlandesController < ApplicationController
     elsif @exportlande.update_attributes(exportlande_params)
       redirect_to @exportlande
     else
-      render 'show'
+      @errors = []
+      if @exportlande.errors.any?
+        @exportlande.errors.full_messages.each do |msg|
+          @errors.push msg
+        end
+      end
+      redirect_to exportlande_path @exportlande, errors: @errors
     end
   end
 
