@@ -157,7 +157,7 @@ module ReportsHelper
   
   def gjendja_bashkimi_search 
     @gjendja = {}
-    if Import.count == 0 || Export.count == 0
+    if Import.count == 0 || Export.count == 0 || Import.all.where(mbylled: false).count == 0
       gjendja_bashkimi
     else
       data_funit = 0 
