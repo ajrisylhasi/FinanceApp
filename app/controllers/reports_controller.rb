@@ -98,11 +98,22 @@ class ReportsController < ApplicationController
     @client = Client.find(params[:search][:client_id]) rescue 0
     @article = Article.find(params[:search][:article_id]) rescue 0
     import_search
+    all_keys_as_array = ["Klienti", "Data Importit", "Nr. Importit", "Nr. Fatures", "Emertimi", "Artikulli", "Sasia", "Pesha (KG)",
+                         "Qmimi Total (€)"]
     respond_to do |format|
       format.html
       format.json
       format.pdf { render template: "reports/import_search", pdf: "Import Report - #{Date.today.to_s}", :encoding => 'UTF-8;'}
-      
+      format.csv {
+        csv_string = CSV.generate do |csv|
+          csv << all_keys_as_array
+          @list.each do |ep|
+            csv << [ ep.import.client.kompania, ep.import.data, ep.import.nr_dud, ep.import.nr_fatures , ep.emertimi, ep.article.pershkrimi,
+                     ep.sasia.round(2), ep.pesha.round(2), ep.qmimi.round(2)]
+          end
+        end
+        send_data csv_string, filename: "Importet-#{Date.today}.csv"
+      }
     end
   end
 
