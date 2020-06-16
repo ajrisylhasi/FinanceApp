@@ -72,6 +72,7 @@ class MbylljasController < ApplicationController
   def destroy
     
     rikthim_mbyllja(@mbyllja)
+    
     @mbyllja.destroy
     redirect_to mbylljas_url
   end

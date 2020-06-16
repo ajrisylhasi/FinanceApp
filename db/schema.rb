@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_110137) do
+ActiveRecord::Schema.define(version: 2020_06_16_120145) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -202,7 +202,9 @@ ActiveRecord::Schema.define(version: 2020_06_16_110137) do
     t.text "note"
     t.integer "edit"
     t.string "default"
+    t.integer "exportlande_id"
     t.index ["export_id"], name: "index_faturas_on_export_id"
+    t.index ["exportlande_id"], name: "index_faturas_on_exportlande_id"
   end
 
   create_table "fees", force: :cascade do |t|
@@ -524,6 +526,7 @@ ActiveRecord::Schema.define(version: 2020_06_16_110137) do
   add_foreign_key "export_products", "products"
   add_foreign_key "exportlandes", "clients"
   add_foreign_key "exports", "clients"
+  add_foreign_key "faturas", "exportlandes"
   add_foreign_key "faturas", "exports"
   add_foreign_key "fees", "faturas"
   add_foreign_key "garancion_gjendjas", "garancions"
