@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        redirect_to @user
+        redirect_to users_path
       else
         redirect_to users_path
       end
