@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/mileszs/wicked_pdf.git
+  revision: 309ef9607935e55118c3f3139b0789417403fc91
+  specs:
+    wicked_pdf (2.1.0)
+      activesupport
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -276,8 +283,6 @@ GEM
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    wicked_pdf (2.0.2)
-      activesupport
     wkhtmltopdf-binary (0.12.5.4)
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -329,7 +334,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
-  wicked_pdf
+  wicked_pdf!
   wkhtmltopdf-binary
 
 RUBY VERSION
