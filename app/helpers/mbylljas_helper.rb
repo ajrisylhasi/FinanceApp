@@ -23,6 +23,7 @@ module MbylljasHelper
         s.save
       end
       i.mbylled = false
+      i.mbyllja = nil
       i.save
     end
   end
