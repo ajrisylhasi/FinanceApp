@@ -70,6 +70,7 @@ class ExportsController < ApplicationController
   
   def specifikacions
     @exports = Export.all
+    @exportlandes = Exportlande.all
   end
   
   def mbetja

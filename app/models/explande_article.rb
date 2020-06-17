@@ -2,7 +2,7 @@ class ExplandeArticle < ApplicationRecord
   belongs_to :exportlande
   belongs_to :import
   belongs_to :import_article
-  belongs_to :article
+  belongs_to :article, optional: true
   validates :sasia, presence: true
   after_save :default_values
   has_many :subexpls, dependent: :destroy

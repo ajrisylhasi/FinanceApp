@@ -6,5 +6,12 @@ class Exportlande < ApplicationRecord
   has_one :fatura, dependent: :destroy
   accepts_nested_attributes_for :explande_articles, allow_destroy: true
 
- 
+ def pesha
+    vlera = 0
+    self.explande_articles.each do |a|
+      vlera += a.subexpls.first.pesha
+    end
+    vlera
+  end
+
 end

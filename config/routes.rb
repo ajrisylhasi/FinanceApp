@@ -92,6 +92,7 @@ Rails.application.routes.draw do
   get 'palets/:id/files', to: 'palets#files', as: 'palets_files'
   get 'imports/:id/importi', to: 'imports#gjendja', as: "import_gjendja"
   get 'exports/:id/specifikacioni', to: 'exports#gjendja', as: "specifikacioni"
+  get 'exportlandes/:id/specifikacioni', to: 'exportlandes#gjendja', as: "specifikacioniex"
   get 'exports/:id/mbetja', to: 'exports#mbetja', as: "export_mbetja"
   get 'specifikacions', to: 'exports#specifikacions', as: "specifikacions"
   post 'faturas/:id', to: 'faturas#change_edit', as: "change_edit"
