@@ -11,6 +11,8 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 # Only keep the last 5 releases to save disk space
 set :keep_releases, 5
 
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -41,13 +43,7 @@ set :keep_releases, 5
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-namespace :rake do
-  desc "Invoke rake task"
-  task :invoke do
-    run "cd #{deploy_to}/current"
-    run "bundle exec rake #{ENV['task']} RAILS_ENV=#{rails_env}"
-  end
-end
+
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
