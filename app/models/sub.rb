@@ -43,14 +43,12 @@ class Sub < ApplicationRecord
       a*c(+d)/b
     elsif self.import_gjendja.import_article.lloji_akcizes == "€/Kg"
       a = BigDecimal.new(self.import_gjendja.import_article.akciza.to_s)
-      b = BigDecimal.new(100.to_s)
       c = BigDecimal.new(pesha.to_s)
-      a*c/b
+      a*c
     elsif self.import_gjendja.import_article.lloji_akcizes == "€/Njesi"
       a = BigDecimal.new(self.import_gjendja.import_article.akciza.to_s)
-      b = BigDecimal.new(100.to_s)
       c = BigDecimal.new(sasia.to_s)
-      a*c/b
+      a*c
     end
   end
   
