@@ -3,7 +3,7 @@ module ReportsHelper
   def gjendja_bashkimi
     @gjendja = {}
     ImportGjendja.all.each do |i|
-      if i.import.mbylled == true
+      if i.import.mbylled == true || i.import.skaduar?
         next
       end
       if @gjendja.keys.include? [i.kodi, i.emertimi, i.import]
@@ -159,11 +159,11 @@ module ReportsHelper
   
   def gjendja_bashkimi_search 
     @gjendja = {}
-    if Import.count == 0 || Export.count == 0 || Import.all.where(mbylled: false).count == 0
+    if Import.count == 0 || Export.count == 0 || Import.all.where(mbylled: false).count == 0 || Import.all.select { |i| !(i.skaduar?) }.count == 0
       gjendja_bashkimi
     else
       data_funit = 0 
-      data_im = Import.all.where(mbylled: false).sort_by { |e| e.data}.last.data
+      data_im = Import.all.where(mbylled: false).select{ |i| !(i.skaduar?) }.sort_by { |e| e.data}.last.data
       data_ex = Export.all.sort_by { |e| e.data}.last.data
       if data_im > data_ex
         data_funit = data_im
@@ -175,7 +175,7 @@ module ReportsHelper
       elsif (@date - data_funit) >= 0
         gjendja_bashkimi
       else
-        impat = Import.all.select {|i| i.data <= @date }
+        impat = Import.all.select {|i| i.data <= @date && i.data_skadimit >= @date}
         expat = Export.all.select {|e| e.data <= @date }
         hash_gjendja = {}
         impat.each do |i|
