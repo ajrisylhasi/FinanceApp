@@ -1,7 +1,7 @@
 module ImportsHelper
   def refresh_import(import)
     import.import_articles.each do |ia|
-      if ia.import_gjendja == nil
+      if ia.import_gjendja == nil && ia.valid?
         ImportGjendja.create(import: import, import_article: ia, kodi: ia.article.kodi, sasia: ia.sasia, emertimi: ia.emertimi, pesha: ia.pesha, qmimi: ia.qmimi)
       end
     end

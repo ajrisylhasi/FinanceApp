@@ -2,7 +2,8 @@ module ExportsHelper
   
   def refresh_export(export)
     export.export_products.each do |ep|
-      if ep.export_gjendjas.count == 0
+
+      if ep.export_gjendjas.count == 0 && ep.valid?
         hash = {}
         ep.normative.normative_articles.each do |na|
           unless hash.key?(na.article.kodi)

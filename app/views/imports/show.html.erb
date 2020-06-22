@@ -117,6 +117,7 @@
 <div class="row" style="width:100%">
   <div class="col-md-6 col-md-offset-3">
     <%= render 'layouts/flash' %>
+    <div style="margin-top:25px"><%= render 'shared/error_messages' %></div>
     <% unless @import.mbylled %>
       <%= nested_form_for(@import)do |f|%>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -125,24 +126,23 @@
               <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel"><strong>Shto tarifë te re</strong></h4>
               </div>
-              <%= f.fields_for :import_articles do |f| %>
-                <%= render 'shared/error_messages', object: f.object %>
-                <% unless f.object.persisted? %>
+              <%= f.fields_for :import_articles do |ff| %>
+                <% unless ff.object.persisted? %>
                   <div class="modal-body">
               
-                    <%= f.select("article_id", Article.all.select { |a| a.autorizims.first == Autorizim.first }.collect {|p| ["#{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Zgjedh Artikullin", multiple: false}) %><br>
+                    <%= ff.select("article_id", Article.all.select { |a| a.autorizims.first == Autorizim.first }.collect {|p| ["#{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Zgjedh Artikullin", multiple: false}) %><br>
                     
-                    <%= f.label :emertimi %>
-                    <%= f.text_field :emertimi, class: "form-control" %>
+                    <%= ff.label :emertimi %>
+                    <%= ff.text_field :emertimi, class: "form-control" %>
                     
-                    <%= f.label :sasia, "Sasia" %>
-                    <%= f.number_field :sasia, step: :any, class: "form-control" %>
+                    <%= ff.label :sasia, "Sasia" %>
+                    <%= ff.number_field :sasia, step: :any, class: "form-control" %>
                     
-                    <%= f.label :qmimi, "Qmimi" %>
-                    <%= f.number_field :qmimi, step: :any, class: "form-control" %> 
+                    <%= ff.label :qmimi, "Qmimi" %>
+                    <%= ff.number_field :qmimi, step: :any, class: "form-control" %> 
                       
-                    <%= f.label :pesha, "Pesha" %>
-                    <%= f.number_field :pesha, step: :any, class: "form-control" %>
+                    <%= ff.label :pesha, "Pesha" %>
+                    <%= ff.number_field :pesha, step: :any, class: "form-control" %>
                   
               
                   </div>
