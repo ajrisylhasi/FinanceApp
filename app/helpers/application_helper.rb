@@ -1,4 +1,4 @@
-module ApplicationHelperasdasdas
+module ApplicationHelper
   include NormativesHelper
   include ImportsHelper
   include ExportsHelper
