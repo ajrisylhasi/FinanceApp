@@ -11,6 +11,11 @@
         <%= f.label "useri[data_gar]", "Numri i Diteve per Lajmerim te Garancionit" %>
         <%= f.number_field "useri[data_gar]", value: "#{@data_gar}", class: "form-control" %>
       </div>
+
+      <div class="field">
+        <%= f.label "useri[data_imp]", "Numri i Diteve per Lajmerim te Importit" %>
+        <%= f.number_field "useri[data_imp]", value: "#{@data_imp}", class: "form-control" %>
+      </div>
       
       <div class="actions">
         <%= submit_tag "Done",  class: "btn btn-primary", style: 'margin-top: 20px' %>

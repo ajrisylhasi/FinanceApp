@@ -22,12 +22,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @data_auto = @user.data_auto
     @data_gar = @user.data_gar
+    @data_imp = @user.data_imp
   end
   
   def change_date_post
     @user = User.find(params[:id])
     @user.data_auto = params[:useri][:data_auto]
     @user.data_gar = params[:useri][:data_gar]
+    @user.data_imp = params[:useri][:data_imp]
     @user.save
     
     redirect_to home_path
@@ -88,6 +90,6 @@ class UsersController < ApplicationController
     end
     
     def user_date_params
-      params.require(:user).permit(:data_auto, :data_gar)
+      params.require(:user).permit(:data_auto, :data_gar, :date_imp)
     end
 end

@@ -40,7 +40,7 @@ module ExportsHelper
   
   def zbritja(export)
     export.export_gjendjas.each do |egj|
-      i_jat_paraprak = Import.select { |i| i.client_id == egj.export.client_id }.sort_by { |i| [i.data, i.id]}
+      i_jat_paraprak = Import.select { |i| i.client_id == egj.export.client_id && i.data_skadimit > Date.today}.sort_by { |i| [i.data, i.id]}
       i_jat = i_jat_paraprak.select { |i| i.import_gjendjas.where(kodi: egj.kodi).count != 0 && i.client == egj.export.client}
       i_jat.each do |i|
         igj_jat = i.import_gjendjas.where(kodi: egj.kodi)
@@ -121,7 +121,7 @@ module ExportsHelper
     e.export_gjendjas.each do |egj|
       qmimi = 0
       mbetja = 0
-      i_jat_paraprak = Import.select { |i| i.client_id == egj.export.client_id }
+      i_jat_paraprak = Import.select { |i| i.client_id == egj.export.client_id && i.data_skadimit > Date.today }.sort_by { |i| [i.data, i.id]}
       i_jat = i_jat_paraprak.select { |i| i.import_gjendjas.where(kodi: egj.kodi).count != 0 }.sort_by { |i| i.data }
       i_jat.each do |i|
         igj_jat = i.import_gjendjas.where(kodi: egj.kodi)

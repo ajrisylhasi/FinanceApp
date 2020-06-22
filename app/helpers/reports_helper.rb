@@ -139,6 +139,8 @@ module ReportsHelper
   def refresh_gjendja_specific(client)
     $hash_specific = {}
     Import.where(client: client).all.each do |i|
+      next if i.skaduar?
+      
       bashkimi_importit(i)
       i.gjendja_hash.each do |a, s|
         unless $hash_specific.keys.include? a[0]

@@ -99,7 +99,7 @@ class ImportsController < ApplicationController
   private
   
     def import_params
-      params.require(:import).permit(:nr_dud, :nr_fatures, :data, :client_id, :transporti, :dogana, :destinimi, import_articles_attributes: [:id, :import_id, :article_id, :sasia, :qmimi, :emertimi, :pesha, :_destroy], files: [])
+      params.require(:import).permit(:nr_dud, :nr_fatures, :data, :data_skadimit, :client_id, :transporti, :dogana, :destinimi, import_articles_attributes: [:id, :import_id, :article_id, :sasia, :qmimi, :emertimi, :pesha, :_destroy], files: [])
     end
     
     def find_import

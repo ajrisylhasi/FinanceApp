@@ -42,8 +42,13 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    redirect_to products_path
+    if @product.normatives.count > 0
+      flash[:danger] = "There are normatives related to this product."
+      redirect_to products_path
+    else
+      @product.destroy
+      redirect_to products_path
+    end
   end
 
   private

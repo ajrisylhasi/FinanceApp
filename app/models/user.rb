@@ -12,6 +12,7 @@ class User < ApplicationRecord
   def default_values
     self.data_auto ||= 14
     self.data_gar ||= 14
+    self.data_imp ||= 14
     self.first_name ||= ""
     self.last_name ||= ""
     self.kategoria ||= "admin"

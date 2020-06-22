@@ -64,6 +64,20 @@ module ApplicationHelper
       end
     end
   end
+
+  def lajmerim_import_kohe
+    importet = Import.all
+    importet.each do |g|
+      diferenca = g.data_skadimit - Date.today
+      if diferenca <= current_user.data_imp && diferenca > 0
+        $lajmerimet.push("Importi: #{g.nr_dud}, eshte #{diferenca.numerator} dite larg skadimit")
+        $notifications += 1 
+      elsif diferenca <= 0
+        $lajmerimet.push("Importi: #{g.nr_dud}, ka skaduar per #{((-1)*diferenca).numerator} dite")
+        $notifications += 1 
+      end
+    end
+  end
   
   def lajmerim_autorizim
     data_autorizimit = Autorizim.first.data_skadimit
@@ -92,14 +106,14 @@ module ApplicationHelper
     @empty_imports = []
     @empty_imports_names = []
     @empty_imports = Import.all.select do |i|
-      i.empty? && (i.import_articles.count > 0) && !(i.mbylled)
+      i.empty? && (i.import_articles.count > 0) && !(i.mbylled) && !(i.skaduar?)
     end
     @empty_imports.each do |i|
       @empty_imports_names.push i.nr_dud 
     end
     $notifications += 1 if @empty_imports.count > 0
   end
-  
+
   def reset_notifications
     $notifications = 0
   end
@@ -112,6 +126,7 @@ module ApplicationHelper
     lajmerim_garancion
     lajmerim_autorizim
     lajmerim_garancion_kohe
+    lajmerim_import_kohe
   end
   
   def kompania

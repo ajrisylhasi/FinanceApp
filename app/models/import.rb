@@ -19,6 +19,8 @@ class Import < ApplicationRecord
   
   validates :nr_dud, presence: true, uniqueness: true
   validates :dogana, presence: true
+  validates :data, presence: true
+  validates :data_skadimit, presence: true
   validates :destinimi, presence: true
   
   before_save :default_values
@@ -68,6 +70,14 @@ class Import < ApplicationRecord
     
   def emri_klientit 
     self.client.kompania
+  end
+
+  def skaduar?
+    if (self.data_skadimit - Date.today) <= 0
+      true
+    else 
+      false
+    end
   end
 
   def empty?

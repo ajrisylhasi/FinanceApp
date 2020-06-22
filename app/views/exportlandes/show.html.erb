@@ -96,7 +96,7 @@
                 <% unless na.object.persisted? %>
                   <div class="modal-body">
                 
-                    <%= na.select :import_id, Import.all.where(mbylled: false).where(client_id: @exportlande.client).collect { |p| [p.nr_dud, p.id]}, { include_blank: "Selekto Importin", multiple: false}, :id => "product_select", class: "form-control" %>
+                    <%= na.select :import_id, Import.all.where(mbylled: false).where(client_id: @exportlande.client).select { |i| !(i.skaduar?) }.collect { |p| [p.nr_dud, p.id]}, { include_blank: "Selekto Importin", multiple: false}, :id => "product_select", class: "form-control" %>
                     <%= na.label :sasia %>
                     <%= na.number_field :sasia, step: :any, class: "form-control" %>
                     <div>

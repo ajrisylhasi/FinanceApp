@@ -19,6 +19,7 @@
           <% end %>
           <td style="min-width:75px"><center>Numri i Importit</center></td>
           <td style="min-width:75px"><center>Data</center></td>
+          <td style="min-width:120px"><center>Data Skadimit</center></td>
           <td style="min-width:75px"><center>Numri i Fatures</center></td>
           <td style="min-width:75px"><center>Transporti</center></td>
           <td style="min-width:75px"><center>Klienti</center></td>
@@ -34,6 +35,7 @@
             <td><center><%= iter+=1 %></td></center>
             <td><center><%= a.nr_dud %></td></center>
             <td><center><%= a.data %></td></center>
+            <td><center><%= a.data_skadimit %></td></center>
             <td><center><%= a.nr_fatures %></td></center>
             <td><center><%= a.transporti %></td></center>
             <td><center><%= a.client.kompania %></td></center>
@@ -61,7 +63,9 @@
           <%= f.label :nr_dud %>
           <%= f.text_field :nr_dud, class: 'form-control' %>
           <%= f.label :data %>
-          <%= f.date_field :data, class: 'form-control' %>
+          <%= f.date_field :data, class: 'form-control', value: Date.today  %>
+          <%= f.label :data_skadimit %>
+          <%= f.date_field :data_skadimit, class: 'form-control', value: Date.today + 14.days %>
           <%= f.label :transporti %>
           <%= f.number_field :transporti, class: 'form-control', step: :any %>
           <%= f.label :nr_fatures %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_17_005829) do
+ActiveRecord::Schema.define(version: 2020_06_22_143728) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -301,6 +301,7 @@ ActiveRecord::Schema.define(version: 2020_06_17_005829) do
     t.string "zyra_destinim"
     t.string "dogana"
     t.string "destinimi"
+    t.date "data_skadimit"
     t.index ["client_id"], name: "index_imports_on_client_id"
     t.index ["mbyllja_id"], name: "index_imports_on_mbyllja_id"
   end
@@ -508,6 +509,7 @@ ActiveRecord::Schema.define(version: 2020_06_17_005829) do
     t.string "first_name"
     t.string "last_name"
     t.string "username"
+    t.integer "data_imp"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

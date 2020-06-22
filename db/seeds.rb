@@ -2,9 +2,10 @@ Kompani.create(kompania: "Kompania Test", numri_fiskal: "1239635", numri_biznesi
                bank_account: "XK051701001012556636", bank: "NLB BANKA", account_holder: "Intertex shpk", corresponding_bank: "NLB Banka", swift_code: "NLPR XK PR")
 User.create({first_name: "arlinduus", last_name: "Admin", name: "arlinduus", password: "Lindilindi91..", kategoria: "admin", password_confirmation: "Lindilindi91..", email: "test@test.com", tel_number: "+383 011 110"})
 Client.create([{kompania: "Intertex", shteti: "Kosove", qyteti: "Gjakove", adresa: "Tirana", numri_tel: "+383 45 555 666", numri_fiskal: "123456789", numri_biz: "987654321", numri_tvsh: "258963147", konsignacioni: "Sporting", shteti_k: "Kosove", qyteti_k: "Prizren", adresa_k: "Qendra", numri_tel_k: "+383 44 999 888", term: 65, email: "test@test.com", vat:18}, {kompania: "Helo", term: 65, vat:0}])
-Import.create([{nr_dud: 37515, data: "2017-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
-              {nr_dud: 39056, data: "2017-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
-              {nr_dud: 222, data: "2017-07-21", transporti: 1500, client_id: 2, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"}])
+Import.create([{nr_dud: 37515, data: "2017-07-21", data_skadimit: "2020-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
+              {nr_dud: 39056, data: "2017-07-21", data_skadimit: "2020-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
+              {nr_dud: 333, data: "2017-07-21", data_skadimit: "2020-07-21", transporti: 1500, client_id: 2, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
+              {nr_dud: 222, data: "2017-07-21", data_skadimit: "2020-07-21", transporti: 1500, client_id: 2, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"}])
 Autorizim.create([{data_leshimit: "2017-05-12", data_skadimit: "2200-07-12", shteti: "Kosove", qyteti: "Prishtine", adresa: "Bujar Roka"}])
 Garancion.create(identifikimi: "234234", pershkrimi: "Garancioni 1", vlera: 10000.0, data: "2017-05-12", data_skadimit: "2030-07-12")
 Garancion.create(identifikimi: "421452", pershkrimi: "Garancioni 2", vlera: 20000.0, data: "2017-05-12", data_skadimit: "2030-07-12")
