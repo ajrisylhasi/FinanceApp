@@ -1,11 +1,9 @@
 Kompani.create(kompania: "Kompania Test", numri_fiskal: "1239635", numri_biznesit: "75396312", numri_tvsh: "1452638", numri_identifikues: "8528528", shteti: "Kosove", qyteti: "Gjakove", adresa: "Tirana", zip: "50000",
                bank_account: "XK051701001012556636", bank: "NLB BANKA", account_holder: "Intertex shpk", corresponding_bank: "NLB Banka", swift_code: "NLPR XK PR")
 User.create({first_name: "arlinduus", last_name: "Admin", name: "arlinduus", password: "Lindilindi91..", kategoria: "admin", password_confirmation: "Lindilindi91..", email: "test@test.com", tel_number: "+383 011 110"})
-Client.create([{kompania: "Intertex", shteti: "Kosove", qyteti: "Gjakove", adresa: "Tirana", numri_tel: "+383 45 555 666", numri_fiskal: "123456789", numri_biz: "987654321", numri_tvsh: "258963147", konsignacioni: "Sporting", shteti_k: "Kosove", qyteti_k: "Prizren", adresa_k: "Qendra", numri_tel_k: "+383 44 999 888", term: 65, email: "test@test.com", vat:18}, {kompania: "Helo", term: 65, vat:0}])
+Client.create([{kompania: "Intertex", shteti: "Kosove", qyteti: "Gjakove", adresa: "Tirana", numri_tel: "+383 45 555 666", numri_fiskal: "123456789", numri_biz: "987654321", numri_tvsh: "258963147", konsignacioni: "Sporting", shteti_k: "Kosove", qyteti_k: "Prizren", adresa_k: "Qendra", numri_tel_k: "+383 44 999 888", term: 65, email: "test@test.com", vat:18}])
 Import.create([{nr_dud: 37515, data: "2017-07-21", data_skadimit: "2020-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
-              {nr_dud: 39056, data: "2017-07-21", data_skadimit: "2020-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
-              {nr_dud: 333, data: "2017-07-21", data_skadimit: "2020-07-21", transporti: 1500, client_id: 2, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"},
-              {nr_dud: 222, data: "2017-07-21", data_skadimit: "2020-07-21", transporti: 1500, client_id: 2, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"}])
+              {nr_dud: 39056, data: "2017-07-21", data_skadimit: "2020-07-21", transporti: 2980, client_id: 1, dogana: "3031=*=PKK MERDARE", destinimi: "2020=*=ZBD PRISHTINE"}])
 Autorizim.create([{data_leshimit: "2017-05-12", data_skadimit: "2200-07-12", shteti: "Kosove", qyteti: "Prishtine", adresa: "Bujar Roka"}])
 Garancion.create(identifikimi: "234234", pershkrimi: "Garancioni 1", vlera: 10000.0, data: "2017-05-12", data_skadimit: "2030-07-12")
 Garancion.create(identifikimi: "421452", pershkrimi: "Garancioni 2", vlera: 20000.0, data: "2017-05-12", data_skadimit: "2030-07-12")
@@ -13,8 +11,8 @@ Akciza.create([{lloji: "%"}, {lloji: "Pa akcize"}, {lloji: "€/Kg"}, {lloji: "�
 Dogana.create([{kodi: "3031", pershkrimi: "PKK MERDARE"}])
 Destinim.create([{kodi: "2020", pershkrimi: "ZBD PRISHTINE"}])
 Njesi.create([{lloji: "Metra"}, {lloji: "Cope"}, {lloji: "Liter"}])
-Product.create([{pershkrimi: "Tiguan Rails HBC", tarif_kodi: 17016591, qmimi: 15, articlenr: "908"}, {pershkrimi: "Touran Rails HBC", tarif_kodi: 17009630, qmimi: 25, articlenr: "911"}, {pershkrimi: "Cord Only", tarif_kodi: 17009630, qmimi: 50, articlenr: "456"}])
-Normative.create([{nr_normatives: 1, product_id: 1, data: Date.today.to_s, kategoria: "auto"}, {nr_normatives: 2, product_id: 2, data: Date.today.to_s, kategoria: "auto"}, {nr_normatives: 3, product_id: 3, data: Date.today.to_s, kategoria: "auto"}])
+Product.create([{pershkrimi: "Tiguan Rails HBC", tarif_kodi: 17016591, qmimi: 15, articlenr: "908"}, {pershkrimi: "Touran Rails HBC", tarif_kodi: 17009630, qmimi: 25, articlenr: "911"}])
+Normative.create([{nr_normatives: 1, product_id: 1, data: Date.today.to_s, kategoria: "auto"}, {nr_normatives: 2, product_id: 2, data: Date.today.to_s, kategoria: "auto"}])
 
 Article.create([
 {pershkrimi: 'Laminat 1550 ', tarif_kodi: 39219090, njesia: 'Metra', kodi: '25123', pershkrimi_gjate: 'Pllaka, fleta, filma, krisafe dhe shirita të tjera, prej plastike', dogana: 10.0, akciza: 0, lloji_akcizes: 'Pa akcize', tvsh: 18.0, kategoria: 'lende'},
@@ -87,8 +85,7 @@ NormativeArticle.create([
 {normative_id: 2, article_id: 7, sasia: 0.38, mbetja: 0.0, pesha_qmimi: "0.1028575 0.287171766438798293399754999775", mbetja_peshe: 0.0},
 {normative_id: 2, article_id: 15, sasia: 0.1, mbetja: 0.0, pesha_qmimi: "0.095554166666666666666666667 0.241095699435558268712480876783333333333333333", mbetja_peshe: 0.0},
 {normative_id: 2, article_id: 14, sasia: 0.008, mbetja: 0.0, pesha_qmimi: "4.95 5.508206020756784588387586673888073619142857142857142857", mbetja_peshe: 0.0},
-{normative_id: 2, article_id: 17, sasia: 0.032, mbetja: 0.0, pesha_qmimi: "0.1 0.259209695094436921806474667006497583892857142857142857", mbetja_peshe: 0.0},
-{normative_id: 3, article_id: 4, sasia: 50, mbetja: 10, pesha_qmimi: "1 1", mbetja_peshe: 10}])
+{normative_id: 2, article_id: 17, sasia: 0.032, mbetja: 0.0, pesha_qmimi: "0.1 0.259209695094436921806474667006497583892857142857142857", mbetja_peshe: 0.0}])
 
 ImportArticle.create([
 {import_id: 1, article_id: 1, sasia: 16000.0, emertimi: "1", pesha: 2486.824, qmimi: 9515.99},
@@ -121,13 +118,11 @@ ImportArticle.create([
 {import_id: 2, article_id: 13, sasia: 2500.0, emertimi: "13", pesha: 10.0, qmimi: 182.5},
 {import_id: 2, article_id: 15, sasia: 800.0, emertimi: "14", pesha: 76.44, qmimi: 180.0},
 {import_id: 2, article_id: 14, sasia: 140.0, emertimi: "15", pesha: 693.0, qmimi: 714.0},
-{import_id: 2, article_id: 17, sasia: 560.0, emertimi: "16", pesha: 56.0, qmimi: 134.4},
-{import_id: 3, article_id: 4, sasia: 500, emertimi: "500", pesha: 500, qmimi: 100}])
+{import_id: 2, article_id: 17, sasia: 560.0, emertimi: "16", pesha: 56.0, qmimi: 134.4}])
 
 AutorizimProduct.create([
   {autorizim_id: 1, product_id: 1},
-  {autorizim_id: 1, product_id: 2},
-  {autorizim_id: 1, product_id: 3},
+  {autorizim_id: 1, product_id: 2}
 ])
 
 Export.create(nr_exportit: "R-65334", data: Date.today, client: Client.first)
