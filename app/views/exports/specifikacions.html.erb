@@ -1,0 +1,44 @@
+<center><h1 style="font-family: Barlow; margin-top: 30px">Lista e Specifikacioneve</h1></center>
+<div><%= render "layouts/flash" %></div>
+<%= render 'shared/error_messages' %>
+<center>
+  <div class="fatura-tabela">
+      
+      <table>
+        <tr class="hedi">
+          <td style="min-width:75px;"><center>#</center></td>
+          <td style="min-width:75px"><center>Numri i Eksportit</center></td>
+          <td style="min-width:75px"><center>Data</center></td>
+          <td colspan="4"><center></center></td>
+        </tr>
+        <% iter = 0 %>
+        <% @exports.each do |a| %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td><center><%= iter+=1 %></td></center>
+            <td><center><%= a.nr_exportit %></td></center>
+            <td><center><%= a.data %></td></center>
+            <td style="width: 25px"></td>
+            <td style="width: 50px; border: 0px"><center><%= link_to specifikacioni_path(a) do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center></center>
+          </tr>
+        <% end %>
+        <% @exportlandes.each do |a| %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td><center><%= iter+=1 %></td></center>
+            <td><center><%= a.nr_exportit %></td></center>
+            <td><center><%= a.data %></td></center>
+            <td style="width: 25px"></td>
+            <td style="width: 50px; border: 0px"><center><%= link_to specifikacioniex_path(a) do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center></center>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <div>
+</center>

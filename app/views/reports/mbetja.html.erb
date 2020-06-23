@@ -1,0 +1,64 @@
+<center>
+  <br>
+    <div>
+      <%= form_for "", url: mbetja_url, role: "search", method: :get  do %>
+        <%= date_field_tag "search[date]", @date %>
+        <%= submit_tag "Search",  class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <center><div style="display: inline-block;">
+    <h1 style="text-align: center;">Mbetja E Pergjithshme</h1>
+  </div>
+</center>
+  <div class="fatura-tabela" style="width:1500px">
+    <table>
+      <tr class="hedi">
+        <td><center>Eksporti</center></td>
+        <td><center>Importi</center></td>
+        <td><center>Emertimi</center></td>
+        <td><center>Tarif Kodi</center></td>
+        <td style="width: 100px"><center>Kodi Artikullit</center></td>
+        <td><center>Pershkrimi</center></td>
+        <td><center>Sasia</center></td>
+        <td><center>Njesia</center></td>
+        <td><center>Pesha</center></td>
+        <td><center>Qmimi Total</center></td>
+        <td><center>Taksa Doganore</center></td>
+        <td><center>Akciza</center></td>
+        <td style="width: 100px"><center>Taksa TVSH</center></td>
+        <td><center>Gjithsej Taksat</center></td>
+      </tr>
+      <% i = 1 %>
+      <% @hash_mbetja.sort_by {|x, y| x[1]}.each do |x, y| %>
+        <% i+=1 %>
+        <% if i.even? %>
+          <tr style="background: #dee2e6">  
+        <% else %>
+          <tr style="background: white"> 
+        <% end %>
+          <td style=""><center><%= x[3].nr_exportit %></center></td>
+          <td style=""><center><%= x[2].nr_dud %></center></td>
+          <td style=""><center><%= x[1] %></center></td>
+          <td style=""><center><%= Article.where(kodi: x[0]).first.tarif_kodi %></center></td>
+          <td style=""><center><%= x[0] %></center></td>
+          <td style="white-space: nowrap"><center><%= Article.where(kodi: x[0]).first.pershkrimi %></center></td>
+          <td style="white-space: nowrap"><center><%= '%.2f' % y[0].round(2) %></center></td>
+          <td style=""><center><%= Article.where(kodi: x[0]).first.njesia %></center></td>
+          <td style="white-space: nowrap"><center><%= '%.2f' % y[1].round(2) %> Kg</center></td>
+          <td style="white-space: nowrap"><center><%= '%.2f' % y[3].round(2) %> €</center></td>
+          <td style="white-space: nowrap"><center><%= '%.2f' % y[4].round(2) %> €</center></td>
+          <td style="white-space: nowrap"><center><%= '%.2f' % y[5].round(2) %> €</center></td>
+          <td style="white-space: nowrap"><center><%= '%.2f' % y[6].round(2) %> €</center></td>
+          <td style="white-space: nowrap"><center><%= '%.2f' % y[7].round(2) %> €</center></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  
+  <%= link_to "PDF", mbetja_path( format: :pdf, :search => { :date => @date }), target: "_blank", class: "btn btn-primary", id: 'pdf-fatura', style: "margin: 15px" %>
+  <%= link_to "CSV", mbetja_path( format: :csv, :search => { :date => @date }), target: "_blank", class: "btn btn-primary", id: 'csv-fatura', style: "margin: 15px" %>
+</center>
+<style>
+  .fatura-tabela td {
+    min-width: 100px;
+  }

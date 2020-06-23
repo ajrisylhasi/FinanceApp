@@ -1,0 +1,64 @@
+<center>
+<div class="row" style="max-width: 500px">
+    <center>
+  <div>
+    <%= nested_form_for(@client) do |f|%>
+      
+      <%= render 'shared/error_messages', object: f.object %>
+      <div style="container">
+        <%= f.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
+        <%= f.label :kompania %>
+        <%= f.text_field :kompania, class: 'form-control' %>
+        
+        <%= f.label :shteti %>
+        <%= f.text_field :shteti, class: 'form-control' %>
+        
+        <%= f.label :qyteti %>
+        <%= f.text_field :qyteti, class: 'form-control' %>
+        
+        <%= f.label :adresa %>
+        <%= f.text_field :adresa, class: 'form-control' %>
+        
+        <%= f.label :numri_tel %>
+        <%= f.text_field :numri_tel, class: 'form-control' %>
+        
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+        
+        <%= f.label :numri_fiskal %>
+        <%= f.text_field :numri_fiskal, class: 'form-control' %>
+        
+        <%= f.label :numri_biz %>
+        <%= f.text_field :numri_biz, class: 'form-control' %>
+        
+        <%= f.label :numri_tvsh %>
+        <%= f.text_field :numri_tvsh, class: 'form-control' %>
+        
+        <%= f.label :konsignacioni %>
+        <%= f.text_field :konsignacioni, class: 'form-control' %>
+        
+        <%= f.label :shteti_k, "Shteti i Konsignacionit" %>
+        <%= f.text_field :shteti_k, class: 'form-control' %>
+        
+        <%= f.label :qyteti_k, "Qyteti i Konsignacionit" %>
+        <%= f.text_field :qyteti_k, class: 'form-control' %>
+        
+        <%= f.label :adresa_k, "Adresa i Konsignacionit" %>
+        <%= f.text_field :adresa_k, class: 'form-control' %>
+        
+        <%= f.label :numri_tel_k, "Numri Kontaktues i Konsignacionit" %>
+        <%= f.text_field :numri_tel_k, class: 'form-control' %>
+        
+        <%= f.label :term, "Koha e pageses se Fatures" %>
+        <%= f.number_field :term, class: 'form-control' %>
+        
+        
+        <%= f.label :vat, "Perqindja e VAT" %>
+        <%= f.number_field :vat, class: 'form-control', step: :any %>
+        
+      </div>
+    <% end %>
+  </div>
+    </center>
+</div>
+</center>

@@ -1,0 +1,55 @@
+<center>
+  <center>
+    <div style="margin-top:30px">
+      <%= form_for "", url: product_search_url, role: "search", method: :get  do %>
+        <%= date_field_tag "search[date_from]", @date_from %>
+        <%= date_field_tag "search[date_to]", @date_to %>
+        <%= select_tag "search[client_id]", options_from_collection_for_select(@clients, 'id', 'kompania'), {include_blank: "Select Client", multiple: false} %>
+        <%= select_tag "search[product_id]", options_from_collection_for_select(@products, 'id', 'pershkrimi'), {include_blank: "Select Product", multiple: false} %>
+        <%= submit_tag "Search",  class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </center>
+  <center>
+    <div class="fatura-tabela" style="margin-top: -25px">
+    <h1 style="padding-top: 25px"> Exporti i Produkteve</h1>
+        
+        <table style="margin-top: 25px">
+          <tr class="hedi">
+            <td style="min-width:75px"><center>#</center></td>
+            <td style="min-width:75px"><center>Klienti</center></td>
+            <td style="min-width:75px"><center>Data e Eksportit</center></td>
+            <td style="min-width:75px"><center>Numri i Eksportit</center></td>
+            <td style="min-width:75px"><center>Numri i Fatures</center></td>
+            <td style="min-width:75px"><center>Data e Fatures</center></td>
+            <td style="min-width:75px"><center>Produkti</center></td>
+            <td style="min-width:75px"><center>Sasia</center></td>
+            <td style="min-width:75px"><center>Qmimi</center></td>
+            <td style="min-width:75px"><center>Totali</center></td>
+          </tr>
+          <% iter = 0 %>
+          <% @list.each do |ep| %>
+            <% if iter.even? %>
+              <tr style="background: #dee2e6">  
+            <% else %>
+              <tr style="background: white"> 
+            <% end %>
+              <td><center><%= iter+=1 %></td></center>
+              <td style="width:75px"><center><%= ep.export.client.kompania %></center></td>
+              <td style="width:75px"><center><%= ep.export.data %></center></td>
+              <td style="width:75px"><center><%= ep.export.nr_exportit %></center></td>
+              <td style="width:75px"><center><%= ep.export.fatura.nr_faturess %></center></td>
+              <td style="width:75px"><center><%= ep.export.fatura.data %></center></td>
+              <td style="width:125px"><center><%= ep.product.pershkrimi %></center></td>
+              <td style="width:75px"><center><%= ep.sasia %></center></td>
+              <td style="width:75px"><center><%= ep.qmimi %> €</center></td>
+              <td style="width:75px"><center><%= ep.qmimi * ep.sasia %> €</center></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <div>
+  </center>
+  <%= link_to "PDF", product_search_path( format: :pdf, :search => { :date_from => @date_from, :date_to => @date_to, :client_id => @client, :product_id => @product }), target: "_blank", class: "btn btn-primary", id: "pdf-fatura", style: "margin: 15px" %> 
+  <%= link_to "CSV", '/product_search.csv', class: "btn btn-primary", id: "csv-fatura", style: "margin: 15px" %></center>
+</center>

@@ -1,0 +1,42 @@
+<center>
+  <div class="row" style="max-width: 500px">
+    <center>
+      <div>
+        <%= nested_form_for(@article)do |f|%>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div style="container">
+            <%= f.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
+            <%= f.label :pershkrimi %>
+            <%= f.text_field :pershkrimi, class: 'form-control' %>
+            
+            <%= f.label :pershkrimi_gjate, "Pershkrimi Doganore" %>
+            <%= f.text_area :pershkrimi_gjate, class: 'form-control' %>
+            
+            <%= f.label :kodi, "Kodi i Artikullit" %>
+            <%= f.text_field :kodi, class: 'form-control' %>
+            
+            <%= f.label :dogana %>
+            <%= f.number_field :dogana, step: :any, class: 'form-control' %>
+            
+            <%= f.label :lloji_akcizes %>
+            <%= f.select("lloji_akcizes", Akciza.all.collect {|n| [ n.lloji,  n.lloji ] }, { prompt: "Zgjedh Llojin e Akcizes", multiple: false }, class: "form-control") %>
+            
+            <%= f.label :njesia %>
+            <%= f.select("njesia", Njesi.all.collect {|n| [ n.lloji,  n.lloji ] }, { prompt: "Zgjedh Llojin e Njesise", multiple: false }, class: "form-control") %>
+
+            <%= f.label :kategoria %>
+            <%= f.select("kategoria", options_for_select( [ ["Lende e pare", "lende"], ["paketim", "paketim"]]), { prompt: "Zgjedh Kategorine", multiple: false }, class: "form-control") %>
+            <%= f.label :akciza %>
+            <%= f.number_field :akciza, step: :any, class: 'form-control' %>
+            
+            <%= f.label :tarif_kodi %>
+            <%= f.number_field :tarif_kodi, class: 'form-control' %>
+            
+            <%= f.label :tvsh %>
+            <%= f.number_field :tvsh, step: :any, class: 'form-control' %>
+          </div>
+        <% end %>
+      </div>
+    </center>
+  </div>
+</center>

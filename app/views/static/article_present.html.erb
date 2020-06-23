@@ -1,0 +1,27 @@
+<center>
+  <div style="margin-top:15px">
+    <%= form_for "", url: article_search_url, role: "search", method: :get  do %>
+      <%= text_field_tag :search, @search_term, placeholder: "Kerko Artikullin", style: "height: 2.3vw; width: 25%; padding: 15px; border: solid #b3b3b3 1px; border-radius: 4px" %>
+      <%= submit_tag "Kerko",  class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</center>
+
+<% if @articles.count != 0 %>
+  <center>
+    <% @articles.each do |a| %>
+      <div style="width: 50%; padding: 15px">
+        <h2><%= a.pershkrimi %> - <%= a.tarif_kodi %></h2>
+      </div>
+    <% end %>
+    <% unless enabled? %>
+      <div style="width:50%; border-radius: 15px; background: #333; color: white"><h2>Data e Autorizimit ka skaduar</h2></div>
+    <% end %>
+  </center>
+<% else %>
+  <center>
+    <div style="width: 25%; padding: 15px">
+      <h2><%= @text %></h2>
+    </div>
+  </center>
+<% end %>

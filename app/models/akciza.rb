@@ -1,0 +1,2 @@
+class Akciza < ApplicationRecord
+end

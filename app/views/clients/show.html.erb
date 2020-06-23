@@ -1,0 +1,150 @@
+<center><h1 style="font-family: Barlow; margin-top: 30px">Klienti: <strong><%= @client.kompania %></strong></h1></center>
+<br>
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Shteti</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Qyteti</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Adresa</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Numri Kontaktues</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @client.shteti %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @client.qyteti%> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @client.adresa %> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @client.numri_tel %>
+        </div>
+      </td>
+    </tr>
+    <% if @client.konsignacioni != nil %>
+      <tr style="height: 6	0px">
+        <td colspan="4">
+        	<center><h1 style="font-family: Barlow; margin-bottom:20px">Konsignacioni: <strong><%= @client.konsignacioni %></strong></h1></center>
+        </td>
+      </tr>
+      <tr>
+      	<td>
+          <div>
+            <strong>Shteti</strong>
+          </div>
+        </td>
+        <td>
+          <div>
+            <strong>Qyteti</strong>
+          </div>
+        </td>
+        <td>
+          <div>
+            <strong>Adresa</strong>
+          </div>
+        </td>
+        <td>
+          <div>
+            <strong>Numri Kontaktues</strong>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div>
+            <%= @client.shteti_k %>
+          </div>
+        </td>
+        <td>
+          <div>
+            <%= @client.qyteti_k %> 
+          </div>
+        </td>
+        <td>
+          <div>
+            <%= @client.adresa_k %> 
+          </div>
+        </td>
+        <td>
+          <div>
+            <%= @client.numri_tel_k %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</center>
+<style>
+  .tabela-import{
+    margin-bottom: 40px;
+  }
+  .tabela-import td {
+    width: 300px;
+    text-align: center;
+  }
+</style>
+
+<center>
+  <div class="fatura-tabela" style="margin-top:75px">
+      
+      <table>
+        <tr style="border: 0px; margin-top: 0px; padding-top: 0px">
+          <td colspan="10"><center></center></td>
+        </tr>
+        <tr class="hedi">
+          <td style="min-width:75px"><center>#</center></td>
+          <td style="min-width:75px"><center>Numri i Importit</center></td>
+          <td style="min-width:75px"><center>Data</center></td>
+          <td style="min-width:125px"><center>Numri i Fatures</center></td>
+          <td style="min-width:75px"><center>Transporti</center></td>
+          <td colspan="4"><center></center></td>
+        </tr>
+        <% iter = 0 %>
+        <% @client.imports.each do |a| %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td><center><%= iter+=1 %></td></center>
+            <td><center><%= a.nr_dud %></td></center>
+            <td><center><%= a.data %></td></center>
+            <td><center><%= a.nr_fatures %></td></center>
+            <td><center><%= a.transporti %></td></center>
+            <td style="width: 25px"></td>
+            <td style="width: 50px; border: 0px"><center><%= link_to a do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to edit_import_path(a) do %> <span class="glyphicon glyphicon-pencil" style="color: black; font-size: 18px"></span><% end %></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to a, method: :delete do %>
+              <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %>
+            </td></center>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <div>
+</center>

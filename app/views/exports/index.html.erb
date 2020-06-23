@@ -1,0 +1,69 @@
+<center><h1 style="font-family: Barlow; margin-top: 30px">Lista e Eksporteve</h1></center>
+<div><%= render "layouts/flash" %></div>
+<%= render 'shared/error_messages' %>
+<center>
+  <div class="fatura-tabela" style="margin-top: -25px">
+      
+      <table style="margin-top:35px">
+        <tr style="border: 0px; margin-top: 0px; padding-top: 0px">
+          
+          <td colspan="10"><center></center></td>
+        </tr>
+        <tr class="hedi">
+          <% if enabled? %>
+            <td style="min-width:75px"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 30px; color: green;">&#43;</button></center></td>
+          <% else %>
+            <td style="min-width:75px"><center><button type="button" style="border: 0px; background: none; font-size: 30px; color: grey;">&#43;</button></center></td>
+          <% end %>
+          <td style="min-width:75px"><center>Numri i Eksportit</center></td>
+          <td style="min-width:75px"><center>Data</center></td>
+          <td style="min-width:75px"><center>Klienti</center></td>
+          <td colspan="4"><center></center></td>
+        </tr>
+        <% iter = 0 %>
+        <% @exports.each do |a| %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td><center><%= iter+=1 %></td></center>
+            <td><center><%= a.nr_exportit %></td></center>
+            <td><center><%= a.data %></td></center>
+            <td><center><%= a.client.kompania %></td></center>
+            <td style="width: 25px"></td>
+            <td style="width: 50px; border: 0px"><center><%= link_to a do %><span class="glyphicon glyphicon-eye-open" style="color: black; font-size: 21px"></span><% end%></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to edit_export_path(a) do %> <span class="glyphicon glyphicon-pencil" style="color: black; font-size: 18px"></span><% end %></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to a, method: :delete do %>
+              <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %>
+            </td></center>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <div>
+</center>
+
+<%= nested_form_for(@export)do |f|%>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel"><strong>Shto export të ri</strong></h4>
+        </div>
+        <div class="modal-body">
+          <%= f.label :nr_exportit %>
+          <%= f.text_field :nr_exportit, class: 'form-control' %>
+          <%= f.date_field :data, class: 'form-control', value: Date.today %>
+          
+          <%= f.file_field :files, multiple: true%>
+          <%= f.select("client_id", Client.all.collect {|n| [ n.kompania,  n.id ] }, { prompt: "Select Client", multiple: false, id: "n" }) %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+          <%= f.submit "Shto", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

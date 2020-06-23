@@ -1,0 +1,30 @@
+<center>
+  <div class="row" style="max-width: 500px">
+    <center>
+      <div>
+        <%= nested_form_for(@autorizim) do |f|%>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div style="container">
+            <%= f.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
+            <%= f.label :data_leshimit %>
+            <%= f.date_field :data_leshimit, class: 'form-control' %>
+            
+            <%= f.label :data_skadimit %>
+            <%= f.date_field :data_skadimit, class: 'form-control' %>
+                    
+            <%= f.label :shteti %>
+            <%= f.text_field :shteti, class: 'form-control' %>
+            
+            <%= f.label :qyteti %>
+            <%= f.text_field :qyteti, class: 'form-control' %>
+            
+            <%= f.label :adresa %>
+            <%= f.text_field :adresa, class: 'form-control' %>
+            
+            <%= f.file_field :files, multiple: true, style: "margin-top: 15px" %>
+          </div>
+        <% end %>
+      </div>
+    </center>
+  </div>
+</center>

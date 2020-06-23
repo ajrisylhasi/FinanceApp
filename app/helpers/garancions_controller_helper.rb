@@ -1,0 +1,2 @@
+module GarancionsControllerHelper
+end

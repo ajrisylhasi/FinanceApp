@@ -1,0 +1,39 @@
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3">
+    <%= nested_form_for(@article)do |f|%>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div style="container">
+        <%= f.label :pershkrimi %>
+        <%= f.text_field :pershkrimi, class: 'form-control' %>
+        
+        <%= f.label :pershkrimi_gjate, "Pershkrimi Doganore" %>
+        <%= f.text_area :pershkrimi_gjate, class: 'form-control' %>
+        
+        <%= f.label :kodi, "Kodi i Artikullit" %>
+        <%= f.text_field :kodi, class: 'form-control' %>
+        
+        <%= f.label :dogana %>
+        <%= f.number_field :dogana, step: :any, class: 'form-control' %>
+        
+        <%= f.select("lloji_akcizes", Akciza.all.collect {|n| [ n.lloji,  n.lloji ] }, { prompt: "Zgjedh Llojin e Akcizes", multiple: false }) %>
+        
+        <%= f.select("njesia", Njesi.all.collect {|n| [ n.lloji,  n.lloji ] }, { prompt: "Zgjedh Llojin e Njesise", multiple: false }) %>
+
+        <%= f.select("kategoria", options_for_select( [ ["Lende e pare", "lende"], ["Paketim", "paketim"]]), { prompt: "Zgjedh Kategorine", multiple: false }) %>
+        <br>
+        <%= f.label :akciza %>
+        <%= f.number_field :akciza, step: :any, class: 'form-control' %>
+        
+        <%= f.label :tarif_kodi %>
+        <%= f.number_field :tarif_kodi, class: 'form-control' %>
+        
+        <%= f.label :tvsh %>
+        <%= f.number_field :tvsh, step: :any, class: 'form-control' %>
+      </div>
+      <div class="buttons">
+        <%= f.submit "Add Article", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Back", articles_path, class:"btn btn-primary" %>
+</div>

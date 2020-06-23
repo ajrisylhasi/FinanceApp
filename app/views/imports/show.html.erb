@@ -1,0 +1,257 @@
+<center><h1 style="font-family: Barlow; margin-top: 30px">Importi: <%= @import.nr_dud %></h1></center>
+<br>
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Data</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Klienti</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Fatura</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Transporti</strong> 
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @import.data %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @import.client.kompania %> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @import.nr_fatures %> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @import.transporti %> €
+        </div>
+      </td>
+    </tr>
+    <tr style="height: 40px">
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <div>
+          <strong>Kodi i zyres Doganore</strong>
+      </div> 
+      </td>
+      <td>
+        <div>
+          <strong>Zyra Doganore</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Kodi i zyres Destinimit</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Zyra e Destinimit</strong>
+        </div>
+      </td>
+    <tr>
+      <td>
+      <div>
+          <%= @import.kodi_doganor %>
+      </div> 
+      </td>
+      <td>
+        <div>
+          <%= @import.zyra_doganore %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @import.kodi_destinim %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @import.zyra_destinim %>
+        </div>
+      </td>
+    </tr>
+    </tr>
+  </table>
+</center>
+<style>
+  .tabela-import{
+    margin-bottom: 40px;
+  }
+  .tabela-import td {
+    width: 300px;
+    text-align: center;
+  }
+</style>
+<center>
+<%= link_to import_files_path(@import) do %> <span class="glyphicon glyphicon-folder-open" style="color: black; font-size: 18px"></span><% end %>
+</center>
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3">
+    <%= render 'layouts/flash' %>
+    <div style="margin-top:25px"><%= render 'shared/error_messages' %></div>
+    <% unless @import.mbylled %>
+      <%= nested_form_for(@import)do |f|%>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel"><strong>Shto tarifë te re</strong></h4>
+              </div>
+              <%= f.fields_for :import_articles do |ff| %>
+                <% unless ff.object.persisted? %>
+                  <div class="modal-body">
+              
+                    <%= ff.select("article_id", Article.all.select { |a| a.autorizims.first == Autorizim.first }.collect {|p| ["#{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Zgjedh Artikullin", multiple: false}) %><br>
+                    
+                    <%= ff.label :emertimi %>
+                    <%= ff.text_field :emertimi, class: "form-control" %>
+                    
+                    <%= ff.label :sasia, "Sasia" %>
+                    <%= ff.number_field :sasia, step: :any, class: "form-control" %>
+                    
+                    <%= ff.label :qmimi, "Qmimi" %>
+                    <%= ff.number_field :qmimi, step: :any, class: "form-control" %> 
+                      
+                    <%= ff.label :pesha, "Pesha" %>
+                    <%= ff.number_field :pesha, step: :any, class: "form-control" %>
+                  
+              
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+                    <%= f.submit "Shto", class: "btn btn-primary", name: "add_article_import" %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<center>
+  <div class="fatura-tabela" style="width:auto">
+    <table>
+      <tr class="hedi">
+        <% if enabled? %>
+          <td colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
+        <% else %>
+          <td colspan="2"><center><button type="button" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: grey; margin-bottom: 5px">&#43;</button></center></td>
+        <% end %>
+        <td><center>Pershkrimi</center></td>
+        <td><center>Tarif Kodi</center></td>
+        <td><center>Emertimi</center></td>
+        <td><center>Kodi</center></td>
+        <td><center>Sasia</center></td>
+        <td><center>Qmimi</center></td>
+        <td style="white-space: nowrap;"><center>Qmimi per Njesi</center></td>
+        <td><center>Qmimi per Kg</center></td>
+        <td><center>Transporti</center></td>
+        <td><center>Qmimi Total</center></td>
+        <td><center>Pesha (Kg)</center></td>
+        <td style="white-space: nowrap;"><center>Pesha per Njesi</center></td>
+        <td><center>Lloji i Akcizes</center></td>
+        <td><center>Lartesia Akcizes</center></td>
+        <td><center>Taksa Akcizes</center></td>
+        <td><center>Lartesia e TVSH</center></td>
+        <td><center>Taksa e TVSH</center></td>
+        <td><center>Lartesia e Doganes</center></td>
+        <td><center>Taksa Doganore</center></td>
+        <td><center>Gjithsej Taksat</center></td>
+        <td style="width:100px"><center><span>&#x2715;</span></center></td>
+      </tr>
+      <% iter = 0 %>
+      <% @import.import_articles.each do |ia| %>
+        <% i = ia.import %>
+        <% a = ia.article %>
+        <% if ia.persisted? %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
+            <td style="width:100px"><center><%= a.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= a.tarif_kodi %></center></td>
+            <td style="width:75px"><center><%= ia.emertimi %></center></td>
+            <td style="width:100px"><center><%= ia.kodi %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= "#{'%.2f' % ia.sasia.round(2)} #{ia.njesia}" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi.round(2) %> €</center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi_njesi.round(2) %> <%= "€/" + "#{ia.njesia}" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi_kg.round(2) %> <%= "€/" + "Kg" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.transport.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.qmimi_tot.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.pesha.round(2) %> <%= "Kg" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.pesha_njesi.round(2) %> <%= "Kg/" + "#{ia.njesia}" %></center></td>
+            <td style="width:100px"><center><%= ia.lloji_akcizes %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.akciza.round(2) %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.taksa_akciza.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.tvsh.round(2) %> <%= "%" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.taksa_tvsh.round(2) %> <%= "€" %></center></td>
+            <td style="width:125px; white-space: nowrap;"><center><%= '%.2f' % a.dogana.round(2) %> <%= "%" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.taksa_dogana.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px; white-space: nowrap;"><center><%= '%.2f' % ia.gjithsej_taksa.round(2) %> <%= "€" %></center></td>
+            <td style="width:100px"><center>
+              <%= link_to ia, method: :delete do %>
+                <span>&#x2715;</span>
+              <% end %>
+            </center></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tr style="border-bottom: 0px">
+        <td style="width:100px" colspan="2"></td>
+        <td style="width:100px"><center><strong>Totali:</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @import.shuma_qmimi.round(2) %> €</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_qmimi_tot.round(2) %> €</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_pesha.round(2) %> Kg</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_akciza.round(2) %> €</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_tvsh.round(2) %> €</strong></center></td>
+        <td style="width:100px"></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_dogana.round(2) %> €</strong></center></td>
+        <td style="width:100px"><center><strong><%= '%.2f' % @tot_taksa.round(2) %> €</strong></center></td>
+      </tr>
+    </table>
+  </div>
+</center>

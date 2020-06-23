@@ -1,0 +1,191 @@
+
+
+
+<%= render 'layouts/flash' %>
+<center><h1 style="font-family: Barlow; margin-top: 30px">Eksporti: <%= @exportlande.nr_exportit %></h1></center>
+<br>
+<center>
+  <table class="tabela-import">
+    <tr>
+      <td>
+        <div>
+          <strong>Data</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Klienti</strong>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Fatura</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= @exportlande.data %>
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @exportlande.client.kompania %> 
+        </div>
+      </td>
+      <td>
+        <div>
+          <%= @exportlande.fatura.nr_faturess %> 
+        </div>
+      </td>
+    </tr>
+    <tr style="height: 40px">
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+
+      <td>
+        <div>
+          <strong>Pesha</strong>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <%= '%.2f' % @pesha.round(2) %> Kg
+        </div>
+      </td>
+
+    </tr>
+  </table>
+</center>
+<style>
+  .tabela-import{
+    margin-bottom: 40px;
+  }
+  .tabela-import td {
+    width: 300px;
+    text-align: center;
+  }
+</style>
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3">
+    <% if $gabimet.count != 0 %>
+      <center><ul class="alert alert-danger"><a class="close" data-dismiss="alert">&#215;</a>
+        <% $gabimet.each do |a| %>
+          <li style="margin:15px"><%= a %></li>
+        <% end %>
+      </ul></center>
+    <% end %>
+    <%= nested_form_for(@exportlande)do |f|%>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel"><strong>Shto produkt të re</strong></h4>
+              </div>
+              <%= f.fields_for :explande_articles do |na| %>
+                <%= render 'shared/error_messages', object: na.object %>
+                <% unless na.object.persisted? %>
+                  <div class="modal-body">
+                
+                    <%= na.select :import_id, Import.all.where(mbylled: false).where(client_id: @exportlande.client).select { |i| !(i.skaduar?) }.collect { |p| [p.nr_dud, p.id]}, { include_blank: "Selekto Importin", multiple: false}, :id => "product_select", class: "form-control" %>
+                    <%= na.label :sasia %>
+                    <%= na.number_field :sasia, step: :any, class: "form-control" %>
+                    <div>
+                    <%= na.label :import_article_id, "Selekto Normativen" %>
+                    <%= na.grouped_collection_select("import_article_id", Import.order(:data), :import_articles, :nr_dud, :id, :show_text_exp,
+                                                      { include_blank: "Select Article", multiple: false}, :id => "normative_select", class: "form-control") %>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+                    <%= f.submit "Shto", class: "btn btn-primary", id: "lolz", name: "add_explande_article" %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+</div>
+<center>
+  <div class="fatura-tabela">
+    <table>
+      <tr class="hedi">
+        <% if enabled? %>
+          <td colspan="2"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: green; margin-bottom: 5px">&#43;</button></center></td>
+        <% else %>
+          <td colspan="2"><center><button type="button" style="border: 0px; background: none; font-size: 35px; font-weight: 100; color: grey; margin-bottom: 5px">&#43;</button></center></td>
+        <% end %>
+        <td style="width:100px"><center>Pershkrimi</center></td>
+        <td style="width:100px"><center>Tarif Kodi</center></td>
+        <td style="width:100px"><center>Sasia</center></td>
+        <td style="width:100px"><center>Shuma</center></td>
+        <td style="width:100px"><center><span>&#x2715;</span></center></td>
+      </tr>
+      <% iter = 0 %>
+      <% @exportlande.explande_articles.each do |ep| %>
+        <% e = ep.exportlande %>
+        <% pr = ep.article %>
+        <% if ep.persisted? %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td style="width:100px" colspan="2"><center><%= iter+=1 %></center></td>
+            <td style="width:100px"><center><%= pr.pershkrimi %></center></td>
+            <td style="width:100px"><center><%= pr.tarif_kodi %></center></td>
+            <td style="width:75px"><center><%= ep.sasia %></center></td>
+            <td style="width:100px"><center><%= ep.import.nr_dud%></center></td>
+            <td style="width:100px"><center><%= ep.import_article.emertimi %></center></td>
+            <td style="width:100px"><center>
+              <%= link_to ep, method: :delete do %>
+                <span onclick="show_slow_warning()">&#x2715;</span>
+              <% end %>
+            </center></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</center>
+<% $gabimet = [] %>
+<div class="modal fade" id="slow_warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="top:30%">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="height: 50px">
+            <center><h4 class="modal-title" id="exampleModalLabel" style="font-family: Barlow"><strong>Duke u realizuar kalkulimet e Ekportit te lendes se pare</strong></h4></center>
+          </div> 
+          <div class="modal-body">
+            <div id="animation-box"></div>
+            <center><h4 class="modal-title" id="exampleModalLabel" style="margin-top: 15px; font-family: Barlow"><strong>Ju lutem prisni derisa të realizohen kalkulimet.</strong></h4></center>
+          </div>
+        </div>
+      </div>
+    </div>
+<script>
+
+  function show_slow_warning() {
+    
+    $("#exampleModal").hide();
+    $("#slow_warning").show();
+    $("#slow_warning").modal({backdrop: 'static', keyboard: false});
+  }
+  $(document).ready(function() {
+    $('#lolz').click(function(){
+      show_slow_warning();
+    });
+  });
+
+
+
+</script>

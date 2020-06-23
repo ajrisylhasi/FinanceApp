@@ -1,0 +1,2 @@
+module PaletPacketsHelper
+end

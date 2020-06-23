@@ -1,0 +1,339 @@
+<nav class="navbar navbar-default navbar-fixed-top" id="header" >
+    <div class="container-fluid" id="hederi">  
+        <div id="tdhanat-45"><span onclick="doSomething()" style="cursor:pointer; font-size: 23.1px">☰</span></div> 
+        <div id="mySidenav" class="sidenav">
+          <table>
+            <tr border=2>
+              <td colspan=2 style="width: 185px">
+                <a style="font-size:20px;cursor:pointer; color: #c4c4c4; top: 50px;margin-left: 22px" onclick="closeNav(); fade()" href="/home"><span class="glyphicon glyphicon-home"></span></a>
+              </td>
+              <td style="width: 60px">
+                <div><span style="font-size:25px;cursor:pointer; color: #c4c4c4; top: 50px" onclick="doSomething()"><center><span><strong>&#x2715;</strong></span></center></div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"><div class="navside"><a onclick="closeNav(); fade()" href="/autorizims/<%= Autorizim.all.first.id %>">Autorizimi</a></div></td>
+            </tr>
+            <tr>
+              <td colspan=2 style="width: 185px">
+                <div class="navside" style="white-space: nowrap"><a onclick="closeNav(); fade()" href="/garancions">Garancionet</a>
+              </td>
+              <td style="width: 60px">
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2 style="width: 185px">
+                <div class="navside" style="white-space: nowrap"><a onclick="closeNav(); fade()" href="/clients">Klientët</a>
+              </td>
+              <td style="width: 60px">
+                
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2 style="width: 185px">
+                <div class="navside" style="white-space: nowrap"><a onclick="closeNav(); fade()" href="/imports">Importet</a>
+              </td>
+              <td style="width: 60px">
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 15px">
+              </td>
+              <td style="width: 145px; padding-top: 10px">
+                <div class="mininav"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/import_search">&#8226; Kërko <i class="fa fa-search" aria-hidden="true"></i></a></div>
+                <div class="mininav" style="margin-top: 5px"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/mbylljas">&#8226; Mbylljet</a></div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2 style="width: 185px">
+                <div class="navside" style="white-space: nowrap"><a onclick="closeNav(); fade()" href="/exports">Eksportet</a>
+              </td>
+              <td style="width: 60px">
+              </td>
+            </tr>
+            
+            <tr>
+              <td style="width: 15px;margin-bottom: -10px">
+              </td>
+              <td style="width: 145px; padding-top: 10px; padding-bottom: -10px; margin-bottom: -10px">
+                <div class="mininav"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/exportlandes">&#8226; Exp e Lendes se Pare</a></div>
+                <div class="mininav" style="margin-top: 5px"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/faturas">&#8226; Faturat</a></div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2 style="width: 185px">
+                <div class="navside" style="white-space: nowrap"><a onclick="closeNav(); fade()" href="/products">Produktet</a>
+              </td>
+              <td style="width: 60px">
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 15px">
+              </td>
+              <td style="width: 145px; padding-top: 10px">
+                <div class="mininav"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/product_search">&#8226; Kërko <i class="fa fa-search" aria-hidden="true"></i></a></div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2 style="width: 185px">
+                <div class="navside" style="white-space: nowrap"><a onclick="closeNav(); fade()" href="/articles">Artikujt</a>
+              </td>
+              <td style="width: 60px">
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 15px">
+              </td>
+              <td style="width: 145px; padding-top: 10px">
+                <div class="mininav"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/article_search">&#8226; Kërko <i class="fa fa-search" aria-hidden="true"></i></a></div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2 style="width: 185px">
+                <div class="navside" style="white-space: nowrap"><a onclick="closeNav(); fade()" href="/normatives">Normativat</a>
+              </td>
+              <td style="width: 60px">
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2 style="width: 185px">
+                <div class="navside" style="white-space: nowrap"><a>Reportet</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 15px;margin-bottom: -10px">
+              </td>
+              <td style="width: 145px; padding-top: 10px; padding-bottom: -10px; margin-bottom: -10px">
+                <div class="mininav"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/specifikacions">&#8226; Specifikacionet</a></div>
+                <div class="mininav" style="margin-top: 5px"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/official">&#8226; Gjendja Zyrtare</a></div>
+                <div class="mininav" style="margin-top: 5px"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/gjendja">&#8226; Gjendja</a></div>
+                <div class="mininav" style="margin-top: 5px"><a onclick="closeNav(); fade()" style="margin-left: 25px" href="/mbetja">&#8226; Mbetja</a></div>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+        
+        
+        
+        <center>
+          <div id="tit" style="display: inline-block; vertical-align: top">
+            <%= link_to 'Përpunimi Brendshëm', home_path, id:"titulli", class:"mid" %>
+          </div>
+        </center>
+        
+        
+        <div class="tdhanat-2">
+          <div ng-app="demoApp" class="ng-app">
+        		<div class="wrapper" ng-controller="demoController">
+        		  <div class="nav-bar">
+        		    <ul>
+        		      <li>
+        		        <div class="dropdowns-wrapper">
+        		          <div class="dropdown-container">
+          		          <div class="dropdown">
+                          <button class="dropbtn" id="notifBell">
+                            <% if $notifications != 0 %>
+                              <div class="notifications dropdown dd-trigger" onclick="openNotif()" id="not-click">
+                                <span class="count animated" id="notifications-count"><%= $notifications %></span>
+              		              <span class="fa fa-bell-o"></span>
+              		            </div>
+                            <% else %>
+                              <div class="notifications dropdown dd-trigger" id="not-click">
+                                <span class="fa fa-bell-o"></span>
+                              </div>
+                            <% end %>
+          		            </button>
+                          <div class="dropdown-content" id="dropdown-content-id">
+                              <div class="notifHead">
+                                  
+                                <table>
+                                  <tr>
+                                    <td style="width: 250px">
+                                      <p style="font-size: 22px; padding-top: 200px; display:inline; margin-left: 20px">Notifications</p>
+                                    </td>
+                                    <td>
+                                      <span style="font-size: 20px; display: inline; float:right; margin-top: px; margin-right: 20px">&#215;</span>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                              <% $lajmerimet.each do |l| %>
+                                <% if l.include? "garancionit" %>
+                                  <%= link_to l, garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
+                                <% elsif l.include? "Garancioni:" %>
+                                  <%= link_to l, garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
+                                <% elsif l.include? "as nje garancion" %>
+                                  <%= link_to l, garancions_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
+                                <% elsif l.include? "Importi:" %>
+                                  <%= link_to l, imports_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
+                                <% else %>
+                                  <%= link_to l, edit_autorizim_path(Autorizim.first), class: "dropdown-btn1", style: "font-family: Barlow" %>
+                                <% end %>
+                              <% end %>
+                              <% if @empty_imports.count > 0 %>
+                                <%= link_to "Mbyll Importet Boshe: #{@empty_imports_names.join(", ")}", mbylljas_path, class: "dropdown-btn1", style: "font-family: Barlow" %>
+                              <% end %>
+                          </div>
+                        </div>
+        		          </div>
+                    </div>
+        		      </li>
+        		    </ul>  
+        		  </div>
+        		</div>
+        	</div>
+        </div>
+        
+        <div id="tdhanat-3">
+          <%= image_tag kompania.image_url(:icon).to_s, style: "border-radius: 50%;" %>
+        </div>
+        <div id="tdhanat-34">
+          <% if (current_user.first_name + current_user.last_name.first).length < 10 %>
+            <p><%= link_to "#{current_user.first_name.capitalize} #{current_user.last_name.first.capitalize}", current_user, style: "text-decoration: none; color: white" %></p>
+          <% else %>
+            <p><%= link_to "#{current_user.first_name.first.capitalize}. #{current_user.last_name.first.capitalize}.", current_user, style: "text-decoration: none; color: white" %></p>
+          <% end %>
+        </div>
+        <div id="tdhanat-4">
+          <span onclick="doSomethingRight()" style="cursor:pointer;" id="sideNavButton"><%= image_tag "gear.svg", style: "height: 23.11px; width: 20.99px" %>
+          </span>
+        </div>
+        
+        <div id="mySidenavRight" class="sidenavright" style="border-left: 0.5px solid #f3f3f3;">
+            <div class="top-side" id="top-sidi">
+              <div style="display:inline-block; heigth: 64px;"><p style="margin-top: 20px; font-size: 15px; margin-left: 20px; color: white">Rregullimet</p></div>
+              <div style="display:inline-block; height: 64px; position: absolute; right: 35px; top: 20.945px; margin-left: 120px;"><span onclick="doSomethingRight()" style="cursor:pointer;"><div style="height: 23.11px; width: 23.11px; background: #343b4a; border-radius: 50%; color: white; font-size: 11.5px; padding-top: 3.5px; padding-left: 6.5px"><span><strong>&#x2715;</strong></span></div></div>
+            </div>
+            <div class="side-photo">
+              <center><%= image_tag kompania.image_url(:thumber).to_s %></center>
+              <center><h5 style="font-family: Barlow; color: #414D5F"><strong><%= kompania.kompania %></strong></h5></center>
+              
+              <center><h6 style="font-family: Barlow; color: #414D5F"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h6></center>
+            </div>
+            <div style="border-top: 0.5px solid #f3f3f3; border-bottom: 0.5px solid #f3f3f3">
+              <center><div style="display:inline-block; height: 35px; "><p style="font-size: 15px; color: #6C757D; margin-top: 7px"><strong>Rregullimet Kryesore</strong></p></div></center>
+            </div>
+            <div style="margin-top: 25px;"></div>
+            <table>
+              <tr>
+                <td width="185px">
+                  <div class="navsideright"><a onclick="closeNavRight(); fade()" href="/kompanis/<%= kompania.id %>/edit">Kompania</a></div>
+                </td>
+                <td width="60px">
+                  
+                </td>
+              </tr>
+              <tr>
+                <td width="185px">
+                  <div class="navsideright" style="white-space: nowrap"><a onclick="closeNavRight(); fade()" href="/users">Përdoruesit</a></div>
+                </td>
+                <td width="60px">
+                </td>
+              </tr>
+              <tr>
+                <td width="185px">
+                  <div class="navsideright" style="white-space: nowrap"><a onclick="closeNavRight(); fade()" href="/doganas">Zyret Doganore</a></div>
+                </td>
+                <td width="60px">
+                </td>
+              </tr>
+              <tr>
+                <td width="185px">
+                  <div class="navsideright" style="white-space: nowrap"><a onclick="closeNavRight(); fade()" href="/destinims">Zyret e Destinimit</a></div>
+                </td>
+                <td width="60px">
+                </td>
+              </tr>
+              <tr>
+                <td width="185px">
+                  <div class="navsideright" style="white-space: nowrap"><a onclick="closeNavRight(); fade()" href="/njesis">Njësitë</a></div>
+                </td>
+                <td width="60px">
+                </td>
+              </tr>
+              <tr>
+                <td width="185px">
+                  <div class="navsideright" style="white-space: nowrap"><a onclick="closeNavRight(); fade()" href="/users/<%= current_user.id %>/change_date">Lajmërimet</a></div>
+                </td>
+                <td width="60px">
+                </td>
+              </tr>
+              <tr>
+                <td width="185px">
+                  <div class="navsideright" style="white-space: nowrap"><%= link_to ("Log Out"), logout_path, {method: "delete", 'onclick' => 'closeNavRight'} %></div>
+                </td>
+                <td width="60px">
+                  <div class="navsideright" style="white-space: nowrap"><%= link_to (image_tag 'mbyllja.svg', style: "width:1.4vw;padding-bottom:3px;padding-right:3px"), logout_path, {method: "delete", 'onclick' => 'closeNavRight'} %></div>
+                </td>
+              </tr>
+            </table>
+        </div>
+    </div>
+</nav>
+<script>
+  var clicked = false;
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    $("#mySidenav").fadeTo("fast",0.9);
+    clicked=true;
+    $("#tdhanat-45").fadeTo("fast",0);
+    for (var i=0; i < elements.length; i++) {
+      elements[i].fadeTo("fast", 1);
+    }
+  }
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0px";
+    $("#mySidenav").fadeTo("fast",1);
+    clicked=false;
+    $("#tdhanat-45").fadeTo("fast",1);
+    for (var i=0; i < elements.length; i++) {
+      elements[i].fadeTo("fast", 0.5);
+    }
+  }
+  function doSomething() {
+    if(!clicked) {
+      openNav(); 
+    } else {
+     closeNav(); 
+    }
+  }
+
+  // <=============>
+
+  var clickedRight = false;
+  function openNavRight() {
+    document.getElementById("mySidenavRight").style.width = "250px";
+    $("#notifBell").fadeTo("fast",0);
+    clickedRight=true;
+  }
+  function closeNavRight() {
+    document.getElementById("mySidenavRight").style.width = "0px";
+    $("#notifBell").fadeTo("fast",1);
+    clickedRight=false;
+  }
+  function doSomethingRight() {
+    if(!clickedRight) {
+      openNavRight(); 
+    } else {
+     closeNavRight(); 
+    }
+  }
+  
+  // <=============>
+
+  function closeNotif() {
+    document.getElementById("dropdown-content-id").classList.remove('dropdown-content-on');
+    document.getElementById("dropdown-content-id").classList.add('dropdown-content'); 
+  }
+  function openNotif() {
+      document.getElementById("dropdown-content-id").classList.remove('dropdown-content');
+      document.getElementById("dropdown-content-id").classList.add('dropdown-content-on');
+  }
+  window.addEventListener('mouseup', function(event){
+    var box = document.getElementById("dropdown-content-id");
+    if(event.target != box && event.target.parentNode != box) {
+      closeNotif();
+    }
+  })
+</script>

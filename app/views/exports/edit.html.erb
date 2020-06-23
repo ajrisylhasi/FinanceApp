@@ -1,0 +1,20 @@
+<center>
+<div class="row" style="width:500px">
+  <div>
+    <%= nested_form_for(@export)do |f|%>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div style="container">
+        <%= f.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
+        <%= f.label :nr_exportit %>
+        <%= f.text_field :nr_exportit, class: 'form-control' %>
+        <%= f.label :data %>
+        <%= f.date_field :data, class: 'form-control' %>
+        <%= f.label :client_id, "Klienti" %>
+        <%= f.select("client_id", Client.all.collect {|n| [ n.kompania,  n.id ] }, { prompt: "Select Client", multiple: false, id: "n" }, class: "form-control") %>
+        <br>
+        <%= f.file_field :files, multiple: true %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</center>

@@ -1,0 +1,21 @@
+<center>
+  <div class="row" style="width:500px">
+    <div>
+      <div>
+        <div>
+          <center>
+          <%= nested_form_for(@njesi)do |f|%>
+            <%= render 'shared/error_messages', object: f.object %>
+            <div>
+              <%= f.submit "Ndrysho", class: "btn btn-primary", style: "margin-top: 15px" %><br><br>
+              <%= f.label :lloji %>
+              <%= f.text_field :lloji, class: 'form-control' %>
+            </div>
+          <% end %>
+        </center>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</center>

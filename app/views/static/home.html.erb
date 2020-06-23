@@ -1,0 +1,49 @@
+<center>
+<div style="margin-top: 50px">
+<center>
+	<table>
+		<tr>
+			<td style="width: 600px">
+				<center><h3>Garancionet</h3></center>
+				<center><p>Garancionet te regjistruara: <%= $vlera_garancioneve.round(3) %>  €</p></center>
+				<center><p>Vlera Aktuale e Garancioneve: <%= $garancioni_mbetur.round(3) %>  €</p></center>
+				<%= pie_chart @garancions_graph %>
+			</td>
+			<td style="width: 600px">
+				<center><h3>Taksat e Importeve sipas Klientit</h3></center>
+				<br> <br> <br> <br>
+				<%= column_chart @imports_taksa%>
+			</td>
+		</tr>
+		<tr style="height: 50px">
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 600px">
+				<center><h3>Taksat e Mbetjeve sipas Eksportit</h3></center>
+				<br>
+				<%= column_chart @mbetja_taksa %>
+			</td>
+			<td style="width: 600px">
+				<center><h3>Taksat e Importeve</h3></center>
+				<br>
+				<%= column_chart @imports_taksa_pa %>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 600px">
+				<center><h3>10 Produktet me te shitura</h3></center>
+				<br>
+				<%= column_chart @shitja_produktit %>
+			</td>
+			<td style="width: 600px">
+				<center><h3>Taksat e Eksporteve sipas Klientit</h3></center>
+				<br>
+				<%= column_chart @exports_taksat %>
+			</td>
+		</tr>
+	</table>
+</center>
+</div>
+</center>

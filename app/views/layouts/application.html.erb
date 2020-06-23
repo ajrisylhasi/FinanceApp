@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Perpunimi Brendshem</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application','data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet"> 
+    <meta charset="utf-8">  
+    <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+    
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      if(!!window.performance && window.performance.navigation.type == 2)
+      {
+        window.location.reload();
+      }
+    </script>
+    <% if controller_name != "sessions" %>
+      <% if current_user.kategoria == "admin" %>
+        <div style="height:64px">
+          <%= render 'layouts/header' %>
+        </div>
+        
+      <% end %>
+    <% end %>
+    
+    <%= yield %>
+  </body>  
+</html>

@@ -1,0 +1,41 @@
+
+<div class="col-md-6 col-md-offset-3">
+  <%= render 'layouts/flash' %>
+  <%= nested_form_for(@normative) do |f|%>
+    <div class="modal fade" id="exampleModalauto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel"><strong>Shto artikull te ri.</strong></h4>
+          </div>
+          <%= f.fields_for :normative_articles do |na| %>
+            <%= render 'shared/error_messages', object: na.object %>
+            <% unless na.object.persisted? %>
+              <div class="modal-body">
+
+                <%= na.select("article_id", Article.all.collect {|p| ["(#{p.kodi}) #{p.pershkrimi} - #{p.njesia}", p.id]}, { prompt: "Select Article", multiple: false }, { id: "article_select", class: "form-control"}) %>
+                
+                <%= na.label :sasia %>
+                  <%= na.number_field :sasia, step: :any, class: 'form-control' %>
+                <div>
+                  <%= na.label :pesha_qmimi, "Pesha e marrur nga Importi" %>
+                <%= na.grouped_collection_select(:pesha_qmimi, Article.order(:pershkrimi), :import_articles, :pershkrimi_njesia, :grupi, :show_text,
+                    { include_blank: "Select Pesha", multiple: false}, :id => "pesha_select", class: 'form-control') %>
+                </div>
+                <%= na.label :mbetja, "Mbetja Sasise" %>
+                  <%= na.number_field :mbetja, step: :any, class: 'form-control'%>
+
+                <%= na.label :mbetja_peshe, "Mbetja Peshes" %>
+                  <%= na.number_field :mbetja_peshe, step: :any, class: 'form-control' %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+                <%= na.submit "Shto", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,20 @@
+<h1 style="color:black">New Normative</h1>
+
+<div class="row" style="width:100%">
+  <div class="col-md-6 col-md-offset-3">
+    <%= nested_form_for(@normative)do |f|%>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div style="container">
+        <%= f.label :nr_normatives %>
+        <%= f.number_field :nr_normatives, class: 'form-control' %>
+        <%= f.file_field :files, multiple: true%>
+        <%= f.date_field :data, value: Date.today, class: "form-control"%>
+        <%= f.select "product_id", options_for_select(Product.all.select { |p| p.autorizims.first == Autorizim.first }.collect{ |u| [u.pershkrimi_plote, u.id] }), :prompt => 'Select Product' %>
+      </div>
+      <div class="buttons">
+        <%= f.submit "Add Normative", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Back", normatives_path, class:"btn btn-primary" %>
+</div>

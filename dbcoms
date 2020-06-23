@@ -1,0 +1,2 @@
+
+TRUNCATE TABLE clients, autorizims, akcizas, doganas, destinims, njesis, products, normatives, articles, autorizim_Articles, import_articles, import_gjendjas, explande_articles, subs, imports, garancion_gjendjas, subexpls, sub_mbylljas, exports, normative_articles, autorizim_products, faturas, exportlandes, export_products, product_packets, palet_products, export_gjendjas, packing_lists, fees, lists, users, kompanis, njesis, autorizims, garancions;

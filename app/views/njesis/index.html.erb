@@ -1,0 +1,55 @@
+<center><h1 style="font-family: Barlow; margin-top: 30px">Lista e Njesive</h1></center>
+<div><%= render "layouts/flash" %></div>
+<%= render 'shared/error_messages' %>
+<center>
+  <div class="fatura-tabela">
+      
+      <table>
+        <tr class="hedi">
+          <td style="min-width:75px;"><center><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; background: none; font-size: 30px; color: green;">&#43;</button></center></td>
+          <td style="min-width:75px"><center>Njesia</center></td>
+          <td colspan="4"><center></center></td>
+        </tr>
+        <% iter = 0 %>
+        <% @njesis.each do |a| %>
+          <% if iter.even? %>
+            <tr style="background: #dee2e6">  
+          <% else %>
+            <tr style="background: white"> 
+          <% end %>
+            <td><center><%= iter+=1 %></td></center>
+            <td><center><%= a.lloji %></td></center>
+            <td style="width: 25px"></td>
+            <td style="width: 50px; border: 0px"><center><%= link_to edit_njesi_path(a) do %> <span class="glyphicon glyphicon-pencil" style="color: black; font-size: 18px"></span><% end %></td></center>
+            <td style="width: 50px; border: 0px"><center><%= link_to a, method: :delete do %>
+              <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %>
+            </td></center>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <div>
+</center>
+  
+
+<%= nested_form_for(@njesi)do |f|%>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel"><strong>Shto njësi të re</strong></h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            <%= f.label :lloji, "Njesia" %>
+            <%= f.text_field :lloji, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+          <%= f.submit "Shto", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

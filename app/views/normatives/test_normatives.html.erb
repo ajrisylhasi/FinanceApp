@@ -1,0 +1,20 @@
+<h1 style="color:black">Edit Normative</h1>
+
+<center><div class="row" style="width:100%">
+    
+  <div>
+      <%= form_for "", url: make_test_url, role: "norm", method: :post  do |f|%>
+        Choose Type<br />
+        
+        <%= select_tag "norm[normative_id]", options_from_collection_for_select(@normatives, 'id', 'show_text'), {include_blank: "Select Normative", multiple: false} %><br>
+        <%= f.label "norm[kategoria]", "Test" %>
+        <%= f.radio_button "norm[kategoria]", "test" %>
+        <%= f.label "norm[kategoria]", "Manual" %>
+        <%= f.radio_button "norm[kategoria]", "manual", :checked => true %>
+        <%= f.label "norm[kategoria]", "Automatik" %>
+        <%= f.radio_button "norm[kategoria]", "auto"%>
+        <%= submit_tag "Edit",  class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  <%= link_to "Back", normatives_path, class:"btn btn-primary" %>
+</div></center>

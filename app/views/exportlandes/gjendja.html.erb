@@ -1,0 +1,62 @@
+<head>
+  <title>
+    Specifikacioni Per Shkarkim - <%= Date.today.to_s %>
+  </title>
+</head>
+<center>
+  <%= link_to "PDF", specifikacioniex_path( format: :pdf), target: "_blank", class: "btn btn-primary", style: "margin: 15px" %> 
+  <%= link_to "CSV", specifikacioniex_path( format: :csv), target: "_blank", class: "btn btn-primary" %> 
+  <% @subsat.each do |sub_group| %>
+    <center>
+      <table style="border: 2px solid black; margin-bottom: 30px; margin-top: 5px; width: 1300px">
+        <tr id="trjat" style="background: grey; border: 1px solid black;">
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Importi</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Emertimi</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Tarif Kodi</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Kodi Artikullit</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black;  width: 20em;"><center>Pershkrimi</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Sasia</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Njesia</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black;  width: 8em;"><center>Pesha (Kg)</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Qmimi Total</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Taksa Doganore</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Akciza</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>TVSH</center></td>
+          <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid black; "><center>Gjithsej Taksat</center></td>
+        </tr>
+        <% sub_group.sort_by { |x, y| x[1].to_i }.each do |x, y| %>
+          <tr id="trjat" style=" border-bottom: 1px solid black;">  
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= x[2].nr_dud %></center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= x[1] %></center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= Article.where(kodi: x[0]).first.tarif_kodi %></center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= x[0] %></center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= Article.where(kodi: x[0]).first.pershkrimi %></center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[0].round(3) %></center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= Article.where(kodi: x[0]).first.njesia %></center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[1].round(3) %></center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[2].round(3) %> €</center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[3].round(3) %> €</center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[4].round(3) %> €</center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[5].round(3) %> €</center></td>
+            <td style="padding-left: 5px; padding-right: 5px; height: 25px; border-right: 1px solid black; white-space: nowrap;"><center><%= '%.2f' % y[6].round(3) %> €</center></td>
+          </tr>
+        <% end %>
+      </table>
+    </center>
+  <% end %>
+
+<table style="width: 1300px">
+  <tr>
+    <td>
+      <div>
+        <p>Totali i peshes per shkarkim: <%= @tot_pesha.round(2) %> Kg</p>
+        <p>Totali i vleres se qmimit per shkarkim: <%= @tot_qmimi.round(2) %> €</p>
+        <p>Totali i vleres se takses doganore: <%= @tot_dog.round(2) %> €</p>
+        <p>Totali i vleres se takses akcizes: <%= @tot_akciza.round(2) %> €</p>
+        <p>Totali i vleres se TVSH: <%= @tot_tvsh.round(2) %> €</p>
+        <p>Totali i vleres se taksave: <%= @tot_taksa.round(2) %> €</p>
+      </div>
+    </td>
+  </tr>
+</table>
+</center>
