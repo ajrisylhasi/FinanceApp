@@ -6,6 +6,9 @@
         <%= date_field_tag "search[date_to]", @date_to %>
         <%= select_tag "search[client_id]", options_from_collection_for_select(@clients, 'id', 'kompania'), {include_blank: "Select Client", multiple: false} %>
         <%= select_tag "search[article_id]", options_from_collection_for_select(@articles, 'id', 'name'), {include_blank: "Select Article", multiple: false} %>
+        <%= select_tag "search[validity]", options_for_select( [ ["Artikujt me date valide", 1], ["Artikujt me date te Skaduar", -1]]), { prompt: "Zgjedh Kategorine", multiple: false} %>
+        <%= @val %>
+          
         <%= submit_tag "Search",  class: "btn btn-primary" %>
       <% end %>
     </div>
@@ -29,7 +32,7 @@
             <td style="min-width:75px"><center>Qmimi</center></td>
           </tr>
           <% iter = 0 %>
-          <% @list.each do |ep| %>
+          <% @list.sort_by{ |ar| [ar.emertimi.to_i, ar.import.id, ar.id] }.each do |ep| %>
             <% if iter.even? %>
               <tr style="background: #dee2e6">  
             <% else %>

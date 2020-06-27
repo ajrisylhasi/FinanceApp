@@ -26,7 +26,7 @@
           <td colspan="4"><center></center></td>
         </tr>
         <% iter = 0 %>
-        <% @imports.each do |a| %>
+        <% @imports.sort_by { |i| i.id}.each do |a| %>
           <% if iter.even? %>
             <tr style="background: #dee2e6">  
           <% else %>

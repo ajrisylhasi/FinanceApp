@@ -329,7 +329,14 @@ module ReportsHelper
   end
   
   def import_search
-    impat = Import.where('data BETWEEN ? and ?', @date_from, @date_to)
+    if @val == 1
+      impat = Import.where('data BETWEEN ? and ?', @date_from, @date_to).select { |i| i.data_skadimit > Date.today}
+    elsif @val == -1
+      impat = Import.where('data BETWEEN ? and ?', @date_from, @date_to).where('data_skadimit <= ?', Date.today)
+    else 
+      impat = Import.where('data BETWEEN ? and ?', @date_from, @date_to)
+      @impat = Import.where('data BETWEEN ? and ?', @date_from, @date_to)
+    end
     @list = []
     if @client == 0 
       if @article == 0

@@ -87,6 +87,8 @@ class ReportsController < ApplicationController
     params[:search] ||= {}
     if Import.count != 0 
       @date_from = Date.parse(params[:search][:date_from]) rescue Import.all.sort_by(&:data).first.data.to_s
+
+      @val = params[:search][:validity].to_i rescue 0
     else
       @date_from = Date.parse(params[:search][:date_from]) rescue 7.days.ago.to_date.to_s
     end

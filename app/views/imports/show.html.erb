@@ -191,7 +191,7 @@
         <td style="width:100px"><center><span>&#x2715;</span></center></td>
       </tr>
       <% iter = 0 %>
-      <% @import.import_articles.each do |ia| %>
+      <% @import.import_articles.all.sort_by { |ar| [ar.emertimi.to_i, ar.id]}.each do |ia| %>
         <% i = ia.import %>
         <% a = ia.article %>
         <% if ia.persisted? %>
