@@ -7,7 +7,6 @@
         <%= select_tag "search[client_id]", options_from_collection_for_select(@clients, 'id', 'kompania'), {include_blank: "Select Client", multiple: false} %>
         <%= select_tag "search[article_id]", options_from_collection_for_select(@articles, 'id', 'name'), {include_blank: "Select Article", multiple: false} %>
         <%= select_tag "search[validity]", options_for_select( [ ["Artikujt me date valide", 1], ["Artikujt me date te Skaduar", -1]]), { prompt: "Zgjedh Kategorine", multiple: false} %>
-        <%= @val %>
           
         <%= submit_tag "Search",  class: "btn btn-primary" %>
       <% end %>
